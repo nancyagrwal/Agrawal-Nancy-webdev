@@ -5,16 +5,24 @@
     <title>Web Dev Course Home Page</title>
 </head>
 <body>
-    <h1>Web Dev Course Home Page</h1>
-
-    <p>
-        <ul>
-            <li> <strong>Nancy Agrawal </strong></li>
-            <li> <strong>Computer Science Grad Student @ Northeastern <strong> </li>
-         </ul>
-    </p>
-
-    <h2>Required links</h2>
+    <style>
+		.blue-text {color:blue ; font-size: 20px;}
+		.active {line-height: 50em;}
+		.avatar-frame{
+		width: 180px;
+		height: 180px;
+		-webkit-border-radius: 30px; /* Saf3+, Chrome */
+		border-radius: 30px; /* Opera 10.5, IE 9 */
+		/*-moz-border-radius: 30px;  Disabled for FF1+ */
+		}
+	</style>
+    
+   <h1 class="blue-text">CS 5610: Web Development Summer 1</h1>
+	
+	<img src="display_pic.jpg" class="avatar-frame">
+	
+	<div style= "width:800px; float:right;">
+    <h2>Required links</h2> 
     <ul>
         <li>
             <a href="project/index.html">Project</a>
@@ -29,5 +37,6 @@
             <a href="https://github.com/nancyagrwal/Agrawal-Nancy-webdev">Your public repository at GitHub.com</a>
         </li>
     </ul>
+    </div>
 </body>
 </html>
