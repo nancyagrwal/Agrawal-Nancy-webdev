@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,40 +6,38 @@
     <title>Web Dev Course Home Page</title>
 </head>
 <body>
-    <style>
-		.blue-text {color:blue ; font-size: 20px;}
-		.active {line-height: 50em;}
-		.avatar-frame{
-		width: 180px;
-		height: 180px;
-		-webkit-border-radius: 30px; /* Saf3+, Chrome */
-		border-radius: 30px; /* Opera 10.5, IE 9 */
-		/*-moz-border-radius: 30px;  Disabled for FF1+ */
-		}
-	</style>
-    
-   <h1 class="blue-text">CS 5610: Web Development Summer 1</h1>
-	
-	<img src="display_pic.jpg" class="avatar-frame">
-	
-	<div style= "width:800px; float:right;">
-    <h2>Required links</h2> 
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/nancyagrwal/Agrawal-Nancy-webdev">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
-    </div>
-	 <p><strong> Nancy Agrawal </strong></p>
-	 <p><strong> Computer Science Grad Student @ Northeastern </strong></p>
+<style>
+    body{
+        background-color: beige;
+    }
+    .blue-text {color:blue ; font-size: 25px; margin-left: 550px;}
+    .active {line-height: 50em;}
+    .avatar-frame{
+        width: 230px;
+        height: 230px;
+        -webkit-border-radius: 30px; /* Saf3+, Chrome */
+        border-radius: 50px; /* Opera 10.5, IE 9 */
+        margin-left: 650px;
+        margin-top:80px ;
+        /*-moz-border-radius: 30px;  Disabled for FF1+ */
+    }
+</style>
+<div class="container-fluid">
+<h1 class="blue-text">CS 5610: Web Development Summer 1</h1>
+<img src="display_pic.jpg" class="avatar-frame">
+
+<div class ="row" style= "margin-top:100px; margin-left: 120px">
+        <div class="col-xs-3"> <a href="project/index.html" class="btn btn-info">Project</a></div>
+        <div class="col-xs-3"> <a href="assignment/index.html" class="btn btn-info">Assignment</a></div>
+        <div class="col-xs-3"> <a href="test/index.html" class="btn btn-info">Test MongoDB</a></div>
+        <div class="col-xs-3"> <a href="https://github.com/nancyagrwal/Agrawal-Nancy-webdev" class="btn btn-info">Github Repository</a></div>
+</div>
+
+  <div style="margin-top:150px; margin-right: 50px">
+    <p><strong> Nancy Agrawal </strong></p>
+    <p>	<strong> Computer Science Grad Student @ Northeastern University</strong> </p>
+</div>
+
+</div>
 </body>
 </html>
