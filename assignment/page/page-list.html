@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WebsitesGenerator">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div ng-controller="PageListCntrl">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-left">
+            <a class=" navbar-link navbar-brand" href="../website/website-list.html"
+                ng-click="model.goBack()">
+                <span class=" glyphicon pull-left glyphicon-chevron-left" aria-hidden="true"></span></a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">Pages</a>
+        </div>
+        <div class="navbar-right">
+            <a class="navbar-brand navbar-link"
+               href="page-new.html"
+               ng-click="model.cretaeNewPage()">
+                <span class=" glyphicon pull-right glyphicon-plus"
+                      aria-hidden="true"></span></a>
+        </div>
+    </div>
+</nav>
+
+< class="container-fluid">
+    <!--<p ng-repeat="page in model.pages">
+        <a href="../widget/widget-list.html"
+           ng-click="model.fetchPage(page)">
+            {{page.title}}
+            <a href="page-edit.html"
+               ng-click="model.editPage(page)">
+                <span class=" glyphicon pull-right glyphicon-cog" aria-hidden="true"></span>
+            </a>
+        </a>
+    </p>-->
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <a href="../widget/widget-list.html"> Blog Post
+                        </a>
+                    </div>
+                    <div class="col-xs-12">
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-5">
+                    <a href="../widget/widget-list.html"> Post
+                    </a>
+                </div>
+                <div class="col-xs-12">
+                    <a href="page-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
+            </li>
+            <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-5">
+                    <a href="../widget/widget-list.html"> Home
+                    </a>
+                </div>
+                <div class="col-xs-12">
+                    <a href="page-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
+            </li>
+             </ul>
+
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-text pull-right">
+        <a class="navbar-link"
+           href="../user/profile.html"
+           ng-click="model.profile()">
+            <span class=" glyphicon-user glyphicon" aria-hidden="true"></span></a>
+    </div>
+</nav>
+</div>
+</body>
+</html>
