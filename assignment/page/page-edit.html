@@ -44,6 +44,7 @@
     </div>
 </nav>
 
+    <div class="container-fluid">
 
     <div class="col-sm-4 col-md-3 sidebar">
         <!--<p ng-repeat="page in model.pages">
@@ -54,7 +55,6 @@
                 </a>
             </a>
         </p>-->
-        <div class="container-fluid">
         <ul class="list-group">
             <li class="list-group-item">
                 <div class="row">
@@ -99,9 +99,7 @@
 
     </div>
 
-    </div>
-
-    <div class="inverse-sidebar col-sm-8 col-md-9">
+        <div class="inverse-sidebar col-sm-8 col-md-9">
         <div class="container-fluid">
         <label for="name">Title</label>
         <input type="text"  id="name"  class="form-control" placeholder="Name"
@@ -117,9 +115,11 @@
     </a>
         </div>
     </div>
-</>
+</div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-text pull-right">
         <a href="../user/profile.html"
            ng-click = "model.profile()"
