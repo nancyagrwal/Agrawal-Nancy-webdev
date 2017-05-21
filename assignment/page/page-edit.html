@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WebsitesGenerator">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div ng-controller="PageEditCntrl">
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container-fluid">
+        <div class="pull-left no-padding-left ">
+            <a ng-click ="model.goBack()" href="page-list.html"  class="navbar-link navbar-brand ">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+
+        <div class="nav-sidebar no-padding-left col-sm-4 col-md-3">
+            <div class="navbar-header pull-left"><a class="navbar-brand">Pages</a>
+            </div>
+            <p class="pull-right navbar-text ">
+                <a ng-click="model.cretaeNewPage()"class="navbar-link"><span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
+        </div>
+
+        <div class="col-sm-6 col-md-7 no-padding-left">
+            <div class="navbar-header pull-left">
+                <a ng-click="model.editPage(page)" class="navbar-brand">
+                    Edit Page
+                </a>
+            </div>
+        </div>
+
+        <div class="pull-right navbar-text ">
+            <a href="page-list.html" ng-click="model.pageUpdation(model.page)" class="navbar-link">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+
+    <div class="col-sm-4 col-md-3 sidebar">
+        <!--<p ng-repeat="page in model.pages">
+            <a ng-click="model.fetchPage(page)">
+                {{page.title}}
+                <a ng-click="model.editPage(page)">
+                    <span class="pull-right glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+            </a>
+        </p>-->
+        <div class="container-fluid">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <a href="../widget/widget-list.html"> Blog Post
+                        </a>
+                    </div>
+                    <div class="col-xs-12">
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <a href="../widget/widget-list.html"> Post
+                        </a>
+                    </div>
+                    <div class="col-xs-12">
+                        <a href="page-edit.html">
+                            <span class="pull-right glyphicon glyphicon-cog "></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <a href="../widget/widget-list.html"> Home
+                        </a>
+                    </div>
+                    <div class="col-xs-12">
+                        <a href="page-edit.html">
+                            <span class="pull-right glyphicon glyphicon-cog "></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    </div>
+
+    <div class="inverse-sidebar col-sm-8 col-md-9">
+        <div class="container-fluid">
+        <label for="name">Title</label>
+        <input type="text"  id="name"  class="form-control" placeholder="Name"
+               ng-model="model.page.title" />
+              <!-- value="{{model.page.title}}" -->
+        <label for="description">Description</label>
+        <input type="text"  id="description"  class="form-control"  placeholder="Page Description"
+               ng-model="model.page.description"/>
+     <!--   value="{{model.page.description}}"-->
+
+    <a href="page-list.html" ng-click="model.deletePage(model.page)" class="btn btn-block btn-danger">
+        Delete
+    </a>
+        </div>
+    </div>
+</>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-text pull-right">
+        <a href="../user/profile.html"
+           ng-click = "model.profile()"
+           class="navbar-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+    </div>
+</nav>
+</div>
+</body>
+</html>
