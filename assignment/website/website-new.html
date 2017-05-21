@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WebsitesGenerator">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<div ng-controller="NewCntrl">
+<nav class="navbar navbar-blue navbar-fixed-top">
+
+    <div class="container-fluid">
+        <div class="pull-left no-padding-left ">
+            <a class="navbar-blue navbar-brand navbar-link "
+               href="website-list.html"
+               ng-click="model.returnBack()">
+                <span class="glyphicon-chevron-left glyphicon"></span>
+            </a>
+        </div>
+
+        <div class="nav-sidebar no-padding-left col-sm-4 col-md-3">
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand navbar-blue">
+                    Websites
+                </a>
+            </div>
+            <p class="navbar-text pull-right">
+                <a class="navbar-link navbar-blue" ng-click="model.newWebsite()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
+        </div>
+
+        <div class="col-sm-6 col-md-7 no-padding-left">
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand navbar-blue">
+                    New Website
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-text pull-right">
+            <a class="navbar-link navbar-blue" href="website-list.html"
+               ng-click="model.createWebsite(model.website)">
+                <span class=" glyphicon-ok glyphicon"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+        <div class="col-sm-4 col-md-3 sidebar">
+            <!--<p ng-repeat="website in model.websites">
+                <a ng-click="model.fetchSite(website)">  {{website.name}}
+                    <a ng-click="model.editSite(website)">
+                        <span class="pull-right glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                </a>
+            </p>-->
+            <ul class="list-group">
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a href="../page/page-list.html">Address Book App</a>
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a href="../page/page-list.html">Blogger</a>
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a href="../page/page-list.html">Blogging App</a>
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div></li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <a href="../page/page-list.html">Script Testing App</a>
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="website-edit.html">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+            </ul>
+
+        </div>
+    <div class="inverse-sidebar col-sm-8 col-md-9">
+            <label for="name">Name</label>
+            <input
+                    ng-model="model.website.name"
+                    type="text"
+                   id="name"
+                   class="form-control"
+                   placeholder="Name"/>
+            <label for="description">Description</label>
+        <textarea
+                ng-model="model.website.description"
+                type="text"
+                id="description"
+                class="form-control"
+                rows="5"
+                placeholder="Description">
+            </textarea>
+        </div>
+</div>
+<nav class="navbar navbar-blue navbar-fixed-bottom">
+    <div class="navbar-text pull-right">
+        <a class="navbar-link navbar-blue" href="../user/profile.html"
+           ng-click="model.profile()">
+            <span class=" glyphicon-user glyphicon" aria-hidden="true"></span></a>
+    </div>
+</nav>
+</div>
+</body>
+</html>
