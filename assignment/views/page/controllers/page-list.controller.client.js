@@ -1,31 +1,24 @@
-/**
- * Created by nancy on 5/28/2017.
- */
+
 (function() {
     angular
         .module("WAM")
-        .controller("PageListController", PageListController);
+        .controller("pageListController", pageListController);
 
-    function PageListController($location, $routeParams, PageService) {
-        var vm = this;
-        model.userId = $routeParams["uid"];
-        vm.websiteId = $routeParams["wid"];
-        vm.profile = profile;
-        vm.newPage = newPage;
-        vm.openPage= openPage;
-        vm.editPage = editPage;
-        vm.back = back;
+    function pageListController($routeParams, pageService,$location) {
+        var model = this;
+        model.userId = $routeParams["userId"];
+        model.websiteId = $routeParams["websiteId"];
+        model.profile = profile();
+        model.newPage = newPage;
+        model.openPage= openPage;
+        model.editPage = editPage;
+        model.back = back;
+
 
         function init() {
-            PageService
-                .findPagesByWebsiteId(vm.websiteId)
-                .success(function (pages) {
-                    vm.pages = pages;
-                })
-                .error(function(error) {
-                    console.log("Error: Cant get pages for the website");
-                })
-        }
+            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
+
+              }
         init();
 
         function profile() {
@@ -47,6 +40,5 @@
             $location.url("/user/"+vm.userId+"/website");
         }
     }
-
 
 })();

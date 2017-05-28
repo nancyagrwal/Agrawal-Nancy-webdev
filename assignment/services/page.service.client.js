@@ -18,7 +18,7 @@
             findPagesByWebsiteId: findPagesByWebsiteId,
             findPageById: findPageById,
             updatePage: updatePage,
-            deletePage: deletePage
+            deletePage: deletePage,
         };
 
         var websiteURL = "/api/website/";
@@ -33,12 +33,18 @@
         }
 
         function findPagesByWebsiteId(websiteId) {
-            for(var u in pages) {
-                if(pages[u].websiteId === websiteId)
-                    return pages[u];
-            }
-            return null;
 
+            var results = [];
+
+            for (var v in pages) {
+                if (pages[v].websiteId === websiteId) {
+                    pages[v].created = new Date();
+                    pages[v].accessed = new Date();
+                    results.push(pages[v]);
+                }
+            }
+
+            return results;
         }
 
         function findPageById(pageId) {

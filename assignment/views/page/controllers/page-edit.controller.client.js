@@ -4,66 +4,34 @@
 (function() {
     angular
         .module("WAM")
-        .controller("EditPageController", EditPageController);
+        .controller("pageEditController", pageEditController);
 
 
-    function EditPageController($location, $routeParams, PageService) {
+    function pageEditController($routeParams, pageService,$location) {
         var model = this;
-        model.userId = $routeParams['uid'];
-        model.websiteId = $routeParams['wid'];
-        model.pageId = $routeParams['pid'];
-        model.profile = profile;
+        model.userId = $routeParams["userId"];
+        model.websiteId = $routeParams["websiteId"];
+        model.pageId = $routeParams["pageId"];
+        model.deletePage = deletePage();
+        model.updatePage = updatePage();
+        model.createPage = createPage();
+        model.profile = profile();
         model.newPage = newPage;
         model.openPage= openPage;
         model.editPage = editPage;
         model.back = back;
-        model.createPage = createPage;
-        model.updatePage = updatePage;
-        model.deletePage = deletePage;
+
 
         function init() {
-            PageService
-                .findPageById(model.websiteId)
-                .success(function (page) {
-                    model.page = page.data;
-                })
-                .error(function(error) {
-                    console.log("Error: Cant get page for the website");
-                });
-
-            PageService
-                .findPagesByWebsiteId(model.websiteId)
-                .success(function (pages) {
-                    model.pages = pages.data;
-                })
-                .error(function(error) {
-                    console.log("Error: Cant get pages for the website");
-                });
+            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
+            model.page = pageService.findPageById(model.websiteId);
         }
         init();
 
-        function profile() {
-            $location.url("/user/"+model.userId);
-        }
-
-        function newPage() {
-            $location.url("/user/"+ model.userId + "/website/"+model.websiteId+"/page/new");
-        }
-
-        function openPage(page) {
-            $location.url("/user/"+ model.userId + "/website/"+model.websiteId+"/page/"+page._id + "/widget");
-        }
-        function editPage(page) {
-            $location.url("/user/"+ model.userId +"/website/"+model.websiteId+"/page/"+page._id);
-        }
-
-        function back() {
-            $location.url("/user/"+model.userId+"/website");
-        }
 
         function createPage(page) {
             if (page) {
-                PageService.createPage(model.websiteId, page)
+                pageService.createPage(model.websiteId, page)
                     .then(function (response) {
                         $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
                     }, function (error) {
@@ -75,7 +43,7 @@
         }
 
         function deletePage() {
-            PageService.deletePage(model.pageId)
+            pageService.deletePage(model.pageId)
                 .then(function (response) {
                     $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
                 }, function (error) {
@@ -84,12 +52,31 @@
         }
 
         function updatePage(page) {
-            PageService.updatePage(model.pageId, page)
+            pageService.updatePage(model.pageId, page)
                 .then(function (response) {
                     $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
                 }, function (error) {
                     console.log("Error: Unable to update the page");
                 });
+        }
+
+        function profile() {
+            $location.url("/user/"+vm.userId);
+        }
+
+        function newPage() {
+            $location.url("/user/"+ vm.userId + "/website/"+vm.websiteId+"/page/new");
+        }
+
+        function openPage(page) {
+            $location.url("/user/"+ vm.userId + "/website/"+vm.websiteId+"/page/"+page._id + "/widget");
+        }
+        function editPage(page) {
+            $location.url("/user/"+ vm.userId +"/website/"+vm.websiteId+"/page/"+page._id);
+        }
+
+        function back() {
+            $location.url("/user/"+vm.userId+"/website");
         }
     }
 })();
