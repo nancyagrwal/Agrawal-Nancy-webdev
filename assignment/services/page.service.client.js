@@ -2,9 +2,9 @@
 (function() {
     angular
         .module("WAM")
-        .service("pageService", PageService);
+        .service("pageService", pageService);
 
-    function pageService($http) {
+    function pageService() {
 
         var pages =
             [

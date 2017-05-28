@@ -1,10 +1,10 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .service("WidgetService", WidgetService);
+        .service("widgetService", widgetService);
 
 
-    function WidgetService() {
+    function widgetService() {
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -18,8 +18,6 @@
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
 
-        var pageURL = "/api/page/";
-        var widgetURL = "/api/widget/";
 
         var api = {
             createWidget: createWidget,
@@ -28,6 +26,9 @@
             updateWidget: updateWidget,
             deleteWidget:deleteWidget,
                  };
+
+        var pageURL = "/api/page/";
+        var widgetURL = "/api/widget/";
 
         return api;
 

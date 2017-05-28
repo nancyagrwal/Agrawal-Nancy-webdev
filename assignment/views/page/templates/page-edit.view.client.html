@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
         <div class="pull-left no-padding-left ">
-            <a ng-click ="model.goBack()" href="page-list.html"  class="navbar-link navbar-brand ">
+            <a ng-click ="model.goBack()" href="page-list.view.client.html" class="navbar-link navbar-brand ">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="pull-right navbar-text ">
-            <a href="page-list.html" ng-click="model.pageUpdation(model.page)" class="navbar-link">
+            <a href="page-list.view.client.html" ng-click="model.pageUpdation(model.page)" class="navbar-link">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -63,7 +63,7 @@
                         </a>
                     </div>
                     <div class="col-xs-12">
-                        <a href="page-edit.html">
+                        <a href="page-edit.view.client.html">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -76,7 +76,7 @@
                         </a>
                     </div>
                     <div class="col-xs-12">
-                        <a href="page-edit.html">
+                        <a href="page-edit.view.client.html">
                             <span class="pull-right glyphicon glyphicon-cog "></span>
                         </a>
                     </div>
@@ -89,7 +89,7 @@
                         </a>
                     </div>
                     <div class="col-xs-12">
-                        <a href="page-edit.html">
+                        <a href="page-edit.view.client.html">
                             <span class="pull-right glyphicon glyphicon-cog "></span>
                         </a>
                     </div>
@@ -110,7 +110,7 @@
                ng-model="model.page.description"/>
      <!--   value="{{model.page.description}}"-->
 
-    <a href="page-list.html" ng-click="model.pageDeletion(model.page)" class="btn btn-block btn-danger">
+    <a href="page-list.view.client.html" ng-click="model.pageDeletion(model.page)" class="btn btn-block btn-danger">
         Delete
     </a>
         </div>

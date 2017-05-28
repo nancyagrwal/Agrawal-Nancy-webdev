@@ -10,7 +10,7 @@
         this.deleteWebsite = deleteWebsite;
         this.createWebsite = createWebsite;
         this.updateWebsite = updateWebsite;
-        this.deleteWebsite = deleteWebsite;
+        this.findAllWebsitesForUser = findAllWebsitesForUser;
 
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -23,12 +23,12 @@
         ];
 
         var api = {
-            findWebsitesByUser : findWebsiteByUser,
-        findWebsiteById : findWebsiteById,
-        deleteWebsite : deleteWebsite,
-        createWebsite : createWebsite,
-        updateWebsite : updateWebsite,
-        deleteWebsite : deleteWebsite
+             findWebsitesByUser : findWebsitesByUser,
+             findWebsiteById : findWebsiteById,
+             deleteWebsite : deleteWebsite,
+             createWebsite : createWebsite,
+             updateWebsite : updateWebsite,
+             findAllWebsitesForUser : findAllWebsitesForUser
         };
 
         var websiteURL = "/api/website/";
@@ -40,6 +40,22 @@
             website._id = (new Date()).getTime() + "";
             website.developerId = userId;
             websites.push(website);
+        }
+
+        function findAllWebsitesForUser(userId)
+        {
+            var results = [];
+
+            for(var v in websites) {
+                if(websites[v].developerId === userId) {
+                    websites[v].created = new Date();
+                    websites[v].accessed = new Date();
+                    results.push(websites[v]);
+                }
+            }
+
+            return results;
+
         }
 
         function deleteWebsite(websiteId) {
@@ -70,12 +86,5 @@
             }
         }
 
-        function deleteWebsite(websiteId) {
-
-            var website = findWebsiteById(websiteId);
-            var index = websites.indexOf(website);
-            websites.splice(index, 1);
-        }
-
-    }
+            }
 })();

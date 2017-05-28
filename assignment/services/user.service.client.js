@@ -15,8 +15,11 @@
             createUser: createUser,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
-            findUserByCredentials: findUserByCredentials
+            findUserByCredentials: findUserByCredentials,
+            updateUser: updateUser,
+            deleteUser:deleteUser
         };
+
         return api;
 
         function createUser(user) {
@@ -54,5 +57,22 @@
             }
             return null;
         }
+
+        function updateUser(userId, user){
+            for(var u in users)
+            {
+                if(users[u]._id === userId)
+                {
+                    users[u] = user;
+                }
+            }}
+
+        function deleteUser(userId){
+            var user = findUserById(userId);
+            var index = users.indexOf(user);
+            users.splice(index, 1);
+        }
+
+
     }
 })();
