@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("WAM")
         .service("widgetService", widgetService);
 
 
