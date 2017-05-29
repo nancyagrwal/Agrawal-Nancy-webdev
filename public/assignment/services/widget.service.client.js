@@ -1,7 +1,7 @@
 (function(){
     angular
         .module('WebAppMaker')
-        .factory('widgetService', widgetService); 
+        .factory('widgetService', widgetService);
 
     function widgetService () {
 
