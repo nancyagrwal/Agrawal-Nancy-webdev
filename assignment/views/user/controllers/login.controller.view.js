@@ -6,8 +6,8 @@
     function loginController($location, userService) {
 
         var model = this;
-
         model.login = login;
+        model.register = register();
 
         function login(username, password) {
             var found = userService.findUserByCredentials(username, password);
@@ -17,6 +17,10 @@
             } else {
                 model.message = "sorry, " + username + " not found. please try again!";
             }
+        }
+
+        function register() {
+            $location.url("/register")
         }
     }
 })();
