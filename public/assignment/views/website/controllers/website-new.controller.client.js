@@ -17,7 +17,7 @@
 
         model.createWebsite = createWebsite;
 
-        function createWebsite(website) {
+        function createWebsite(userId,website) {
 
             if(website === null || typeof website === 'undefined') {
                 model.error = 'Website name and description is required.';
@@ -35,7 +35,7 @@
             }
 
             website.developerId = model.userId;
-            websiteService.createWebsite(website);
+            websiteService.createWebsite(model.userId,website);
             $location.url('/user/'+model.userId+'/website');
         }
     }
