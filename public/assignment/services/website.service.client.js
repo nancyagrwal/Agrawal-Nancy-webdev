@@ -45,9 +45,10 @@
         }
 
         function updateWebsite(websiteId, website) {
-            var v = findWebsiteById(websiteId);
-           // var index = websites.indexOf(websiteIn);
-            websites[v] = website;
+            for(var u in websites) {
+                if(websites[u]._id === websiteId)
+                    websites[u] = website;
+            }
         }
 
         function deleteWebsite(websiteId) {
