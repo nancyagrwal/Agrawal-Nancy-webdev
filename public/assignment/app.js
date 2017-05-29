@@ -1,45 +1,4 @@
-
 (function () {
-    angular.module("WAM", ['ngRoute']);
+    angular
+        .module('WebAppMaker', ['ngRoute']);
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
