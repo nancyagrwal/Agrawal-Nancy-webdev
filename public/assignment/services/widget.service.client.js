@@ -1,7 +1,7 @@
 (function(){
     angular
         .module('WebAppMaker')
-        .factory('widgetService', widgetService); // It uses factory design pattern
+        .factory('widgetService', widgetService); 
 
     function widgetService () {
 

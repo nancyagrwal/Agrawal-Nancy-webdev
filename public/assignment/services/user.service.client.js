@@ -1,7 +1,7 @@
 (function(){
     angular
         .module('WebAppMaker')
-        .factory('userService', userService); // It uses factory design pattern
+        .factory('userService', userService);
     
     function userService() {
         var users = [
