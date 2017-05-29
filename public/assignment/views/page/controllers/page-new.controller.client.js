@@ -18,7 +18,7 @@
 
         model.createPage = createPage;
 
-        function createPage(websiteId,page) {
+        function createPage(page) {
 
             if(page === null || typeof page === 'undefined') {
                 model.error = 'Page name and title is required.';
@@ -36,7 +36,7 @@
             }
 
             page.websiteId = model.websiteId;
-            pageService.createPage(model.websiteId, page);
+            pageService.createPage(page);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
         }
     }
