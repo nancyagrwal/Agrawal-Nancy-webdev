@@ -15,22 +15,36 @@
         model.widgetId = $routeParams['widgetId'];
 
         function init() {
-            model.widget = widgetService.findWidgetById(model.widgetId);
+            widgetService
+                .findWidgetById(model.widgetId)
+                .then(function (response) {
+                    model.widget = response;
+                });
+
         }
+
         init();
 
         model.updateWidget = updateWidget;
         model.deleteWidget = deleteWidget;
         model.widgetUrl = widgetUrl;
 
-        function updateWidget(widget) {
-            widgetService.updateWidget(model.widgetId, widget);
+
+
+        function updateWidget() {
+            widgetService.updateWidget(model.widgetId, model.widget)
+                .then(function (response) {
+                    console.log(response);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+"/page/"+model.pageId+"/widget");
+        })
         }
 
+
         function deleteWidget(widgetId) {
-            widgetService.deleteWidget(widgetId);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+"/page/"+model.pageId+"/widget");
+            widgetService.deleteWidget(widgetId).then(function () {
+                $location.url("/user/" + model.userId + "/website/" + model.websiteId +
+                    "/page/" + model.pageId + "/widget/");
+            });
         }
 
         function widgetUrl(widget) {

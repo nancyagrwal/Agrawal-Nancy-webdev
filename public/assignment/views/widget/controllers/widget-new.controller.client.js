@@ -20,8 +20,8 @@
 
         function createHeaderWidget() {
             var newHeader = {
-                name: "default header name",
                 widgetType: "HEADING",
+                name: "default header name",
                 size: "2",
                 text: "default header text"};
 
@@ -38,7 +38,7 @@
                 url: "http://lorempixel.com/400/200/"
             };
 
-            newHeader = widgetService.createWidget(model.pageId, newHeader) ;
+            widgetService.createWidget(model.pageId, newHeader) ;
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newHeader._id);
         }
 
@@ -51,7 +51,7 @@
                 url: "https://youtu.be/AM2Ivdi9c4E"
             };
 
-            newHeader = widgetService.createWidget(model.pageId, newHeader) ;
+            widgetService.createWidget(model.pageId, newHeader) ;
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newHeader._id);
         }
 
@@ -62,7 +62,7 @@
                 text: "default html text",
                 width: "100%"
             };
-            newHeader=WidgetService.createWidget(model.pageId,newHeader);
+            widgetService.createWidget(model.pageId,newHeader);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+newHeader._id);
         }
 

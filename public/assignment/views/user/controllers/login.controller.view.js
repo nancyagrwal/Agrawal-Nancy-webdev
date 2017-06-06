@@ -21,13 +21,15 @@
                 return;
             }
 
-            var found = userService.findUserByCredentials(username, password);
-            
-            if(found !== null) {
-                $location.url('/user/' + found._id);
-            } else {
-                model.error = "Invalid Username and Password.";
-            }
+            userService
+                .findUserByCredentials(username, password)
+                .then(function (found) {
+                    if(found !== null) {
+                        $location.url('/user/' + found._id);
+                    } else {
+                        model.message = "sorry, " + username + " not found. please try again!";
+                    }
+                });
         }
     }
 })();

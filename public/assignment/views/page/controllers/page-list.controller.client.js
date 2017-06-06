@@ -6,13 +6,27 @@
     function pageListController($routeParams,
                                 pageService) {
         var model = this;
-
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
+        model.pageId = $routeParams['pageId'];
+
 
         function init() {
-           model.pages = pageService.findAllPagesByWebsiteId(model.websiteId);
+            pageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(function (response) {
+                    model.pages = response;
+                });
         }
+
         init();
+
+        function renderPages (pages) {
+            model.pages = pages;
+        }
+
     }
 })();
+
+
+

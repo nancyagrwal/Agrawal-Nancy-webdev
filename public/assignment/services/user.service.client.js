@@ -41,6 +41,7 @@
             var url = "/api/assignment/user?username=" + username + '&password=' + password;
             return $http.get(url)
                 .then(function (response) {
+                    console.log(response.data);
                     return response.data;
                 });
         }

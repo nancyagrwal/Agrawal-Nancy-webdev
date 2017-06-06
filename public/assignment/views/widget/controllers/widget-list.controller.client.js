@@ -8,19 +8,25 @@
                                   widgetService) {
 
         var model = this;
+        model.trust = trust;
+        model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+        model.widgetUrl = widgetUrl;
 
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
 
+
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(function (response) {
+                    model.widgets = response;
+                    // console.log(model.widgetsByPageId);
+                });
         }
         init();
 
-        model.trust = trust;
-        model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        model.widgetUrl = widgetUrl;
 
         function widgetUrl(widget) {
             var url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'.view.client.html';

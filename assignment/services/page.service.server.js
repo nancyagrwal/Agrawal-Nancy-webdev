@@ -4,7 +4,10 @@ var pages = [
     {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
     {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Epsum"},
     {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"},
-    {"_id": "554", "name": "Post 4", "websiteId": "456", "description": "Epaum"}
+    {"_id": "123", "name": "Post 1", "websiteId": "567", "description": "Lorem"},
+    {"_id": "432", "name": "Post 2", "websiteId": "567", "description": "Epsum"},
+    {"_id": "543", "name": "Post 3", "websiteId": "567", "description": "Lorem"},
+    {"_id": "123", "name": "Post 4", "websiteId": "456", "description": "Epaum"}
 ];
 
 
@@ -31,7 +34,7 @@ function findAllPagesForWebsite(req, res) {
             pagesList.push(pages[p]);
              }
     }
-    res.json(listOfPages);
+    res.json(pagesList);
     return;
 }
 

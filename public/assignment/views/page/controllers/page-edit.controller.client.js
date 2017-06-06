@@ -13,13 +13,26 @@
         model.pageId = $routeParams.pageId;
 
         function init() {
-            model.pages = pageService.findAllPagesByWebsiteId(model.websiteId);
-            model.page = pageService.findPageById(model.pageId);
+            pageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(renderThePages);
+            pageService
+                .findPageById(model.pageId)
+        .then(function (response) {
+                model.page = response;
+            });
         }
+
         init();
+
+        function renderThePages(pages) {
+            model.pages = pages;
+        }
+
 
         model.updatePage = updatePage;
         model.deletePage = deletePage;
+
 
         function updatePage(page) {
             pageService.updatePage(model.pageId, page);

@@ -7,15 +7,21 @@
                                    $location,
                                    websiteService) {
         var model = this;
-
         model.userId = $routeParams['userId'];
-
+        model.createWebsite = createWebsite;
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            websiteService
+                .findAllWebsitesForUser(model.userId)
+                .then(renderWebsites);
+
         }
         init();
 
-        model.createWebsite = createWebsite;
+
+        function renderWebsites (websites) {
+            model.websites = websites;
+        }
+
 
         function createWebsite(website) {
 

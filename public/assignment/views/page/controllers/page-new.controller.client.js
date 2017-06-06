@@ -11,33 +11,49 @@
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
 
+
+/*
+
         function init() {
-            model.pages = pageService.findAllPagesByWebsiteId(model.websiteId);
+          pageService
+              .findAllPagesForWebsite(model.websiteId)
+              .then(renderPages);
         }
         init();
 
+        function renderPages (pages) {
+            model.pages = pages;
+        }
+*/
+        function threeDigitRandomNum(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
         model.createPage = createPage;
 
-        function createPage(page) {
+        function createPage(name, title) {
+            var page = {
+                _id: threeDigitRandomNum(100,1000),
+                name: name,
+                description: title
+            };
 
-            if(page === null || typeof page === 'undefined') {
-                model.error = 'Page name and title is required.';
-                return;
-            }
 
-            if(page.name === null || page.name === '' || typeof page.name === 'undefined') {
-                model.error = 'Page name is required.';
-                return;
-            }
+            pageService
+                .createPage(page,model.websiteId)
+                .then(function (response) {
+                    console.log(response);
+                    if (response) {
+                        $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+                    }
+                    else {
+                        model.error = "Page not created!!"
+                    }
+                });
+        }// End of function createPage
 
-            if(page.title === null || page.title === '' || typeof page.title === 'undefined') {
-                model.error = 'Page title is required.';
-                return;
-            }
 
-            page.websiteId = model.websiteId;
-            pageService.createPage(page);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
-        }
     }
 })();
