@@ -4,6 +4,7 @@
 
 var app = require('../../express');
 
+app.get('/api/user' , findUserByUsername);
 app.get('/api/user/:userId', findUserById);
 app.get('/api/user', findUserByCredentials);
 app.post('/api/user', createUser);
@@ -16,6 +17,20 @@ var users = [
     {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
 ];
+
+function findUserByUsername(req,res)
+{
+   var username = req.query['username'];
+    for (var u in users) {
+    var user = users[u];
+    if(user.username === username)
+    {
+        res.json(user);
+        return;
+    }}
+    res.sendStatus(404);
+}
+
 
 function findUserById(req, res) {
     var userId = req.params['userId'];

@@ -6,7 +6,7 @@ var app = require('../../express');
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/assignment/uploads'});
 
-app.get('/api/page/:pageId/widget', findAllWidgetsByPageId);
+app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
 app.get('/api/widget/:widgetId', findWidgetById);
 app.post('/api/page/:pageId/widget', createWidget);
 app.put('/api/widget/:widgetId', updateWidget);
@@ -25,7 +25,7 @@ var widgets = [
     { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
 ];
 
-function findAllWidgetsByPageId(req, res) {
+function findAllWidgetsForPage(req, res) {
     var pageId = req.params['pageId'];
     var resultSet = [];
     for( var w in widgets){

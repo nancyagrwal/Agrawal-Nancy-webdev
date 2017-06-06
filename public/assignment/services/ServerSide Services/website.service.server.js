@@ -3,7 +3,7 @@
  */
 var app = require('../../express');
 
-app.get('/api/user/:userId/website', findAllWebsitesByUser);
+app.get('/api/user/:userId/website', findAllWebsitesForUser);
 app.get('/api/website/:websiteId', findWebsiteById);
 app.post('/api/user/:userId/website', createWebsite);
 app.put('/api/website/:websiteId', updateWebsite);
@@ -19,7 +19,7 @@ var websites = [
     { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
 ];
 
-function findAllWebsitesByUser(req, res) {
+function findAllWebsitesForUser(req, res) {
     var userId = req.params['userId'];
     var resultSet = [];
     for( var w in websites){
