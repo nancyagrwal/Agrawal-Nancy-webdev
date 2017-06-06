@@ -1,4 +1,4 @@
-var express = require('express');
+var app = require('express');
 var app = express();
 
 //Node.js is configured to parse JSON from the HTTP body
@@ -10,10 +10,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 require("./test/app.js")(app);
-require("./assignment/app")
+
+require("./assignment/app.js")(app);
 
 var port = process.env.PORT || 3000;
+var ipaddress = process.env.IPADDRESS || localhost;
 
-app.listen(port);
+app.listen(port, ipaddress);
+
+
+
 
 
