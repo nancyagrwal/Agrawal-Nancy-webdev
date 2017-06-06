@@ -14,9 +14,8 @@ require("./test/app.js")(app);
 require("./assignment/app.js")(app);
 
 var port = process.env.PORT || 3000;
-var ipaddress = process.env.IPADDRESS || localhost;
 
-app.listen(port, ipaddress);
+app.listen(port);
 
 
 
