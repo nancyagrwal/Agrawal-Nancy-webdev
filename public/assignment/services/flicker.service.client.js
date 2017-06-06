@@ -5,9 +5,9 @@
 (function() {
     angular
         .module('WebAppMaker')
-        .service('FlickrService', FlickrService);
+        .service('FlickerService', FlickerService);
 
-    function FlickrService($http) {
+    function FlickerService($http) {
 
         this.searchPhotos = searchPhotos;
 

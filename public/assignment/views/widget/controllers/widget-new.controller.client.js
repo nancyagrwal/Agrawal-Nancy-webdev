@@ -16,6 +16,7 @@
         model.createHeaderWidget = createHeaderWidget;
         model.createImageWidget = createImageWidget;
         model.createYoutubeWidget = createYoutubeWidget;
+        model.createHTMLWidget = createHTMLWidget;
 
         function createHeaderWidget() {
             var newHeader = {
@@ -53,5 +54,17 @@
             newHeader = widgetService.createWidget(model.pageId, newHeader) ;
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newHeader._id);
         }
+
+        function createHTMLWidget() {
+            var newHeader={
+                widgetType: "HTML",
+                name: "default html name",
+                text: "default html text",
+                width: "100%"
+            };
+            newHeader=WidgetService.createWidget(model.pageId,newHeader);
+            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+newHeader._id);
+        }
+
     }
 })();
