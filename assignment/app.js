@@ -3,9 +3,10 @@
 })();*/
 
 
-var app = require('../express');
+module.exports = function(app) {
+    require("./services/ServerSide Services/user.service.server.js")(app);
+    require("./services/ServerSide Services/website.service.server.js")(app);
+    require("./services/ServerSide Services/page.service.server.js")(app);
+    require("./services/ServerSide Services/widget.service.server.js")(app);
+};
 
-require('./services/user.service.server');
-require('./services/website.service.server');
-require('./services/page.service.server');
-require('./services/widget.service.server');

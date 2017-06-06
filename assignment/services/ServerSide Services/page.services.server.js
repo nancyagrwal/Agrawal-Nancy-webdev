@@ -4,7 +4,7 @@
 
 var app = require('../../express');
 
-app.get('/api/website/:websiteId/page', findPageByWebsiteId);
+app.get('/api/website/:websiteId/page', findAllPagesForWebsite);
 app.get('/api/page/:pageId', findPageById);
 app.post('/api/website/:websiteId/page', createPage);
 app.put('/api/page/:pageId', updatePage);
@@ -16,7 +16,7 @@ var pages = [
     { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
 ];
 
-function findPageByWebsiteId(req, res) {
+function findAllPagesForWebsite(req, res) {
     var websiteId = req.params['websiteId'];
     var resultSet = [];
     for( var p in pages){
