@@ -10,7 +10,8 @@ var users = [
 
 //Listen for incoming http requests
 app.get('/api/assignment/user/:userId', findUserById);
-app.get('/api/assignment/user', findAllUsers);
+app.get('/api/assignment/user' , findUserByCredentials);
+app.get('/api/assignment/user', findUserByUsername);
 app.post('/api/assignment/user', createUser);
 app.put('/api/assignment/user/:userId', updateUser);
 app.delete('/api/assignment/user/:userId', deleteUser);
@@ -47,8 +48,8 @@ function createUser(req, res) {
     res.json(user);
 }
 
-// combining finduserbyId and findUserByCredentials
-function findAllUsers(req, res) {
+
+function findUserByCredentials(req, res) {
     var username = req.query.username;
     var password = req.query.password;
     if (username && password) {
@@ -65,7 +66,15 @@ function findAllUsers(req, res) {
         res.sendStatus(404);
         return;
     }
-    else if (username) {
+    else {
+        res.json(users);
+    }
+}
+
+function findUserByUsername(req, res) {
+    var username = req.query.username;
+    var password = req.query.password;
+     if (username) {
         for (var u in users) {
             var user = users[u];
             if (user.username === username) {
@@ -85,11 +94,8 @@ function findAllUsers(req, res) {
 
 function findUserById(req, res) {
 
-    //Get the userId from req object
-    var userId = req.params['userId'];
 
-    //Iterate over all users to
-    // find the one with the queried userId
+    var userId = req.params['userId'];
     for (var u in users) {
         if (userId === users[u]._id) {
             res.send(users[u]);
