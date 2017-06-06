@@ -1,17 +1,15 @@
-/**
- * Created by nancy on 6/5/2017.
- */
 var app = require('../../express');
+
 
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/assignment/uploads'});
 
-app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
-app.get('/api/widget/:widgetId', findWidgetById);
-app.post('/api/page/:pageId/widget', createWidget);
-app.put('/api/widget/:widgetId', updateWidget);
-app.delete('/api/widget/:widgetId', deleteWidget);
-app.post ("/api/upload", upload.single('myFile'), uploadImage);
+app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
+app.get('/api/assignment/widget/:widgetId', findWidgetById);
+app.post('/api/assignment/page/:pageId/widget', createWidget);
+app.put('/api/assignment/widget/:widgetId', updateWidget);
+app.delete('/api/assignment/widget/:widgetId', deleteWidget);
+app.post ("/api/assignment/upload", upload.single('myFile'), uploadImage);
 
 var widgets = [
     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
