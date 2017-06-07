@@ -57,7 +57,7 @@
         }
 
         function redirectWidget(wdgt){
-            $location.url('/user/'+model.userId+'/website/'+model.wid+'/page/'+model.pageId+'/widget/'+wdgt._id);
+            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+wdgt._id);
         }
 
         function errorWidget(){
