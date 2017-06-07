@@ -29,8 +29,7 @@
         var url = "/api/project/user/" + userId + "/search";
         return $http.get(url)
             .then(function (response) {
-                console.log(response.data);
-                return response.data;
+                  return response.data;
             });
 
     }
@@ -39,8 +38,7 @@
             var url = "/api/project/user/" + userId + "/search";
             return $http.get(url)
                 .then(function (response) {
-                    console.log("airport data is..." + response.data);
-                    return response.data;
+                      return response.data;
                 });
 
         }

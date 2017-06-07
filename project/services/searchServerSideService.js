@@ -121,11 +121,11 @@ function findAllThemesForUser(req, res) {
 }
 
 function findAllAirportsForUser(req, res) {
-     var results = [];
+     var results1 = [];
         for (var v in airports) {
-            results.push(airports[v]);
+            results1.push(airports[v]);
         }
-        res.json(results);
+        res.json(results1);
     }
 
 
