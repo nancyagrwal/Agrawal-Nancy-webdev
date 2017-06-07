@@ -1,6 +1,3 @@
-/**
- * Created by nancy on 6/7/2017.
- */
 
 (function () {
     angular

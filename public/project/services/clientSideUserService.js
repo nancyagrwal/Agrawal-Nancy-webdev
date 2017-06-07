@@ -37,7 +37,7 @@
                 });
         }
 
-        function findUserCredentials(username, password) {
+        function findUserByCredentials(username, password) {
             var url = "/api/project/user?username=" + username + '&password=' + password;
             return $http.get(url)
                 .then(function (response) {

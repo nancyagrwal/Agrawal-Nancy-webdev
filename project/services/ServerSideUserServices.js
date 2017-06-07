@@ -1783,12 +1783,12 @@ var users = [
 ];*/
 
 //Listen for incoming http requests
-app.get('/api/project/user/:userId', findUserById);
-app.get('/api/project/user' , findUserByCredentials);
-app.get('/api/project/user', findUserByUsername);
-app.post('/api/project/user', createUser);
-app.put('/api/project/user/:userId', updateUser);
-app.delete('/api/project/user/:userId', deleteUser);
+app.get('/api/assignment/user/:userId', findUserById);
+app.get('/api/assignment/user' , findUserByCredentials);
+app.get('/api/assignment/user', findUserByUsername);
+app.post('/api/assignment/user', createUser);
+app.put('/api/assignment/user/:userId', updateUser);
+app.delete('/api/assignment/user/:userId', deleteUser);
 app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
 
@@ -1824,7 +1824,7 @@ function createUser(req, res) {
 }
 
 
-function findUserCredentials(req, res) {
+function findUserByCredentials(req, res) {
     var username = req.query.username;
     var password = req.query.password;
     if (username && password) {
