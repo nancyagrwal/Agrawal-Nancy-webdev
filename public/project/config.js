@@ -25,7 +25,11 @@
                 controller: 'searchController',
                 controllerAs: 'model'
             })
-
+            .when('/search', {
+                templateUrl: 'views/user/templates/search.html',
+                controller: 'searchController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.html',
                 controller: 'profileController',
