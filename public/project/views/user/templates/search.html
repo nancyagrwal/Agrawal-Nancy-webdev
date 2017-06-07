@@ -53,7 +53,7 @@
         <div class="row">
             <div class="card col-md-3"
                  ng-repeat="theme in model.themes"
-                 ng-click="search.selectTheme(theme)">
+                 ng-click="model.selectTheme(theme)">
                 <img
                         class="card-img-top img-fluid"
                         ng-src="{{ theme.image }}"
