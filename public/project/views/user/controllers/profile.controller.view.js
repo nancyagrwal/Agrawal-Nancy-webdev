@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WebAppMaker')
+        .module('Travelator')
         .controller('profileController', profileController);
     
     function profileController($location,

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WebAppMaker')
+        .module('Travelator')
         .controller('registerController', registerController);
     
     function registerController($location, userService) {
