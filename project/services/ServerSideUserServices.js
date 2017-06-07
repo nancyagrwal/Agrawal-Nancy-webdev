@@ -1,6 +1,7 @@
 var app = require('../../express');
 
-
+var multer = require('multer');
+var upload = multer({ dest: __dirname+'/../../public/project/uploads' });
 var users = [{
         _id: "1",
         firstName: "Edward",
@@ -1735,7 +1736,7 @@ var users = [{
     _id: "15",
     firstName: "Shu",
     lastName: "Chia",
-        username: "Shu Chia",
+        username: "ShuChia",
         email: "shu@shu",
         profilePicture: "https://s3-eu-west-1.amazonaws.com/travelly/ProfilePictures/shu.jpg",
         password: "password",
