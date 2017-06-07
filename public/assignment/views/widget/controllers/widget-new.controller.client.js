@@ -5,7 +5,7 @@
 
     function widgetNewController($routeParams,
                                  $location,
-                                 widgetService,$scope) {
+                                 widgetService) {
 
         var model = this;
 
@@ -37,6 +37,7 @@
                 size: "2",
                 text: "default header text"};
 
+            //console.log(newWidget);
             newWidget = widgetService.createWidget(model.pageId, newWidget) ;
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newWidget._id);
         }
@@ -50,7 +51,7 @@
                 url: "http://lorempixel.com/400/200/"
             };
 
-            widgetService.createWidget(model.pageId, newWidget) ;
+            newWidget = widgetService.createWidget(model.pageId, newWidget) ;
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newWidget._id);
         }
 
@@ -63,7 +64,7 @@
                 url: "https://youtu.be/AM2Ivdi9c4E"
             };
 
-            widgetService.createWidget(model.pageId, newWidget) ;
+            newWidget = widgetService.createWidget(model.pageId, newWidget) ;
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newWidget._id);
         }
 
@@ -74,8 +75,20 @@
                 text: "default html text",
                 width: "100%"
             };
-            widgetService.createWidget(model.pageId,newWidget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+newWidget._id);
+
+            widgetService
+                .createWidget(model.pageId,newWidget)
+                .then(function (response) {
+                    console.log(response);
+                    if (response) {
+                        $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+newWidget._id);
+                    }
+                    else {
+                        model.error = "No Widget!"
+                    }
+                });
+
+
         }
 
     }
