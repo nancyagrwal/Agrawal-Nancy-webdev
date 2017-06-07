@@ -11,17 +11,23 @@
                 controllerAs: 'model'
             })
             .when('/login', {
-                templateUrl: 'views/user/templates/login.view.client.html',
+                templateUrl: 'views/user/templates/login.html',
                 controller: 'loginController',
                 controllerAs: 'model'
             })
             .when('/register', {
-                templateUrl: 'views/user/templates/register.view.client.html',
+                templateUrl: 'views/user/templates/register.html',
                 controller: 'registerController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/search', {
+                templateUrl: 'views/user/templates/search.html',
+                controller: 'searchController',
+                controllerAs: 'model'
+            })
+
             .when('/user/:userId', {
-                templateUrl: 'views/user/templates/profile.view.client.html',
+                templateUrl: 'views/user/templates/profile.html',
                 controller: 'profileController',
                 controllerAs: 'model'
             })

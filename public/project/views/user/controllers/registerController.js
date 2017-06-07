@@ -3,7 +3,7 @@
         .module('Travelator')
         .controller('registerController', registerController);
     
-    function registerController($location, userService) {
+    function registerController($location, ClientSideServices) {
 
         var model = this;
 
@@ -21,7 +21,7 @@
                 return;
             }
 
-            userService
+            ClientSideServices
                 .findUserByUsername(username)
                 .then(
                     function () {

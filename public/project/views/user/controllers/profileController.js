@@ -5,7 +5,7 @@
     
     function profileController($location,
                                $routeParams,
-                               userService) {
+                               ClientSideServices) {
         var model = this;
 
         model.userId = $routeParams['userId'];
@@ -13,12 +13,12 @@
         model.deleteUser = deleteUser;
 
         // model.user = userService.findUserById(model.userId);
-        userService
+        ClientSideServices
             .findUserById(model.userId)
             .then(renderUser, userError);
 
         function deleteUser(user) {
-            userService
+            ClientSideServices
                 .deleteUser(user._id)
                 .then(function () {
                     $location.url('/');
@@ -28,7 +28,7 @@
         }
 
         function updateUser(user) {
-            userService
+            ClientSideServices
                 .updateUser(user._id, user)
                 .then(function () {
                     model.message = "User update was successful";

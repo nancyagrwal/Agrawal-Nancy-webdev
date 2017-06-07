@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Search Trips!
+            </a>
+            </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <form>
+        <div ng-show="model.message" class="alert alert-success">
+            {{model.message}}
+        </div>
+        <div class="form-group">
+
+            <label>Your Budget</label>
+            <input type="number"
+                   ng-model="model.user.budget"
+                   id="budget"
+                   class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label>Flying from?</label>
+            <select ng-model="model.user.location"
+                    class="form-control"
+                    id="location"
+                    ng-options="airport.iataCode as airport.name for airport in search.airports | orderBy:'name'">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Fly Out</label>
+            <label>From</label>
+            <input type="date"
+                   value="departureDate"
+                   ng-model="model.user.departureDate"
+                   id="departureDate"
+                   class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Fly Back</label>
+            <input type="date" value="return"
+                   ng-model="model.user.returnDate"
+                   id="returnDate"
+                   class="form-control">
+        </div>
+
+
+        <div class="row">
+            <div class="card col-md-3"
+                 ng-repeat="theme in model.themes"
+                 ng-click="search.selectTheme(theme)">
+                <img
+                        class="card-img-top img-fluid"
+                        ng-src="{{ theme.image }}"
+                        alt="Card image">
+                <div class="card-block">
+                    <h4 class="card-title">{{ theme.name }}</h4>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <a class="btn btn-primary btn-block"
+       href="#!/user/{{model.userId}}/search">
+        Search Trips
+    </a>
+
+    </br>
+    <a class="btn btn-danger  btn-block"
+       href="#!/login">
+        Logout
+    </a>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

@@ -1,1 +1,1 @@
-require('./services/user.service.server');
+require('./services/ServerSideUserServices');

@@ -1,9 +1,9 @@
 (function(){
     angular
         .module('Travelator')
-        .factory('userService', userService);
+        .factory('ClientSideServices', ClientSideServices);
     
-    function userService($http) {
+    function ClientSideServices($http) {
         /*var users = [
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder",   email: "alice@wonder.com"  },
             {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley",   email: "bob@marley.com"  },
@@ -30,15 +30,15 @@
         }
 
         function findUserByUsername(username) {
-            var url = "/api/assignment/user?username=" + username;
+            var url = "/api/project/user?username=" + username;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function findUserByCredentials(username, password) {
-            var url = "/api/assignment/user?username=" + username + '&password=' + password;
+        function findUserCredentials(username, password) {
+            var url = "/api/project/user?username=" + username + '&password=' + password;
             return $http.get(url)
                 .then(function (response) {
                     console.log(response.data);
@@ -49,7 +49,7 @@
 
 
         function findUserById(userId) {
-            var url = "/api/assignment/user/" + userId;
+            var url = "/api/project/user/" + userId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -57,7 +57,7 @@
         }
 
         function createUser(user) {
-            var url = "/api/assignment/user";
+            var url = "/api/project/user";
             return $http.post(url, user)
                 .then(function (response) {
                     return response.data;
@@ -65,7 +65,7 @@
         }
 
         function updateUser(userId, user) {
-            var url = "/api/assignment/user/" + userId;
+            var url = "/api/project/user/" + userId;
             return $http.put(url, user)
                 .then(function (response) {
                     return response.data;
@@ -73,7 +73,7 @@
         }
 
         function deleteUser(userId) {
-            var url = "/api/assignment/user/" + userId;
+            var url = "/api/project/user/" + userId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;

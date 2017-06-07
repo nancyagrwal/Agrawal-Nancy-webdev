@@ -3,7 +3,7 @@
         .module('Travelator')
         .controller('loginController', loginController);
     
-    function loginController($location, userService) {
+    function loginController($location, ClientSideServices) {
 
         var model = this;
 
@@ -21,8 +21,8 @@
                 return;
             }
 
-            userService
-                .findUserByCredentials(username, password)
+            ClientSideServices
+                .findUserCredentials(username, password)
                 .then(function (found) {
                     if(found !== null) {
                         $location.url('/user/' + found._id);
