@@ -107,8 +107,8 @@ var airports = [{
     iataCode: "SEN"
 }];
 
-app.get('/api/project/user', findAllThemesForUser);
-app.get('/api/project/user', findAllAirportsForUser);
+app.get('/api/project/user/:userId/search', findAllThemesForUser);
+app.get('/api/project/user/:userId/search', findAllAirportsForUser);
 
 
 function findAllThemesForUser(req, res) {
@@ -121,10 +121,11 @@ function findAllThemesForUser(req, res) {
 }
 
 function findAllAirportsForUser(req, res) {
-    var results = [];
-    for (var v in airports) {
-        results.push(airports[v]);
+     var results = [];
+        for (var v in airports) {
+            results.push(airports[v]);
+        }
+        res.json(results);
     }
 
-    res.json(results);
-}
+

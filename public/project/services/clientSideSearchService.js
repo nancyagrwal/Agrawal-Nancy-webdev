@@ -11,22 +11,22 @@
 
 
         var api = {
-            findFlights: findFlights,
+           // findFlights: findFlights,
             findAllThemesForUser: findAllThemesForUser,
             findAllAirportsForUser: findAllAirportsForUser
         };
         return api;
 
-        function findFlights(depDate, arrDate, budget, location, theme,userId) {
+        /*function findFlights(depDate, arrDate, budget, location, theme,userId) {
             var url = "/api/project/user/" + userId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
-        }
+        }*/
 
         function findAllThemesForUser(userId){
-        var url = "/api/project/user/" + userId ;
+        var url = "/api/project/user/" + userId + "/search";
         return $http.get(url)
             .then(function (response) {
                 console.log(response.data);
@@ -36,10 +36,10 @@
     }
 
         function findAllAirportsForUser(userId){
-            var url = "/api/project/user/" + userId;
+            var url = "/api/project/user/" + userId + "/search";
             return $http.get(url)
                 .then(function (response) {
-                    console.log(response.data);
+                    console.log("airport data is..." + response.data);
                     return response.data;
                 });
 
