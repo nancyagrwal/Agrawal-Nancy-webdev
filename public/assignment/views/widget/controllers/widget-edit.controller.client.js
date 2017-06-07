@@ -1,50 +1,93 @@
 (function () {
     angular
         .module('WebAppMaker')
-        .controller('widgetEditController', widgetEditController);
-
-    function widgetEditController($routeParams,
-                                  $location,
-                                  widgetService) {
-
+        .controller('widgetEditController',widgetEditController);
+    
+    function widgetEditController($routeParams, $location, widgetService) {
         var model = this;
-
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
 
-        function init() {
-            widgetService
-                .findWidgetById(model.widgetId)
-                .then(function (response) {
-                    model.widget = response;
-                });
 
+        function init() {
+            widgetService.findWidgetById(model.widgetId)
+                .then(renderWidget, errorWidget);
         }
 
         init();
 
-        model.updateWidget = updateWidget;
-        model.deleteWidget = deleteWidget;
+        //event handlers
+        model.widgetUrl = widgetUrl;
+        model.editHeading = editHeading;
+        model.deleteWidget=deleteWidget;
+        model.editImage=editImage;
+        model.editYouTube=editYouTube;
 
 
-        function updateWidget() {
-            widgetService.updateWidget(model.widgetId, model.widget)
-                .then(function (response) {
-                    console.log(response);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+"/page/"+model.pageId+"/widget");
-        })
+        function widgetUrl(widget) {
+            if(widget) {
+                var url;
+                if (widget.widgetType === 'HTML')
+                    url = 'views/widget/templates/widget-heading-edit.view.client.html';
+                else
+                    url = 'views/widget/templates/widget-' + widget.widgetType.toLowerCase() + '-edit.view.client.html';
+                return url;
+            }
         }
 
-
-        function deleteWidget(widgetId) {
-            widgetService.deleteWidget(widgetId).then(function () {
-                $location.url("/user/" + model.userId + "/website/" + model.websiteId +
-                    "/page/" + model.pageId + "/widget/");
-            });
+        function editHeading() {
+            var widgetHeading={
+                _id: model.widget._id,
+                widgetType: model.widget.widgetType,
+                pageId: model.pageId,
+                size: model.widget.size,
+                text: model.widget.text
+            };
+            widgetService.updateWidget(model.widgetId,widgetHeading)
+                .then(redirectWidget, errorWidget);
+        }
+        
+        function deleteWidget() {
+            widgetService.deleteWidget(model.widgetId)
+                .then(redirectWidget, errorWidget);
         }
 
+        function editImage() {
+            var widgetImage={
+                _id: model.widget._id,
+                widgetType: model.widget.widgetType,
+                pageId: model.pageId,
+                width:model.widget.width,
+                url: model.widget.url
+            };
+            widgetService.updateWidget(model.widgetId,widgetImage)
+                .then(redirectWidget, errorWidget);
+        }
+
+        function editYouTube() {
+            var widgetYouTube={
+                _id: model.widget._id,
+                widgetType: model.widget.widgetType,
+                pageId: model.pageId,
+                width:model.widget.width,
+                url: model.widget.url
+            };
+            widgetService.updateWidget(model.widgetId,widgetYouTube)
+                .then(redirectWidget, errorWidget);;
+        }
+
+        function renderWidget(widget) {
+            model.widget = widget;
+            model.width = model.widget.width;
+        }
+        function errorWidget() {
+            model.message = "Error!"
+        }
+        function redirectWidget() {
+            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+        }
 
 
     }

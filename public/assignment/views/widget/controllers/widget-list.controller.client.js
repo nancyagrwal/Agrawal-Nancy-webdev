@@ -1,34 +1,36 @@
-(function () {
+
+(function (){
     angular
         .module('WebAppMaker')
-        .controller('widgetListController', widgetListController);
+        .controller('widgetListController', widgetListController)
 
-    function widgetListController($sce,
-                                  $routeParams,
-                                  widgetService) {
-
+    function widgetListController($routeParams, widgetService, $sce){
         var model = this;
-        model.trust = trust;
-        model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        model.widgetUrl = widgetUrl;
-
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
 
 
+
         function init() {
-            widgetService
-                .findWidgetByPageId(model.pageId)
-                .then(function (response) {
-                    model.widgets = response;
-                                 });
+            widgetService.findWidgetsByPageId(model.pageId)
+                .then(renderWidgets, errorWidget);
         }
+
         init();
 
+        //event handlers
+        model.trust = trust;
+        model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+        model.widgetUrl = widgetUrl;
 
+        function renderWidgets(widgets) {
+            model.widgets = widgets;
+        }
+        function errorWidget() {
+            model.message = "Error!"
+        }
         function widgetUrl(widget) {
-            console.log(widget.widgetType);
             var url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'.view.client.html';
             return url;
         }
@@ -39,9 +41,9 @@
             embedUrl += linkUrlParts[linkUrlParts.length - 1];
             return $sce.trustAsResourceUrl(embedUrl);
         }
-        
-        function trust(html) {
 
+        function trust(html) {
+            // scrubbing the html
             return $sce.trustAsHtml(html);
         }
     }

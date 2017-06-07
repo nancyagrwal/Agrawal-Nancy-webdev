@@ -1,29 +1,33 @@
-/**
- * Created by nancy on 6/6/2017.
- */
+
 (function (){
     angular
         .module('WebAppMaker')
         .controller('FlickrImageSearchController', FlickrImageSearchController);
 
-    function FlickrImageSearchController($routeParams, FlickerService, widgetService,$location){
+    function FlickrImageSearchController($routeParams, FlickrService, widgetService,$location){
         var model = this;
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
 
-        widgetService.findWidgetById(model.widgetId)
-            .then(renderWidget, errorWidget);
 
+        function init() {
+            widgetService.findWidgetById(model.widgetId)
+                .then(renderWidget, errorWidget);
+        }
+
+        init();
+
+        //event handlers
         model.searchPhotos= searchPhotos;
         model.selectPhoto = selectPhoto;
 
         function selectPhoto(photo) {
 
-            model.widget.url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "s.jpg";
+                model.widget.url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "s.jpg";
             widgetService.updateWidget(model.widgetId, model.widget)
-                .then(redirectWidget, errorWidget);
+                    .then(redirectWidget, errorWidget);
 
         }
         function redirectWidget() {
@@ -31,10 +35,9 @@
         }
 
         function searchPhotos(searchText) {
-            FlickerService
+            FlickrService
                 .searchPhotos(searchText)
                 .then(function(response) {
-                    //console.log(response.data);
                     data = response.data.replace("jsonFlickrApi(","");
                     data = data.substring(0,data.length - 1);
                     data = JSON.parse(data);
@@ -53,3 +56,4 @@
 
     }
 })();
+

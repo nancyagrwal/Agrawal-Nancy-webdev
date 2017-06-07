@@ -53,14 +53,14 @@
                 controller: 'pageEditController',
                 controllerAs: 'model'
             })
-            
+
             .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
                 templateUrl: 'views/widget/templates/widget-list.view.client.html',
                 controller: 'widgetListController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
-                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+                templateUrl: 'views/widget/templates/widget-chooser.view.client.html',
                 controller: 'widgetNewController',
                 controllerAs: 'model'
             })
@@ -69,5 +69,10 @@
                 controller: 'widgetEditController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/search',{
+                templateUrl: '/views/widget/templates/widget-flickr-search.view.client.html',
+                controller: 'FlickrImageSearchController',
+                controllerAs: 'vm'
+            });
     }
 })();
