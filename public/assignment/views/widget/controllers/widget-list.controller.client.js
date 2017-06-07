@@ -19,11 +19,10 @@
 
         function init() {
             widgetService
-                .findWidgetsByPageId(model.pageId)
+                .findWidgetByPageId(model.pageId)
                 .then(function (response) {
                     model.widgets = response;
-                    // console.log(model.widgetsByPageId);
-                });
+                                 });
         }
         init();
 
@@ -41,7 +40,7 @@
         }
         
         function trust(html) {
-            // scrubbing the html
+
             return $sce.trustAsHtml(html);
         }
     }

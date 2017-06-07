@@ -1,7 +1,7 @@
-var app = require('../../express');
+const app = require('../../../express');
+
 var multer = require('multer'); // npm install multer --save
-var upload = multer({dest: __dirname + '/../../public/assignment/upload'});
-var fs = require('fs');
+var upload = multer({ dest: __dirname+'/../../../public/assignment/graduate/uploads' });
 
 var widgets = [
     {
@@ -55,10 +55,10 @@ function uploadImage(req, res) {
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
 
-        var originalname = myFile.originalname; // file name on user's computer
-        var filename = myFile.filename;     // new file name in upload folder
-        var path = myFile.path;         // full path of uploaded file
-        var destination = myFile.destination;  // folder where file is saved to
+        var originalname = myFile.originalname;
+        var filename = myFile.filename;
+        var path = myFile.path;
+        var destination = myFile.destination;
         // var size = myFile.size;
         // var mimetype = myFile.mimetype;
 
@@ -97,36 +97,28 @@ function deleteWidget(req, res) {
     res.sendStatus(404);
 }
 
-// updateWidget(widgetId, widget) - updates the widget in local widgets array
-// whose _id matches the widgetId parameter
+
 function updateWidget(req, res) {
 
     var widgetId = req.params.widgetId;
     var widget = req.body;
 
-    //Find that widget by Id to update by iterating over all widgets
-    for (var w in widgets) {
 
-        //If that Id is found
-        //UPDATE COMMON PART
-        if (widgets[w]._id == widgetId) {
+    for (var w in widgets) {
+  if (widgets[w]._id == widgetId) {
             widgets[w].text = widget.text;
             widgets[w].name = widget.name;
 
-
-            //UPDATE HEADING SPECIFIC STUFF
-            if (widgets[w].widgetType === "HEADING" ||
+     if (widgets[w].widgetType === "HEADING" ||
                 widgets[w].widgetType === "HTML") {
                 widgets[w].size = widget.size;
             }
 
-            //UPDATE IMAGE SPECIFIC STUFF
             else if (widgets[w].widgetType === "IMAGE") {
                 widgets[w].width = widget.width;
                 widgets[w].url = widget.url;
             }
 
-            //
             else if (widgets[w].widgetType === "YOUTUBE") {
                 widgets[w].width = widget.width;
                 widgets[w].url = widget.url;
@@ -136,10 +128,7 @@ function updateWidget(req, res) {
     }
     res.send(widgets);
     return;
-}//END OF UPDATE WIDGET FUNCTION
-
-
-// createWidget(pageId, widget) - adds the widget parameter instance to the local widgets array.
+}
 function createWidget(req, res) {
     var widget = req.body;
     widgets.push(widget);
@@ -149,7 +138,6 @@ function createWidget(req, res) {
 
 function findWidgetById(req, res) {
     var widgetId = req.params.widgetId;
-    // console.log("findWidgteById" +widgetId);
     for (var w in widgets) {
         if (widgets[w]._id == widgetId) {
             // console.log(widgets[w]);
@@ -157,7 +145,7 @@ function findWidgetById(req, res) {
             return;
         }
     }
-    // res.sendStatus(404);
+
 }
 
 
