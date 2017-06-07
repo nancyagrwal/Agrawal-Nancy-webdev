@@ -17,27 +17,29 @@
         };
         return api;
 
-        function findFlights(depDate, arrDate, budget, location, theme) {
-            var url = "/api/project/user";
+        function findFlights(depDate, arrDate, budget, location, theme,userId) {
+            var url = "/api/project/user/" + userId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function findAllThemesForUser(){
-        var url = "/api/project/user";
+        function findAllThemesForUser(userId){
+        var url = "/api/project/user/" + userId ;
         return $http.get(url)
             .then(function (response) {
+                console.log(response.data);
                 return response.data;
             });
 
     }
 
-        function findAllAirportsForUser(){
-            var url = "/api/project/user";
+        function findAllAirportsForUser(userId){
+            var url = "/api/project/user/" + userId;
             return $http.get(url)
                 .then(function (response) {
+                    console.log(response.data);
                     return response.data;
                 });
 

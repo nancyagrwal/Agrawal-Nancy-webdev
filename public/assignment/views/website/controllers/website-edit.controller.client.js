@@ -10,7 +10,7 @@
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.updateWebsiteDetails = {};
-       model.deleteWebsite = deleteWebsite;
+        model.deleteWebsite = deleteWebsite;
         model.updateWebsite = updateWebsite;
 
 

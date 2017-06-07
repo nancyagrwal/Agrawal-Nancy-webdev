@@ -11,9 +11,7 @@
 
 <div class="container-fluid">
     <form>
-        <div ng-show="model.message" class="alert alert-success">
-            {{model.message}}
-        </div>
+
         <div class="form-group">
 
             <label>Your Budget</label>
@@ -25,10 +23,11 @@
 
         <div class="form-group">
             <label>Flying from?</label>
-            <select ng-model="model.user.location"
+            <select ng-model="model.airports"
                     class="form-control"
                     id="location"
-                    ng-options="airport.iataCode as airport.name for airport in search.airports | orderBy:'name'">
+                    ng-options="airport.iataCode as airport.name for airport in model.airports">
+
             </select>
         </div>
 

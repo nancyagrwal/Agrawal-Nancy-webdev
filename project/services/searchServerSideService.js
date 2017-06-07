@@ -42,7 +42,7 @@ var themes = [{
     image: "/images/gambling.jpg"
 }];
 
-this.airports = [{
+var airports = [{
     name:"London Heathrow",
     iataCode: "LHR"
 },{
@@ -109,6 +109,7 @@ this.airports = [{
 
 app.get('/api/project/user', findAllThemesForUser);
 app.get('/api/project/user', findAllAirportsForUser);
+
 
 function findAllThemesForUser(req, res) {
     var results = [];
