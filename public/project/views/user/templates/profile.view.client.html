@@ -20,7 +20,24 @@
             {{model.message}}
         </div>
         <div class="form-group">
-            <label for="username">
+
+            <label for="profilePicture">
+                Upload Profile Picture
+            </label>
+
+            <form action="/api/upload"   method="post" enctype="multipart/form-data">
+                <input  name="myFile"
+                        ng-model="model.user.profilePicture"
+                        type="file"
+                        id="profilePicture"
+                        class="form-control"
+                        placeholder="Image"/>
+                <button type="submit"  class="btn btn-block btn-primary">Upload Image</button>
+            </form>
+            <br/>
+
+
+           <label for="username">
                 Username
             </label>
             <input ng-model="model.user.username"

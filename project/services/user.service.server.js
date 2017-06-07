@@ -2,10 +2,10 @@ var app = require('../../express');
 
 
 var users = [
-    {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-    {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-    {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-    {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
+    {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder" , profilePicture: ""},
+    {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley" , profilePicture: ""},
+    {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia" , profilePicture: ""},
+    {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi" , profilePicture: ""}
 ];
 
 //Listen for incoming http requests
@@ -15,6 +15,7 @@ app.get('/api/assignment/user', findUserByUsername);
 app.post('/api/assignment/user', createUser);
 app.put('/api/assignment/user/:userId', updateUser);
 app.delete('/api/assignment/user/:userId', deleteUser);
+app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
 
 function deleteUser(req, res) {
@@ -103,4 +104,33 @@ function findUserById(req, res) {
         }
     }
     return res.sendStatus(404);
+}
+
+
+function uploadImage(req, res) {
+
+    var width         = req.body.width;
+    var myFile        = req.file;
+
+    var userId = req.body.userId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+
+    var imageUpload = null;
+    for(var w in users) {
+        if (users[w]._id === userId) {
+            imageUpload = users[w].profilePicture;
+            break;
+        }
+    }
+    imageUpload.url = '/project/uploads/'+filename;
+
+    var callbackUrl   = "/project/#!/user/"+userId;
+
+    res.redirect(callbackUrl);
 }
