@@ -5,7 +5,7 @@
 
     function widgetNewController($routeParams,
                                  $location,
-                                 widgetService) {
+                                 widgetService,$scope) {
 
         var model = this;
 
@@ -18,19 +18,31 @@
         model.createYoutubeWidget = createYoutubeWidget;
         model.createHTMLWidget = createHTMLWidget;
 
+
+      /*  $scope.createWidget = function createWidget(widgetType) {
+            widget.widgetType = widgetType;
+            widgetService
+                .createWidget(model.pageId, model.widget)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' +
+                        model.websiteId + '/page/' + model.pageId + '/widget/');
+                })
+        }*/;
+
+
         function createHeaderWidget() {
-            var newHeader = {
+            var newWidget = {
                 widgetType: "HEADING",
                 name: "default header name",
                 size: "2",
                 text: "default header text"};
 
-            newHeader = widgetService.createWidget(model.pageId, newHeader) ;
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newHeader._id);
+            newWidget = widgetService.createWidget(model.pageId, newWidget) ;
+            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newWidget._id);
         }
 
         function createImageWidget() {
-            var newHeader = {
+            var newWidget = {
                 widgetType: "IMAGE",
                 name: "default image name",
                 text: "default image text",
@@ -38,12 +50,12 @@
                 url: "http://lorempixel.com/400/200/"
             };
 
-            widgetService.createWidget(model.pageId, newHeader) ;
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newHeader._id);
+            widgetService.createWidget(model.pageId, newWidget) ;
+            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newWidget._id);
         }
 
         function createYoutubeWidget() {
-            var newHeader = {
+            var newWidget = {
                 widgetType: "YOUTUBE",
                 name: "default youtube name",
                 text: "default youtube text",
@@ -51,19 +63,19 @@
                 url: "https://youtu.be/AM2Ivdi9c4E"
             };
 
-            widgetService.createWidget(model.pageId, newHeader) ;
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newHeader._id);
+            widgetService.createWidget(model.pageId, newWidget) ;
+            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+"/widget/"+newWidget._id);
         }
 
         function createHTMLWidget() {
-            var newHeader={
+            var newWidget={
                 widgetType: "HTML",
                 name: "default html name",
                 text: "default html text",
                 width: "100%"
             };
-            widgetService.createWidget(model.pageId,newHeader);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+newHeader._id);
+            widgetService.createWidget(model.pageId,newWidget);
+            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+newWidget._id);
         }
 
     }

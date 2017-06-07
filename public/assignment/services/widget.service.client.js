@@ -1,9 +1,9 @@
 (function () {
     angular
         .module('WebAppMaker')
-        .service('widgetServices', widgetServices);
+        .service('widgetService', widgetService);
 
-    function widgetServices($http) {
+    function widgetService($http) {
 
 
         var api = {
@@ -11,21 +11,28 @@
             findWidgetById: findWidgetById,
             findWidgetByPageId: findWidgetByPageId,
             updateWidget: updateWidget,
-            findWidgetTypeById: findWidgetTypeById,
+
             deleteWidget: deleteWidget
         };
         return api;
 
 
+        function threeDigitRandomNum(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
 
         function createWidget(pageId, widget) {
-            widgetId = pageId;
+             widgetId =  threeDigitRandomNum(100, 1000);
              widget._id = widgetId;
             widget.pageId = pageId;
 
             var url = "/api/assignment/page/" + pageId + "/widget";
             return $http.post(url, widget)
                 .then(function (response) {
+                    console.log(response.data);
                     return response.data;
                 });
         }
@@ -55,7 +62,8 @@
         }
 
 
-                function findWidgetTypeById(widgetId) {
+        /*function findWidgetTypeById(widgetId) {
+
             for (var w in widgets) {
                 var widget = widgets[w];
                 if (widget._id === widgetId) {
@@ -63,7 +71,7 @@
                 }
             }
             return null;
-        }
+        }*/
 
 
         function updateWidget(widgetId, widget) {

@@ -27,8 +27,6 @@
 
         model.updateWidget = updateWidget;
         model.deleteWidget = deleteWidget;
-        model.widgetUrl = widgetUrl;
-
 
 
         function updateWidget() {
@@ -47,9 +45,7 @@
             });
         }
 
-        function widgetUrl(widget) {
-            var url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'-edit.view.client.html';
-            return url;
-        }
+
+
     }
 })();
