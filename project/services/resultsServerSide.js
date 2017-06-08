@@ -3,11 +3,6 @@
  */
 
 var app = require('../../express');
-/*
-
-{name: "Beach",  image: "/images/beach.jpg" },
-{ name: "Historic", image: "/images/historic.jpg"}
-*/
 
 
 var datas=[{
