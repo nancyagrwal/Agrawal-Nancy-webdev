@@ -11,18 +11,16 @@
 
         var model = this;
         model.userId = $routeParams['userId'];
-       // model.searchFlight = searchFlight;
+        model.selectTheme = selectTheme;
 
-
-
-        function init() {
+         function init() {
             searchServices
                 .findAllAirportsForUser(model.userId)
                 .then(renderTheAirports);
 
             searchServices
                 .findAllThemesForUser(model.userId)
-        .then(renderTheThemes);
+                .then(renderTheThemes);
 
         }
 
@@ -37,30 +35,12 @@
         }
 
 
-       /* function searchFlight(depDate, arrDate, budget, location, theme) {
+        function selectTheme(theme)
+        {
+            model.theme = theme;
+        }
 
-            if (depDate === null || depDate === '' || typeof depDate === 'undefined') {
-                model.error = 'Please enter Departure Date!';
-                return;
-            }
 
-            if (arrDate === null || arrDate === '' || typeof arrDate === 'undefined') {
-                model.error = "Please enter Arrival Date!";
-                return;
-            }
-
-            searchServices
-                .findFlights(depDate, arrDate, budget, location, theme)
-                .then(function (found) {
-                    if (found !== null) {
-                        model.showDat = false;
-                        model.data = found;
-                      //  $location.url('/user/' + found._id);
-                    } else {
-                        model.message = "sorry";
-                    }
-                });
-        }*/
     }
 }
 )();

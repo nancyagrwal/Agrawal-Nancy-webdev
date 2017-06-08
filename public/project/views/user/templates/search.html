@@ -8,50 +8,48 @@
     </div>
 </nav>
 
+<div ng-show="model.error" class="alert alert-danger">
+    {{model.error}}
+</div>
 
 <div class="container-fluid">
-    <form>
 
-        <div class="form-group">
 
             <label>Your Budget</label>
             <input type="number"
-                   ng-model="model.budget"
+                   ng-model="budget"
                    id="budget"
                    class="form-control"/>
-        </div>
 
-        <div class="form-group">
+
             <label>Flying from?</label>
-            <select ng-model="model.airports"
+            <select ng-model="location"
                     class="form-control"
                     id="location"
                     ng-options="airport.iataCode as airport.name for airport in model.airports">
 
             </select>
-        </div>
 
-        <div class="form-group">
+
             <label>Fly Out</label>
             <label>From</label>
             <input type="date"
-                   value="departureDate"
-                   ng-model="model.departureDate"
+                   ng-model="departureDate"
                    id="departureDate"
                    class="form-control">
-        </div>
+
 
         <div class="form-group">
             <label>Fly Back</label>
             <input type="date" value="return"
-                   ng-model="model.returnDate"
+                   ng-model="returnDate"
                    id="returnDate"
                    class="form-control">
         </div>
 
 
         <div class="row">
-            <div class="card col-md-3"
+            <div class="col-md-3" ng-model="theme"
                  ng-repeat="theme in model.themes"
                  ng-click="model.selectTheme(theme)">
                 <img
@@ -64,12 +62,11 @@
             </div>
         </div>
 
-    </form>
-
-    <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/results">
-        Search Trips
+    <a ng-click="model.searchFlight()" href="#!user/{{model.userId}}/search/results"
+       class="btn btn-primary btn-block">
+        Search Places
     </a>
+
 
     </br>
     <a class="btn btn-danger  btn-block"

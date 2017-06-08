@@ -11,19 +11,20 @@
 
 
         var api = {
-           // findFlights: findFlights,
+            searchFlight: searchFlight,
             findAllThemesForUser: findAllThemesForUser,
             findAllAirportsForUser: findAllAirportsForUser
         };
         return api;
 
-        /*function findFlights(depDate, arrDate, budget, location, theme,userId) {
-            var url = "/api/project/user/" + userId;
+        function searchFlight(userId) {
+            var url = "/api/project/user/" + userId + "/search/results";
             return $http.get(url)
                 .then(function (response) {
+                    console.log(response.data);
                     return response.data;
                 });
-        }*/
+        }
 
         function findAllThemesForUser(userId){
         var url = "/api/project/user/" + userId + "/search";
