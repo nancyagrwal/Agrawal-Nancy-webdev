@@ -12,6 +12,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="card col-md-4" ng-repeat="result in model.data">
+
             <div ng-repeat="items in result.Quotes">
                 <h3>{{ items.OutboundLeg.DestinationName }}</h3>
             </div>
@@ -20,9 +21,10 @@
             </div>
             <div ng-repeat="items in result.Places">
                 <h4>{{items.Name }}</h4>
-            </div>
-        </div>
+
+             </div>
     </div>
+</div>
 </div>
 
     </br>
