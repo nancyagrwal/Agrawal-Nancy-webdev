@@ -16,6 +16,9 @@ body {
     }
 }
 
+.my-image {
+    background-size: cover; /* will stretch the image to your div size while maintaining aspect ratio */
+}
 .navbar-default {
     background-color: #4f4f4f;
     border-color: #4f4f4f;
@@ -27,6 +30,11 @@ body {
 
 .container-fluid .navbar-header {
     width: 100%;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .navbar-default .navbar-link {
