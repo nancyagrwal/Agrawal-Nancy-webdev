@@ -14,10 +14,10 @@
         model.selectTheme = selectTheme;
 
          function init() {
-            searchServices
+            /*searchServices
                 .findAllAirportsForUser(model.userId)
                 .then(renderTheAirports);
-
+*/
             searchServices
                 .findAllThemesForUser(model.userId)
                 .then(renderTheThemes);
@@ -26,13 +26,14 @@
 
         init();
 
-        function renderTheThemes(themes) {
-            model.themes = themes;
+        function renderTheThemes(response) {
+            model.themes = response[0];
+            model.airports = response[1];
         }
 
-        function renderTheAirports(airports) {
+       /* function renderTheAirports(airports) {
             model.airports = airports;
-        }
+        }*/
 
 
         function selectTheme(theme)

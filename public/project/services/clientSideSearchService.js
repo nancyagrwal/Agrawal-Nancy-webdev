@@ -9,11 +9,10 @@
 
     function searchServices($http) {
 
-
         var api = {
             searchFlight: searchFlight,
             findAllThemesForUser: findAllThemesForUser,
-            findAllAirportsForUser: findAllAirportsForUser
+           // findAllAirportsForUser: findAllAirportsForUser
         };
         return api;
 
@@ -21,7 +20,7 @@
             var url = "/api/project/user/" + userId + "/search/results";
             return $http.get(url)
                 .then(function (response) {
-                    console.log(response.data);
+
                     return response.data;
                 });
         }
@@ -30,19 +29,21 @@
         var url = "/api/project/user/" + userId + "/search";
         return $http.get(url)
             .then(function (response) {
+              //  console.log("themes are" + response[0]);
+               // console.log("airports are" + response[1]);
                   return response.data;
             });
 
     }
 
-        function findAllAirportsForUser(userId){
+      /*  function findAllAirportsForUser(userId){
             var url = "/api/project/user/" + userId + "/search";
             return $http.get(url)
                 .then(function (response) {
                       return response.data;
                 });
 
-        }
+        }*/
 
     }
 }

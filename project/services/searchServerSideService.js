@@ -108,24 +108,24 @@ var airports = [{
 }];
 
 app.get('/api/project/user/:userId/search', findAllThemesForUser);
-app.get('/api/project/user/:userId/search', findAllAirportsForUser);
+//app.get('/api/project/user/:userId/search', findAllAirportsForUser);
 
 
 function findAllThemesForUser(req, res) {
     var results = [];
-    for (var v in themes) {
+  /*  for (var v in themes) {
           results.push(themes[v]);
-        }
-
+        }*/
+    results = [themes , airports];
     res.json(results);
 }
 
-function findAllAirportsForUser(req, res) {
+/*function findAllAirportsForUser(req, res) {
      var results1 = [];
         for (var v in airports) {
             results1.push(airports[v]);
         }
         res.json(results1);
-    }
+    }*/
 
 
