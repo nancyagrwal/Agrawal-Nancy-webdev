@@ -24,6 +24,7 @@ app.delete('/api/widget/:widgetId', deleteWidget);
 app.post ("/api/upload", upload.single('myFile'), uploadImage);
 app.put("/api/page/:pageId/widget", reorderWidget);
 
+
 function createWidget(req, res) {
 
     var pageId = req.params['pageId'];
