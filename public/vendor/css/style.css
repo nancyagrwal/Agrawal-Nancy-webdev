@@ -85,3 +85,67 @@ body {
     height: 100%;
     z-index: 1;
 }
+
+.featurette-image {
+    display: block;
+    margin: auto;
+}
+.slide1, .slide2, .slide3 ,.slide4{
+    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+    background-size: cover;
+    background-position: center center;
+}
+.slide1 {
+    background-image: url(/../../images/travel1.jpg);
+}
+.slide2 {
+    background-image: url(/../../images/travel2.jpg);
+}
+.slide3 {
+    background-image: url(/../../images/travel3.jpg);
+}
+
+.slide4 {
+    background-image: url(/../../images/travel4.jpg);
+}
+/* Carousel Fade Effect */
+.carousel.carousel-fade .item {
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -ms-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    transition: opacity 1s linear;
+    opacity: .5;
+}
+.carousel.carousel-fade .active.item {
+    opacity: 1;
+}
+.carousel.carousel-fade .active.left,
+.carousel.carousel-fade .active.right {
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+/* Carousel Overlay */
+.carousel-overlay {
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+    left: 0;
+}
+
+.carousel-overlay h1 {
+    font-size: 3.5em;
+}
+.carousel-overlay .btn {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 4px solid #398439;
+    border-radius: 6px;
+}
+.carousel-overlay .btn-lg {
+    font-size: 1.75em;
+    padding: 10px 30px;
+}
