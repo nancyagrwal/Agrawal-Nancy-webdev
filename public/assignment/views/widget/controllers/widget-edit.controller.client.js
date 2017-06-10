@@ -23,15 +23,17 @@
         model.editHeading = editHeading;
         model.deleteWidget=deleteWidget;
         model.editImage=editImage;
+        model.editHtml = editHtml,
+        model.editText = editText,
         model.editYouTube=editYouTube;
 
 
         function widgetUrl(widget) {
             if(widget) {
                 var url;
-                if (widget.widgetType === 'HTML')
+              /*  if (widget.widgetType === 'HTML')
                     url = 'views/widget/templates/widget-heading-edit.view.client.html';
-                else
+                else*/
                     url = 'views/widget/templates/widget-' + widget.widgetType.toLowerCase() + '-edit.view.client.html';
                 return url;
             }
@@ -48,6 +50,19 @@
             widgetService.updateWidget(model.widgetId,widgetHeading)
                 .then(redirectWidget, errorWidget);
         }
+
+        function editText() {
+            var widgetText={
+                _id: model.widget._id,
+                widgetType: model.widget.widgetType,
+                pageId: model.pageId,
+                size: model.widget.size,
+                text: model.widget.text
+            };
+            widgetService.updateWidget(model.widgetId,widgetText)
+                .then(redirectWidget, errorWidget);
+        }
+
         
         function deleteWidget() {
             widgetService.deleteWidget(model.widgetId)
@@ -63,6 +78,19 @@
                 url: model.widget.url
             };
             widgetService.updateWidget(model.widgetId,widgetImage)
+                .then(redirectWidget, errorWidget);
+        }
+
+        function editHtml() {
+            var widgetHtml={
+                _id: model.widget._id,
+                widgetType: model.widget.widgetType,
+                pageId: model.pageId,
+                width:model.widget.width,
+                size: model.widget.size,
+                text: model.widget.text
+            };
+            widgetService.updateWidget(model.widgetId,widgetHtml)
                 .then(redirectWidget, errorWidget);
         }
 

@@ -16,6 +16,20 @@
         model.createImage=createImage;
         model.createYouTube=createYouTube;
         model.createhtml=createhtml;
+        model.createTextInput = createTextInput;
+
+
+        function createTextInput() {
+            var widgetHeading={
+                widgetType: "TEXT",
+                size: 1,
+                text: ""
+
+            };
+            widgetService.createWidget(model.pageId,widgetHeading)
+                .then(redirectWidget, errorWidget);
+        }
+
 
         function createHeading() {
             var widgetHeading={
