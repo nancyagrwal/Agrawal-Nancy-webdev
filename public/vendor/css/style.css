@@ -4,26 +4,37 @@ select.form-control {
     margin-bottom: 5px;
 }
 
-nav.navbar.navbar-default.navbar-fixed-top {
-    padding-right: 15px;
-}
-
 body {
     padding-top: 60px;
     padding-bottom: 60px;
 }
 
+@media (max-width: 768px) {
+    .wd-margin-sx {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.my-image {
+    background-size: cover; /* will stretch the image to your div size while maintaining aspect ratio */
+}
 .navbar-default {
-    background-color: darkblue;
-    border-color: darkblue;
+    background-color: #4f4f4f;
+    border-color: #4f4f4f;
 }
 
 .navbar-default .navbar-brand {
     color: white;
 }
 
-.navbar-header {
+.container-fluid .navbar-header {
     width: 100%;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .navbar-default .navbar-link {
@@ -35,7 +46,12 @@ body {
 }
 
 .wd-widget {
-    margin-bottom: 10px;
+    margin: 15px;
+}
+
+.wd-widget-edit {
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .wd-widget > img {
@@ -49,4 +65,23 @@ body {
     opacity: 0.9;
     padding: 5px;
     border-bottom-left-radius: 10px;
+    z-index: 2;
+}
+
+.wd-video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.wd-video-container iframe,
+.wd-video-container object,
+.wd-video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1;
 }
