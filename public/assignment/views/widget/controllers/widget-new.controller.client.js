@@ -20,24 +20,24 @@
 
 
         function createTextInput() {
-            var widgetHeading={
-                widgetType: "TEXT",
+            var widgetText={
+                widgetType: "INPUT",
                 size: 1,
                 text: ""
 
             };
-            widgetService.createWidget(model.pageId,widgetHeading)
+            wdgt=widgetService.createWidget(model.pageId,widgetText)
                 .then(redirectWidget, errorWidget);
         }
 
 
         function createHeading() {
             var widgetHeading={
-                widgetType: "HEADING",
+                widgetType: "HEADER",
                 size: 1,
                 text: ""
             };
-            widgetService.createWidget(model.pageId,widgetHeading)
+            wdgt=widgetService.createWidget(model.pageId,widgetHeading)
                 .then(redirectWidget, errorWidget);
         }
 
@@ -77,5 +77,20 @@
         function errorWidget(){
             model.message = "Error!"
         }
+
+        model.goToWidget = goToWidget;
+        model.logout = logout;
+
+        function goToWidget()
+        {
+            $location.url("/user/" + model.userId +"/website/" +model.websiteId + "/page/" + model.pageId +"/widget");
+        }
+
+        function logout()
+        {
+            $location.url("/user/" + model.userId);
+
+        }
+
     }
 })();

@@ -5,8 +5,8 @@
         <div class="row">
             <div class="wd-navbar-media col-lg-8 col-md-8 col-sm-8">
                 <div class="wd-navbar-list navbar-brand pull-left">
-                    <a class="wd-gly-chevron-left"
-                       ng-href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                    <a class="wd-gly-chevron-left" ng-click="model.goToWidget()">
+
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
                     </a>
@@ -40,14 +40,14 @@
             </div>
         </li>
         <li class="list-group-item">
-        <div class="row">
-            <div class="col-lg-5 col-md-8 col-xs-9">
-                <a ng-click="model.createhtml()">
-                    HTML
-                </a>
+            <div class="row">
+                <div class="col-lg-5 col-md-8 col-xs-9">
+                    <a ng-click="model.createhtml()">
+                        HTML
+                    </a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
         <li class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-9">
@@ -118,7 +118,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text wd-navbar-header pull-right ">
-            <a ng-href="#!/user/{{model.userId}}">
+            <a ng-click="model.logout()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

@@ -6,8 +6,8 @@
     function registerController($location, userService) {
 
         var model = this;
-
         model.register = register;
+        model.logout = logout;
 
         function register(username, password, password2) {
 
@@ -41,6 +41,11 @@
                 });
 
 
+        }
+
+        function  logout()
+        {
+            $location.url("/login");
         }
     }
 })();

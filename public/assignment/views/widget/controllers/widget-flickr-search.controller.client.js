@@ -1,4 +1,3 @@
-
 (function (){
     angular
         .module('WebAppMaker')
@@ -10,7 +9,6 @@
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
-
 
         function init() {
             widgetService.findWidgetById(model.widgetId)
@@ -46,12 +44,19 @@
 
         }
 
+        model.searchImage = searchImage;
+
         function renderWidget(widget) {
             model.widget = widget;
         }
 
         function errorWidget(widget) {
             model.message = "Error!";
+        }
+
+        function searchImage()
+        {
+            $location.url("/user/" + model.userId +"/website/" +model.websiteId + "/page/" + model.pageId +"/widget/" + model.widgetId +"/search");
         }
 
     }

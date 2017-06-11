@@ -4,9 +4,8 @@
         <div class="row">
             <div class="wd-navbar-media col-lg-8 col-md-8 col-sm-8">
                 <div class="wd-navbar-list navbar-brand pull-left">
-                    <a class="wd-gly-chevron-left"
-                       ng-href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-                  <span class="glyphicon glyphicon-chevron-left">
+                    <a class="wd-gly-chevron-left" ng-click="model.goToWidget()">
+                       <span class="glyphicon glyphicon-chevron-left">
                   </span>
                     </a>
                     Widget Edit
@@ -37,7 +36,7 @@
            id="name"/>
 
     <label for="name">Editor</label>
-     <div class="row">
+    <div class="row">
         <div class="col-sm-12">
             <h3>Editor</h3>
             <div text-angular ng-model="model.widget.text"
@@ -62,7 +61,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text wd-navbar-header pull-right ">
-            <a ng-href="#!/user/{{model.userId}}">
+            <a ng-click="model.logout()">
                 <span class="wd-gly-user glyphicon glyphicon-user"></span>
             </a>
         </div>

@@ -4,9 +4,6 @@
         .module('wbdvDirectives',['ngRoute'])
         .directive('wbdvSortable', wbdvSortable);
 
-    function wbdvSortable() {
-
-    };
 
     function wbdvSortable() {
         var initial = null;
@@ -30,13 +27,13 @@
         }
     }
 
-    function jgaSortableController(WidgetService, $routeParams) {
-        var vm = this;
-        vm.sort = sort;
+    function jgaSortableController(widgetService, $routeParams) {
+        var model = this;
+        model.sort = sort;
 
         function sort(initial, final) {
             var pageId = $routeParams.pid;
-            WidgetService.sortWidgetsForPage(initial, final, pageId);
+            widgetService.reorderWidget(initial, final, pageId);
         }
     }
 })();

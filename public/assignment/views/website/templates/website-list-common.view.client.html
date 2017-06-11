@@ -19,7 +19,7 @@
         class="list-group-item">
         <div class="row">
             <div class="col-lg-4 col-md-7 col-xs-10">
-                <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                <a ng-click="model.fetchPages(website)">
                     {{website.name}}
                 </a>
             </div>
@@ -30,7 +30,7 @@
                 {{website.accessed | date}}
             </div>
             <div class="col-xs-2">
-                <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                <a ng-click="model.backToWebsites(website)">
                     <span class="glyphicon glyphicon-cog pull-right"></span>
                 </a>
             </div>

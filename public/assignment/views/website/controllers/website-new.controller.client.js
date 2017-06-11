@@ -9,6 +9,11 @@
         var model = this;
         model.userId = $routeParams['userId'];
         model.createWebsite = createWebsite;
+        model.backToWebsites = backToWebsites;
+        model.newWebsite = newWebsite;
+        model.goBack= goBack;
+        model.fetchPages = fetchPages;
+
         function init() {
             websiteService
                 .findAllWebsitesForUser(model.userId)
@@ -44,5 +49,28 @@
             websiteService.createWebsite(website);
             $location.url('/user/'+model.userId+'/website');
         }
+
+               function newWebsite()
+        {
+            $location.url("/user/"+ model.userId +"/website/new");
+        }
+
+        function fetchPages(website)
+        {
+            $location.url("/user/"+ model.userId +"/website/" + website._id +"/page");
+        }
+
+        function goBack()
+        {
+            $location.url("/user/" + model.userId +"/website")
+        }
+
+        function backToWebsites(website)
+        {
+            $location.url("/user/"+ model.userId +"/website/" + website._id);
+        }
+
+
+
     }
 })();

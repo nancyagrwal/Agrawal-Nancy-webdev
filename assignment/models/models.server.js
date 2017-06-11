@@ -1,7 +1,7 @@
 
 module.exports = function () {
 
-    var connectionString = 'mongodb://localhost/test'
+    var connectionString = 'mongodb://localhost/test';
     var mongoose =  require('mongoose');
 
     if(process.env.MLAB_DB_USERNAME) {

@@ -32,7 +32,7 @@
             if(widget) {
                 var url;
               /*  if (widget.widgetType === 'HTML')
-                    url = 'views/widget/templates/widget-heading-edit.view.client.html';
+                    url = 'views/widget/templates/widget-header-edit.view.client.html';
                 else*/
                     url = 'views/widget/templates/widget-' + widget.widgetType.toLowerCase() + '-edit.view.client.html';
                 return url;
@@ -56,8 +56,8 @@
                 _id: model.widget._id,
                 widgetType: model.widget.widgetType,
                 pageId: model.pageId,
-                size: model.widget.size,
-                text: model.widget.text
+                text: model.widget.text,
+                rows: model.widget.rows
             };
             widgetService.updateWidget(model.widgetId,widgetText)
                 .then(redirectWidget, errorWidget);
@@ -73,6 +73,7 @@
             var widgetImage={
                 _id: model.widget._id,
                 widgetType: model.widget.widgetType,
+                text: model.widget.text,
                 pageId: model.pageId,
                 width:model.widget.width,
                 url: model.widget.url
@@ -116,6 +117,27 @@
         function redirectWidget() {
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
         }
+
+        model.goToWidget = goToWidget;
+        model.logout = logout;
+        model.searchImage = searchImage;
+
+        function goToWidget()
+        {
+            $location.url("/user/" + model.userId +"/website/" +model.websiteId + "/page/" + model.pageId +"/widget");
+        }
+
+        function logout()
+        {
+            $location.url("/user/" + model.userId);
+        }
+
+        function searchImage()
+        {
+            $location.url("/user/" + model.userId +"/website/" +model.websiteId + "/page/" + model.pageId +"/widget/" + model.widgetId +"/search");
+        }
+
+
 
 
     }

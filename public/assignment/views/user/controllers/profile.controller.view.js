@@ -11,6 +11,8 @@
         model.userId = $routeParams['userId'];
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.fetchWebistes = fetchWebistes;
+        model.logout = logout;
 
         // model.user = userService.findUserById(model.userId);
         userService
@@ -41,6 +43,16 @@
 
         function userError(error) {
             model.error = "User not found";
+        }
+
+        function  fetchWebistes()
+        {
+            $location.url("/user/"+ model.userId + "/website");
+        }
+
+        function  logout()
+        {
+            $location.url("/login");
         }
     }
 })();

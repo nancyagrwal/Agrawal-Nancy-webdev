@@ -6,8 +6,8 @@
     function loginController($location, userService) {
 
         var model = this;
-
         model.login = login;
+        model.register = register;
 
         function login(username, password) {
 
@@ -30,6 +30,12 @@
                         model.message = "sorry, " + username + " not found. please try again!";
                     }
                 });
+        }
+
+        // added for assignment 5
+        function register()
+        {
+            $location.url("/register");
         }
     }
 })();

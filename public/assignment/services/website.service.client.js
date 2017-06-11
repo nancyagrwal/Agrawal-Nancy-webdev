@@ -12,9 +12,9 @@
 
 
 
-        function updateWebsite(websiteId, websites) {
-            var url = "/api/assignment/website/" + websiteId;
-            return $http.put(url, websites)
+        function updateWebsite(websiteId, website) {
+            var url = "/api/website/" + websiteId;
+            return $http.put(url, website)
                 .then(function (response) {
                     return response.data;
 
@@ -23,7 +23,7 @@
 
 
        function deleteWebsite(websiteId) {
-            var url = "/api/assignment/website/" + websiteId;
+            var url = "/api/website/" + websiteId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;
@@ -33,7 +33,7 @@
 
        function findWebsiteById(websiteId) {
             // console.log("website client " + websiteId);
-            var url = "/api/assignment/website/" + websiteId;
+            var url = "/api/website/" + websiteId;
             return $http.get(url)
                 .then(function (response) {
                     // console.log("website client RESPONSE " + response);
@@ -43,7 +43,7 @@
 
 
         function findAllWebsitesForUser(userId) {
-            var url = "/api/assignment/user/" + userId + "/website";
+            var url = "/api/user/" + userId + "/website";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -53,7 +53,7 @@
 
 
         function createWebsite(website) {
-            var url = "/api/assignment/user/" + website.developerId + "/website";
+            var url = "/api/user/" + website.developerId + "/website";
             return $http.post(url, website)
                 .then(function (response) {
                     return response.data;
