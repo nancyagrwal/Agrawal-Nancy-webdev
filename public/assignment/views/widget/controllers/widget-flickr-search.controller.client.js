@@ -15,7 +15,7 @@
                 .then(renderWidget, errorWidget);
         }
 
-        init();
+        //init();
 
         //event handlers
         model.searchPhotos= searchPhotos;

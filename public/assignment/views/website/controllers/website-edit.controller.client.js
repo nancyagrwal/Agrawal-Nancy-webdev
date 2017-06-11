@@ -36,6 +36,7 @@
         }
 */
 
+
         function updateWebsite(website) {
           /*  for(var v in model.websites){
                 if (model.websites[v]._id === model.websiteId){
@@ -45,7 +46,7 @@
                 }
             }*/
             websiteService
-                .updateWebsite(model.websiteId, model.website)
+                .updateWebsite(model.websiteId, website)
                 .then(function (response) {
                     $location.url("/user/" + model.userId + "/website");
                 }, function (error) {
