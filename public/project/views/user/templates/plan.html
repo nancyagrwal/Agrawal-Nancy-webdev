@@ -87,7 +87,7 @@
     <select ng-model="model.offerId"
             id="offerId"
             class="form-control"
-            ng-options="plans.flightComp as plans.flightComp for plans in model.offerData"
+            ng-options="plans.flightNo as plans.flightComp for plans in model.offerData"
             ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
     </select>
 
