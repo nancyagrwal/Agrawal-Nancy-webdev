@@ -15,7 +15,7 @@
                 .then(renderWidget, errorWidget);
         }
 
-        //init();
+        init();
 
         //event handlers
         model.searchPhotos= searchPhotos;
@@ -23,9 +23,15 @@
 
         function selectPhoto(photo) {
 
-                model.widget.url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "s.jpg";
-            widgetService.updateWidget(model.widgetId, model.widget)
+            model.widget.url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "s.jpg";
+            var widgetImage={
+                _id: model.widget._id,
+                widgetType: model.widget.widgetType,
+                url: model.widget.url
+            };
+            widgetService.updateWidget(model.widgetId, widgetImage)
                     .then(redirectWidget, errorWidget);
+
 
         }
         function redirectWidget() {
