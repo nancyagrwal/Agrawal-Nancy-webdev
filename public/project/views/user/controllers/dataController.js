@@ -22,6 +22,12 @@
             model.searchData=response;
         }
 
+        model.goBackToProfile = goBackToProfile;
+        function goBackToProfile()
+        {
+            $location.url("/user/"+ model.userId);
+        }
+
 
     }
 })();

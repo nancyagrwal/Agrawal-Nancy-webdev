@@ -11,6 +11,7 @@
 
             var model = this;
             model.userId = $routeParams['userId'];
+            model.goBackToSearch = goBackToSearch;
 
             function init() {
                searchServices
@@ -28,6 +29,10 @@
 
             init();
 
+            function goBackToSearch()
+            {
+                $location.url("/user/"+ model.userId +"/search");
+            }
 
         }
     }

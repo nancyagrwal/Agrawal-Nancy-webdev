@@ -1,25 +1,33 @@
-<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html"
-     xmlns="http://www.w3.org/1999/html">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                Offer Plans!
-            </a>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="navbar-header wd-margin-sx">
+                    <p class="navbar-text pull-left">
+                        <a ng-click="model.goBackToProfile()"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a>
+                            Offer Plans!
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
 
 
-<div ng-show="model.error" class="alert alert-danger">
-    {{model.error}}
-</div>
-
-<div ng-show="model.message" class="alert">
-    {{model.message}}
-</div>
-
-
 <div class="container-fluid" ng-init="model.OfferData=[];val=0">
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div ng-show="model.message" class="alert">
+        {{model.message}}
+    </div>
 
     <label>Offer valid from</label>
     <input type="text"
