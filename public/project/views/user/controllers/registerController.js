@@ -38,7 +38,7 @@
                             password: password,
                             userType:userType
                         };
-                        return userService
+                        return ClientSideServices
                             .createUser(newUser);
                     }
                 )

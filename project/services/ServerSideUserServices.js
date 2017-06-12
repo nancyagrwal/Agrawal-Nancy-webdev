@@ -444,7 +444,7 @@ var users = [
 //Listen for incoming http requests
 app.get('/api/project/user/:userId', findUserById);
 app.get('/api/project/user' , findUserByCredentials);
-app.get('/api/project/user', findUserByUsername);
+app.get('/api/project/user/register', findUserByUsername);
 app.post('/api/project/user', createUser);
 app.put('/api/project/user/:userId', updateUser);
 app.delete('/api/project/user/:userId', deleteUser);

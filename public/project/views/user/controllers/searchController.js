@@ -12,6 +12,7 @@
         var model = this;
         model.userId = $routeParams['userId'];
         model.selectTheme = selectTheme;
+model.goBackToProfile = goBackToProfile;
 
          function init() {
             /*searchServices
@@ -39,6 +40,11 @@
         function selectTheme(theme)
         {
             model.theme = theme;
+        }
+
+        function goBackToProfile()
+        {
+            $location.url("/user/"+ model.userId);
         }
 
 

@@ -21,16 +21,9 @@
         };
         return api;
 
-        function findUserById(userId) {
-            for(var u in users) {
-                if(users[u]._id === userId)
-                    return users[u];
-            }
-            return null;
-        }
 
         function findUserByUsername(username) {
-            var url = "/api/project/user?username=" + username;
+            var url = "/api/project/user/register?username=" + username;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -45,7 +38,6 @@
                     return response.data;
                 });
         }
-
 
 
         function findUserById(userId) {
