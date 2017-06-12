@@ -9,7 +9,7 @@
 
         model.register = register;
 
-        function register(username, password, password2) {
+        function register(username, password, password2,userType) {
 
             if(username === null || username === '' || typeof username === 'undefined') {
                 model.error = 'username is required';
@@ -18,6 +18,11 @@
 
             if(password !== password2 || password === null || typeof password === 'undefined') {
                 model.error = "passwords must match";
+                return;
+            }
+
+            if(userType === null || typeof userType === 'undefined' || userType === ''){
+                model.error="please select a user type you want to register as";
                 return;
             }
 
@@ -30,7 +35,8 @@
                     function () {
                         var newUser = {
                             username: username,
-                            password: password
+                            password: password,
+                            userType:userType
                         };
                         return userService
                             .createUser(newUser);

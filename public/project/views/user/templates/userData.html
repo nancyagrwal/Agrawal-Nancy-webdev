@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Data
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <table border="1px">
+        <th >From</th>
+        <th >To</th>
+        <th >Date</th>
+        <th>Themes</th>
+        <th >Budget</th>
+        <tr ng-repeat="x in model.searchData">
+            <td ng-bind="x.searchedSource"></td>
+            <td ng-bind="x.searchedDestination"></td>
+            <td ng-bind="x.searchedOnDate"></td>
+            <td ng-bind="x.searchedThemes"></td>
+            <td ng-bind="x.budget"></td>
+        </tr>
+    </table>
+
+    </div>
+</div>
+<div ng-include="'views/common/footer.view.client.html'"></div>

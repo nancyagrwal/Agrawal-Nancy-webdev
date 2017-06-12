@@ -37,7 +37,24 @@
 
         function renderUser (user) {
             model.user = user;
+
+            if (model.user.userType.toString()=== 'Commercial') {
+                model.comm = "true";
+                //alert('ok');
+            }
+            if(model.user.userType.toString() === 'Business User') {
+                model.bizUser ="true";
+                //alert('oki');
+            }
+            if(model.user.userType.toString() === 'Researcher') {
+                // alert('okiee');
+                model.resUser = "true";
+            }
         }
+
+        /*function renderUser (user) {
+            model.user = user;
+        }*/
 
         function userError(error) {
             model.error = "User not found";

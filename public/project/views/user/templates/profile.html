@@ -84,6 +84,27 @@
         Search Trips
     </a>
 
+    <br>
+    <a class="btn btn-primary btn-block"
+       href="#!/user/{{model.userId}}/offers" >
+        View Offers
+    </a>
+
+
+<div ng-show="model.bizUser">
+    <a class="btn btn-primary btn-block"
+       href="#!/user/{{model.userId}}/makePlan" >
+        Make Plan Package
+    </a>
+</div>
+
+<div ng-show="model.resUser">
+    <a class="btn btn-primary btn-block"
+       href="#!/user/{{model.userId}}/getData">
+        Get Data
+    </a>
+</div>
+
 </br>
     <a class="btn btn-danger  btn-block"
        href="#!/login">

@@ -34,6 +34,21 @@
                 controller: 'resultController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/makePlan', {
+                templateUrl: 'views/user/templates/plan.html',
+                controller: 'planController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/offers', {
+                templateUrl: 'views/user/templates/offers.html',
+                controller: 'offerController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/getData', {
+                templateUrl: 'views/user/templates/userData.html',
+                controller: 'dataController',
+                controllerAs: 'model'
+            })
 
     }
 })();

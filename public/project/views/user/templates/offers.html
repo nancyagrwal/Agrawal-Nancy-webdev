@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Data
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <select for="offer"
+            ng-model="planData"
+            id="planData"
+            class="form-control"
+            ng-options="plan._id as plan.toCity for plan in model.plans"
+            >
+    </select>
+
+    <li ng-repeat="plan in model.plans"
+        class="list-group-item">
+        <div class="row">
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> From City:  {{plan.fromCity}} </p>
+            </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> To City:  {{plan.toCity}} </p>
+            </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Departure Date:  {{plan.departureDate}} </p>
+            </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Arrival Date:  {{plan.returnDate}} </p>
+            </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> Flight Carrier:  {{plan.offerId}} </p>
+            </div>
+
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Real Fare:  {{plan.realFare}} </p>
+            </div>
+
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Discounted Fare:  {{plan.discountedFare}} </p>
+            </div>
+
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Valid From :  {{plan.validFromDate}} </p>
+            </div>
+
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Valid To :  {{plan.validTillDate}} </p>
+            </div>
+
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Offered By :  {{plan.offeredBy}} </p>
+            </div>
+
+
+        </div>
+    </li>
+
+</div>
+<div ng-include="'views/common/footer.view.client.html'"></div>

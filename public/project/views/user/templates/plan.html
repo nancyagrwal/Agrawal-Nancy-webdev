@@ -1,0 +1,119 @@
+<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Offer Plans!
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div ng-show="model.error" class="alert alert-danger">
+    {{model.error}}
+</div>
+
+<div class="container-fluid" ng-init="model.OfferData=[];val=0">
+
+    <label>Offer valid from</label>
+    <input type="text"
+           ng-model="model.validFromDate"
+           id="validFromDate"
+           class="form-control"
+        >
+    <div class="form-group">
+
+
+    <label>Offer valid till</label>
+     <input type="text"
+          ng-model="model.validTillDate"
+          id="validTillDate"
+          class="form-control"
+     >
+     <div class="form-group">
+
+    <label>
+        Flying From
+    </label>
+    <select ng-model="model.fromCity"
+            id="fromCity"
+            class="form-control"
+            ng-options="cities.city as cities.cityCode for cities in model.cities"
+            ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
+
+    </select>
+    <label>
+        Flying To
+    </label>
+    <select ng-model="model.toCity"
+            id="toCity"
+            class="form-control"
+            ng-options="cities.city as cities.cityCode for cities in model.cities"
+            ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
+    </select>
+
+    <label>Departure Date</label>
+    <input type="text"
+           ng-model="model.departureDate"
+           id="departureDate"
+           class="form-control"
+           >
+    <div class="form-group">
+
+        <label>Arrival Date</label>
+        <input type="text"
+               ng-model="model.returnDate"
+               id="returnDate"
+               class="form-control"
+               >
+    </div>
+    <label>
+        Available Flights
+    </label>
+    <select ng-model="model.offerId"
+            id="offerId"
+            class="form-control"
+            ng-options="plans.flightComp as plans.flightComp for plans in model.offerData"
+            ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
+    </select>
+
+   <!-- <label>
+        Offer discount(in percentage)
+    </label>
+    <input type="text"
+           ng-model="model.discount"
+           id="discount"
+           class="form-control">`-->
+
+            <label>Actual Fare</label>
+            <input type="text"
+                   ng-model="model.realFare"
+                   id="realFare"
+                   class="form-control"
+                   >
+            <div class="form-group">
+
+
+    <label>
+        Discounted Fare
+    </label>
+    <input type="text"
+           ng-model="model.discountedFare"
+           id = "discountedFare"
+           class="form-control"
+           placeholder="0.0">
+    <br>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.placePlan(model.validFromDate,model.validTillDate,model.offerId,model.fromCity,model.toCity,
+       model.departureDate,model.returnDate,model.realFare,model.discountedFare,
+       model.userId)">
+        Place Plan Offer
+    </a>
+</div>
+
+        </div>
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
