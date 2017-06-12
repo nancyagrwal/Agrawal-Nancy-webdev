@@ -12,6 +12,7 @@
         model.userId = $routeParams['userId'];
         // model.user = userService.findUserById(model.userId);
         model.goBackToProfile = goBackToProfile;
+
         function init() {
             //alert(model.userId);
             searchServices.findAllCities(model.userId)
@@ -91,10 +92,7 @@
                     $location.url('/user/' + model.userId);
                 });
 
-                 function goBackToProfile()
-                 {
-                     $location.url("/user/"+ model.userId);
-                 }
+
 
             /*function placePlan(offerId,fromCity,toCity,departure,returnDate){
              model.offerId='';
@@ -105,6 +103,10 @@
              model.discount=0;
              }
              */
+        }
+        function goBackToProfile()
+        {
+            $location.url("/user/"+ model.userId);
         }
     }
 })();
