@@ -29,7 +29,7 @@
         function findFlightsFromTo(from, to, arrival, departure) {
             // alert('ok');
             searchServices.findFlightsFromTo(from, to, arrival, departure).then(function (flightData) {
-                console.log(flightData);
+               // console.log(flightData);
                 model.offerData = flightData;
                 // alert(model.offerData);
             });
@@ -38,30 +38,30 @@
         function placePlan(validFromDate,validTillDate,offerId,fromCity,toCity,departureDate,returnDate,realFare,discountedFare,userId)
              {
 
-           /* if (offerId === null || offerId === '' || typeof offerId === 'undefined') {
-                model.error = 'offerId is required';
+            if (offerId === null || offerId === '' || typeof offerId === 'undefined') {
+                model.error = 'Select the airline!';
                 return;
             }
 
             if (fromCity === '' || fromCity === null || typeof fromCity === 'undefined') {
-                model.error = "fromCity is required";
+                model.error = "Flying from  is required";
                 return;
             }
 
             if (toCity === null || typeof toCity === 'undefined' || toCity === '') {
-                model.error = "toCity is required";
+                model.error = "flying to is required";
                 return;
-            }*/
+            }
 
-           /* if (departureDate === '' || departureDate === null || typeof departureDate === 'undefined') {
-                model.error = "departure is required";
+            if (departureDate === '' || departureDate === null || typeof departureDate === 'undefined') {
+                model.error = "correct departure date is required";
                 return;
             }
 
             if (returnDate === null || typeof returnDate === 'undefined' || returnDate === '') {
-                model.error = "returnDate is required";
+                model.error = "correct return Date is required";
                 return;
-            }*/
+            }
 
             searchServices
                 .findPlan(validFromDate,validTillDate,offerId,fromCity,toCity,departureDate,returnDate,realFare,discountedFare,model.userId)
@@ -73,23 +73,24 @@
                         var newPlan = {
 
                             offerId: offerId,
+                            realFare:realFare,
+                            discountedFare:discountedFare,
+                            validFromDate:validFromDate,
+                            validTillDate:validTillDate,
                             fromCity: fromCity,
                             toCity: toCity,
                             departureDate: departureDate,
                             returnDate: returnDate,
-                            validFromDate:validFromDate,
-                            validTillDate:validTillDate,
-                            realFare:realFare,
-                            discountedFare:discountedFare
-
+                            offeredBy:"Adriana Black: Wiz Tech"
                         };
+
                         return searchServices
                             .placePlan(newPlan,model.userId);
                     }
                 )
                 .then(function (plan) {
                     model.message = "Plan Created!";
-                    $location.url('/user/' + model.userId);
+                //    $location.url('/user/' + model.userId);
                 });
 
 

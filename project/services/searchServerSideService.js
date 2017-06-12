@@ -175,7 +175,7 @@ var offers=[
         toCity:"Manchester",
         departureDate:"06-12-2017",
         returnDate:"06-12-2017",
-        offeredBy:"Adriana Black"
+        offeredBy:"Adriana Black: Wiz Tech"
 },{
         _id:"2",
         offerId:"Lufthansa",
@@ -187,7 +187,7 @@ var offers=[
         toCity:"Brihjh",
         departureDate:"06-12-2017",
         returnDate:"06-12-2017",
-        offeredBy:"Adriana Black"
+        offeredBy:"Adriana Black: Wiz Tech"
 
 }];
 
@@ -228,6 +228,17 @@ function findPlan(req, res) {
     if (offerId && fromCity && departureDate && discountedFare && realFare && returnDate && toCity && validFromDate && validTillDate) {
         for (var u in offers) {
             var offer = offers[u];
+            console.log("find plan SERVER...." +
+                offer.validFromDate + "," +
+                offer.validTillDate+ "," +
+                offer.offerId+ "," +
+                offer.fromCity+ "," +
+                offer.toCity + "," +
+                offer.departureDate + "," +
+                offer.returnDate+ "," +
+                offer.realFare+ "," +
+                offer.discountedFare);
+
             if (offer.offerId === offerId && offer.fromCity === fromCity && offer.toCity === toCity && offer.departureDate === departureDate
             && offer.returnDate === returnDate && offer.validFromDate === validFromDate && offer.validTillDate === validTillDate &&
                 offer.realFare === realFare && offer.discountedFare === discountedFare) {
@@ -256,7 +267,7 @@ function findAllThemesForUser(req, res) {
 
 
 function findAllCities(req, res){
-    console.log('****');
+    //console.log('****');
     var results=cities;
     res.json(results);
 
@@ -264,9 +275,9 @@ function findAllCities(req, res){
 
 function findAllOffers(req, res) {
     var results=offers;
-    console.log("===")
+  //  console.log("===")
     res.json(results);
-    console.log(results);
+  //  console.log(results);
     return;
 }
 function findAllData(req,res){
@@ -288,5 +299,4 @@ function placePlan(req, res) {
         }
         res.json(results1);
     }*/
-
 

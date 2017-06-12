@@ -23,6 +23,8 @@
         return api;
 
         function findPlan(validFromDate,validTillDate,offerId, fromCity,toCity,departureDate,returnDate,realFare,discountedFare,userId) {
+            console.log("find plan client...." + validFromDate + "," + validTillDate+ "," +offerId+ "," + fromCity+ "," +
+                toCity + "," + departureDate + "," +returnDate+ "," +realFare+ "," +discountedFare+ "," +userId);
             var url = "/api/project/user/" + userId + "/makePlan/offer?"
             + "validFromDate=" + validFromDate
             + '&validTillDate=' + validTillDate
@@ -72,11 +74,19 @@
         }
 
         function findFlightsFromTo(fromCity,toCity,departureDate,arrivalDate){
-            var url='https://api.test.sabre.com/v1/shop/flights?origin=JFK&destination=LAX&departuredate=2017-07-07&returndate=2017-07-08&onlineitinerariesonly=N&limit=10&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
+           var url='https://api.test.sabre.com/v1/shop/flights?origin=JFK&destination=LAX&departuredate=2017-07-07&returndate=2017-07-08&onlineitinerariesonly=N&limit=10&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
+
+          /*  var url='https://api.test.sabre.com/v1/shop/flights?origin='+fromCity+
+                '&destination='+toCity+
+                '&departuredate='+departureDate+
+                '&returndate='+arrivalDate+
+                '&onlineitinerariesonly=N&limit=10&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
+*/
+
             $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
             return $http.get(url)
                 .then(function (response){
-                    console.log(response.data);
+                  //  console.log(response.data);
                     var flData=response.data;
                     //flData.push(response.data);
                     var planData=[];
@@ -93,7 +103,7 @@
             var url='/api/project/user/'+userId+'/offers';
             return $http.get(url)
                 .then(function(response){
-                    console.log(response.data);
+                 //   console.log(response.data);
                     return response.data;
                 });
         }
@@ -101,7 +111,7 @@
             var url='/api/project/user/'+userId+'/getData';
             return $http.get(url)
                 .then(function(response){
-                    console.log(response.data);
+                  //  console.log(response.data);
                     return response.data;
                 });
         }

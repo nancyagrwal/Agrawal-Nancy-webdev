@@ -20,17 +20,23 @@
 
 
 <div class="container-fluid">
-    <select for="offer"
+   <!-- <select for="offer"
             ng-model="planData"
             id="planData"
             class="form-control"
             ng-options="plan._id as plan.toCity for plan in model.plans"
             >
-    </select>
+    </select>-->
 
     <li ng-repeat="plan in model.plans"
         class="list-group-item">
         <div class="row">
+
+
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> Offered By :  {{plan.offeredBy}} </p>
+            </div>
+
             <div class="col-lg-4 col-md-7 col-xs-10">
                 <p> From City:  {{plan.fromCity}} </p>
             </div>
@@ -63,9 +69,6 @@
                 <p> Valid To :  {{plan.validTillDate}} </p>
             </div>
 
-            <div class="col-lg-4 col-md-7 col-xs-10">
-                <p> Offered By :  {{plan.offeredBy}} </p>
-            </div>
 
 
         </div>

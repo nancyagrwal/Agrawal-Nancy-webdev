@@ -29,39 +29,42 @@
 
             <label>Your Budget</label>
             <input type="number"
-                   ng-model="budget"
+                   ng-model="model.budget"
                    id="budget"
                    class="form-control"/>
 
 
             <label>Flying from?</label>
-            <select ng-model="location"
+            <select ng-model="model.location"
                     class="form-control"
                     id="location"
-                    ng-options="airport.iataCode as airport.name for airport in model.airports">
+                    ng-options="airport.name as airport.iataCode for airport in model.airports">
 
             </select>
 
 
-            <label>Fly Out</label>
-            <label>From</label>
+            <label>Departure Date</label>
             <input type="date"
-                   ng-model="departureDate"
+                   ng-model="model.departureDate"
                    id="departureDate"
+                   placeholder="yyyy-MM-dd"
+                   ng-pattern='/\d{4}-\d{2}-\d{2}/'
                    class="form-control">
 
 
         <div class="form-group">
-            <label>Fly Back</label>
+            <label>Return Date</label>
             <input type="date" value="return"
-                   ng-model="returnDate"
+                   ng-model="model.returnDate"
                    id="returnDate"
+                   placeholder="yyyy-MM-dd"
+                   ng-pattern='/\d{4}-\d{2}-\d{2}/'
                    class="form-control">
         </div>
 
 
         <div class="row">
-            <div class="col-md-3" ng-model="theme"
+            <div class="col-md-3" ng-model="model.theme"
                  ng-repeat="theme in model.themes"
                  ng-click="model.selectTheme(theme)">
                 <img
@@ -74,9 +77,10 @@
             </div>
         </div>
 
-    <a ng-click="model.searchFlight()" href="#!user/{{model.userId}}/search/results"
-       class="btn btn-primary btn-block">
-        Search Places
+    <a class="btn btn-primary btn-block"
+        ng-click="model.searchFlight(model.budget,model.location,model.departureDate,model.returnDate,model.theme,model.userId)">
+       <!--href="#!user/{{model.userId}}/search/results"-->
+       Search Places
     </a>
 
 

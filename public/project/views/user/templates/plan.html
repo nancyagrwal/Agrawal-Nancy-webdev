@@ -71,6 +71,8 @@
            ng-model="model.departureDate"
            id="departureDate"
            class="form-control"
+           placeholder="yyyy-MM-dd"
+           ng-pattern='/\d{4}-\d{2}-\d{2}/'
            >
     <div class="form-group">
 
@@ -79,15 +81,18 @@
                ng-model="model.returnDate"
                id="returnDate"
                class="form-control"
+               placeholder="yyyy-MM-dd"
+               ng-pattern='/\d{4}-\d{2}-\d{2}/'
                >
     </div>
+
     <label>
         Available Flights
     </label>
     <select ng-model="model.offerId"
             id="offerId"
             class="form-control"
-            ng-options="plans.flightNo as plans.flightComp for plans in model.offerData"
+            ng-options="plans.flightComp as plans.flightComp for plans in model.offerData"
             ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
     </select>
 

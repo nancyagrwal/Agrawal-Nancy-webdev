@@ -12,7 +12,8 @@
         var model = this;
         model.userId = $routeParams['userId'];
         model.selectTheme = selectTheme;
-model.goBackToProfile = goBackToProfile;
+        model.goBackToProfile = goBackToProfile;
+        model.searchFlight= searchFlight;
 
          function init() {
             /*searchServices
@@ -47,8 +48,40 @@ model.goBackToProfile = goBackToProfile;
             $location.url("/user/"+ model.userId);
         }
 
+        function searchFlight(budget, location, departureDate, returnDate, theme , userId) {
+            if (budget === null || budget === '' || typeof budget === 'undefined') {
+                model.error = 'budget is required';
+                return;
+            }
 
-    }
+            if (location === '' || location === null || typeof location === 'undefined') {
+                model.error = "flying From is required";
+                return;
+            }
+
+           if (departureDate === '' || departureDate === null || typeof departureDate === 'undefined') {
+                model.error = "correct departure is required";
+                return;
+            }
+
+            if (returnDate === null || typeof returnDate === 'undefined' || returnDate === '') {
+                model.error = "correct returnDate is required";
+                return;
+            }
+
+            searchServices
+                .findFlightsFromTo(location, "" , returnDate, departureDate)
+                .then(function (flightData) {
+                    if (flightData !== null) {
+                        //  console.log(found);
+                        model.data = flightData;
+                        $location.url('/user/:userId/search/results');
+                    } else {
+                        model.message = "Please change your options!";
+                    }
+                });
+        }
+   }
 }
 )();
 
