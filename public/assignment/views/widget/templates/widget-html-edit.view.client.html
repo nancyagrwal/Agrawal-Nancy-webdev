@@ -36,14 +36,11 @@
            id="name"/>
 
     <label for="name">Editor</label>
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Editor</h3>
-            <div text-angular ng-model="model.widget.text"
-                 name="demo-editor"
-                 ta-text-editor-class="clearfix border-around"
-                 ta-html-editor-class="border-around"></div>
-        </div>
+    <div ng-model="model.widget.text"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
     </div>
 
     <div class="row">
