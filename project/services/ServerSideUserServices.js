@@ -4,7 +4,8 @@ var multer = require('multer');
 var upload = multer({ dest: __dirname+'/../../public/project/uploads' });
 
 
-var users = [{
+var users = [
+    {
         _id: "1",
         firstName: "Edward",
         lastName: "Kemp",
@@ -541,28 +542,25 @@ function findUserById(req, res) {
 
 function uploadImage(req, res) {
 
-    var width         = req.body.width;
-    var myFile        = req.file;
-
+    var myFile = req.file;
+    var filename = myFile.filename;     // new file name in upload folder
+   // var redirectURL = req.body.redirectURL;
     var userId = req.body.userId;
+    console.log(userId);
+    var url = '/project/#!/user/' + userId;
+    var user = {
+        profilePicture: "/project/uploads/" + filename
+    };
 
-    var originalname  = myFile.originalname; // file name on user's computer
-    var filename      = myFile.filename;     // new file name in upload folder
-    var path          = myFile.path;         // full path of uploaded file
-    var destination   = myFile.destination;  // folder where file is saved to
-    var size          = myFile.size;
-    var mimetype      = myFile.mimetype;
 
-    var imageUpload = null;
-    for(var w in users) {
-        if (users[w]._id === userId) {
-            imageUpload = users[w].profilePicture;
-            break;
-        }
+for (var u in users) {
+    if (users[u]._id === userId) {
+        users[u] = user;
+        console.log(users[u]);
+        res.sendStatus(200);
+        return;
     }
-    imageUpload.url = '/project/uploads/'+filename;
+}
+res.sendStatus(404);
 
-    var callbackUrl   = "/project/#!/user/"+userId;
-
-    res.redirect(callbackUrl);
 }

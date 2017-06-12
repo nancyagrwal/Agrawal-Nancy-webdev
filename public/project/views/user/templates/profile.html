@@ -15,39 +15,37 @@
 </nav>
 
 <div class="container-fluid">
-    <form>
+
         <div ng-show="model.message" class="alert alert-success">
             {{model.message}}
         </div>
-        <div class="form-group">
 
-            <label for="profilePicture">
-                Upload Profile Picture
-            </label>
-
+    <div class="navbar-text wd-navbar-header pull-right ">
+            <label> Upload Image</label>
             <form action="/api/upload"   method="post" enctype="multipart/form-data">
-                <input  name="myFile"
-                        ng-model="model.user.profilePicture"
-                        type="file"
-                        id="profilePicture"
-                        class="form-control"
-                        placeholder="Image"/>
-                <button type="submit"  class="btn btn-block btn-primary">Upload Image</button>
+                <input  name="myFile"    type="file" class="form-control"/>
+                <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+                <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
             </form>
             <br/>
+    </div>
 
+    <div class="navbar-text wd-navbar-header pull-left">
+    <img ng-src="{{model.user.profilePicture}}"/>
+        </div>
 
-           <label for="username">
-                Username
-            </label>
+</br>
+
+<div>
+           
             <input ng-model="model.user.username"
                    readonly
                    type="text"
                    class="form-control"
                    id="username"
                    placeholder="AliceW">
-        </div>
-        <div class="form-group">
+
+
             <label for="email">
                 Email address
             </label>
@@ -56,8 +54,8 @@
                    class="form-control"
                    id="email"
                    placeholder="alice@wonderland.com">
-        </div>
-        <div class="form-group">
+
+
             <label for="first-name">
                 First Name
             </label>
@@ -66,8 +64,8 @@
                    class="form-control"
                    id="first-name"
                    placeholder="Alice">
-        </div>
-        <div class="form-group">
+
+
             <label for="last-name">
                 Last Name
             </label>
@@ -77,7 +75,7 @@
                    id="last-name"
                    placeholder="Wonderland">
         </div>
-    </form>
+
 
     <a class="btn btn-primary btn-block"
        href="#!/user/{{model.userId}}/search">
@@ -85,33 +83,37 @@
     </a>
 
     <br>
+
     <a class="btn btn-primary btn-block"
        href="#!/user/{{model.userId}}/offers" >
         View Offers
     </a>
-</div>
+
+</br>
+
 <div ng-show="model.bizUser">
     <a class="btn btn-primary btn-block"
        href="#!/user/{{model.userId}}/makePlan" >
         Make Plan Package
     </a>
 </div>
+
+</br>
+
 <div ng-show="model.resUser">
     <a class="btn btn-primary btn-block"
        href="#!/user/{{model.userId}}/getData">
         Get Data
     </a>
 </div>
-</br>
 
 
-</br>
     <a class="btn btn-danger  btn-block"
        href="#!/login">
         Logout
     </a>
-
 </div>
+
 
 <div ng-include="'views/common/footer.view.client.html'"></div>
 
