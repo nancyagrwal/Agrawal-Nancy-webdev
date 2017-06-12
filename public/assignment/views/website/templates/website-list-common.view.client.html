@@ -24,10 +24,10 @@
                 </a>
             </div>
             <div class="col-lg-3 visible-lg">
-                {{website.created | date}}
+                {{website.dateCreated | date}}
             </div>
             <div class="col-md-3 hidden-sm hidden-xs">
-                {{website.accessed | date}}
+                {{website.dateCreated | date}}
             </div>
             <div class="col-xs-2">
                 <a ng-click="model.backToWebsites(website)">
