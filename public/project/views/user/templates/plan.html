@@ -14,6 +14,11 @@
     {{model.error}}
 </div>
 
+<div ng-show="model.message" class="alert">
+    {{model.message}}
+</div>
+
+
 <div class="container-fluid" ng-init="model.OfferData=[];val=0">
 
     <label>Offer valid from</label>

@@ -86,7 +86,8 @@
                     }
                 )
                 .then(function (plan) {
-                    $location.url('/user/' + model.userId + "/makePlan/");
+                    model.message = "Plan Created!";
+                    $location.url('/user/' + model.userId);
                 });
 
 
