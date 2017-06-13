@@ -200,7 +200,7 @@ var searchData=[
     budget: "1000"
 },{
     searchedOnDate: "07-05-2017",
-    searchedSource: "Kanpur",
+    searchedSource: "Thar",
     searchedDestination: "Cairo",
     searchedThemes: "Deserts",
     budget: "4000"

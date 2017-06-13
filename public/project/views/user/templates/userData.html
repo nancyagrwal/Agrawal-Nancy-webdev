@@ -18,23 +18,34 @@
     </div>
 </nav>
 
-
 <div class="container-fluid">
-    <table border="1px">
-        <th >From</th>
-        <th >To</th>
-        <th >Date</th>
-        <th>Themes</th>
-        <th >Budget</th>
-        <tr ng-repeat="x in model.searchData">
-            <td ng-bind="x.searchedSource"></td>
-            <td ng-bind="x.searchedDestination"></td>
-            <td ng-bind="x.searchedOnDate"></td>
-            <td ng-bind="x.searchedThemes"></td>
-            <td ng-bind="x.budget"></td>
-        </tr>
-    </table>
+<li ng-repeat="plan in model.searchData"
+    class="list-group-item">
 
+    <div>
+        <p> For Date:  {{plan.searchedOnDate}} </p>
     </div>
+</br>
+</br>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> Most Searched Source :  {{plan.searchedSource}} </p>
+        </div>
+
+        <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> Most searched Destination:  {{plan.searchedDestination}} </p>
+        </div>
+
+        <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> Most searched Themes:  {{plan.searchedThemes}} </p>
+        </div>
+        <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> Near budget:  {{plan.budget}} </p>
+        </div>
+        </div>
+</li>
+</br>
 </div>
+
 <div ng-include="'views/common/footer.view.client.html'"></div>
