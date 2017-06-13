@@ -90,23 +90,31 @@ body {
     display: block;
     margin: auto;
 }
-.slide1 .slide2 .slide3 .slide4{
+
+.slide1 {
+    background-image: url(/../../images/travel1.jpg);
     min-height: 560px; /* Must have a height or min-height set due to use of background images */
     background-size: cover;
     background-position: center center;
 }
-.slide1 {
-    background-image: url(/../../images/travel1.jpg);
-}
 .slide2 {
     background-image: url(/../../images/travel2.jpg);
+    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+    background-size: cover;
+    background-position: center center;
 }
 .slide3 {
     background-image: url(/../../images/travel3.jpg);
+    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+    background-size: cover;
+    background-position: center center;
 }
 
 .slide4 {
     background-image: url(/../../images/travel4.jpg);
+    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+    background-size: cover;
+    background-position: center center;
 }
 /* Carousel Fade Effect */
 .carousel.carousel-fade .item {
