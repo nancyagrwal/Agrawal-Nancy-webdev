@@ -199,9 +199,9 @@
 
             }
 
-            function searchFlights(from, to, arrival, departure) {
+            function searchFlights(from, to, arrival, departure,userId) {
                 // alert('ok');
-                searchServices.searchFlights(from, to, arrival, departure).then(function (flightData) {
+                searchServices.searchFlights(from, to, arrival, departure,model.userId).then(function (flightData) {
                     // console.log(flightData);
                     model.offerData = flightData;
                     // alert(model.offerData);
