@@ -25,6 +25,7 @@
                 .findAllAirportsForUser(model.userId)
                 .then(renderTheAirports);
 */
+
             searchServices
                 .findAllThemesForUser(model.userId)
                 .then(renderTheThemes);
@@ -85,6 +86,9 @@
                         //  console.log(found);
                         model.simpleData = found;
                         model.showFlightDiv=true;
+
+                        model.showThemeDiv=false;
+
                         //   $location.url('/user/:userId/search/results');
                     } else {
                         model.message = "Please change your options!";
@@ -128,6 +132,7 @@
                         //  console.log(found);
                         model.data = flightData;
                         model.showThemeDiv=true;
+                        model.showFlightDiv=false;
                      //   $location.url('/user/:userId/search/results');
                     } else {
                         model.message = "Please change your options!";

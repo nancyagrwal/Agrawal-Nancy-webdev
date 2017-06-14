@@ -49,7 +49,7 @@
             <select ng-model="model.location"
                     class="form-control"
                     id="location"
-                    ng-options="airport.name as airport.iataCode for airport in model.airports">
+                    ng-options="airport.iataCode as airport.name for airport in model.airports">
 
             </select>
 
@@ -58,7 +58,7 @@
             <select ng-model="model.toCity"
                     class="form-control"
                     id="toCity"
-                    ng-options="airport.name as airport.iataCode for airport in model.airports">
+                    ng-options="airport.iataCode as airport.name for airport in model.airports">
 
             </select>
     </div>
@@ -121,25 +121,42 @@
     </div>
 
 
-
 <div ng-show="model.showThemeDiv">
 <div class="container-fluid">
-<div class="row">
-    <div class="card col-md-4" ng-repeat="result in model.data">
-
-
-        <h3>Destination: {{ result.destination}}</h3>
-
-        <h3>Flight Carrier: {{ result.airlineCode }}</h3>
-
-        <h3>Lowest Fare(has Stops): {{result.airlineCode }}</h3>
-
-        <h3>Lowest Fare(Non-stop): {{result.lowestNonStopfare }}</h3>
-
-        <h3>NonStop Airlines: {{result.nonStopAirline }}</h3>
+    <div class="row">
+        <div class="card col-md-12" ng-repeat="result in model.data">
+            <hr>
+            <div class ="card col-md-4" height="50%"><h3>{{model.location}}</h3> </div>
+            <div class ="card col-md-4" height="33%" ><i>{{result.distance}}&nbspmiles(${{result.pricePerMile}}/mi) </i></div>
+            <div class ="card col-md-4" height="50%"><h3>{{result.destination}}</h3></div>
+            <div class="card col-md-4"  height="25%"><i>{{result.departDateTime}}</i></div>
+            <div class="card col-md-4"  height="20%"><img src="../images/Arrow-Right-128.png"/></div>
+            <div class="card col-md-4"  height="25%"><i>{{result.returnDateTime}}</i></div>
+            <div class="card col-md-12">
+                <label>
+                    Lowest Fares(with Stops)
+                </label>
+            </div>
+            <br>
+            <br>
+            <div class="card col-md-12" ng-repeat="lowestFr in result.lowestFares">
+                <div class="card col-md-6" style="text-align: start">{{lowestFr.airLineCode}}</div>
+                <div class="card col-md-6" style="text-align: end">{{result.lowestFareWS}}</div>
+            </div>
+            <div class="card col-md-12">
+                <label>
+                    Lowest Fares(Non-Stop)
+                </label>
+            </div>
+            <br>
+            <br>
+            <div class="card col-md-12" ng-repeat="lowestFr in result.lowestFaresNonStop">
+                <div class="card col-md-6" style="text-align: start">{{lowestFr.airLineCode}}</div>
+                <div class="card col-md-6" style="text-align: end">{{result.lowestFareNS}}</div>
+            </div>
+        </div>
 
     </div>
-</div>
 </div>
 </div>
 
@@ -148,15 +165,52 @@
 <div ng-show="model.showFlightDiv">
     <div class="container-fluid">
         <div class="row">
-            <div class="card col-md-4" ng-repeat="result in model.simpleData">
+            <div class="card col-md-12" ng-repeat="result in model.simpleData" padding="10px">
+                <hr>
+                <div class="card col-md-12"><label>Up Journey</label></div>
+                <br>
+                <div class="card col-md-12" ng-repeat="trip in result.tripData.upflightDetails">
+                    <div class ="card col-md-4" height="50%"><h3>{{trip.departureAirport}}</h3> </div>
+                    <div class ="card col-md-4" height="33%" ><i>{{trip.airLineCode}}-{{trip.flightNo}}</i></div>
+                    <div class ="card col-md-4" height="50%"><h3>{{trip.arrAirport}}</h3></div>
+                    <div class="card col-md-4"  height="25%"><i>{{trip.departureDateTime}}(GMT{{trip.departureTimeZone}})</i></div>
+                    <div class="card col-md-4"  height="20%"><img src="../images/Arrow-Right-128.png"/></div>
+                    <div class="card col-md-4"  height="25%"><i>{{trip.arrDateTime}}(GMT{{trip.arrTimeZone}})</i></div>
 
-                <h3>Flight Carrier: {{ result.airlineCode }}</h3>
-
-                <h3>Lowest Fare(has Stops): {{result.airlineCode }}</h3>
-
-                <h3>Lowest Fare(Non-stop): {{result.lowestNonStopfare }}</h3>
-
-                <h3>NonStop Airlines: {{result.nonStopAirline }}</h3>
+                </div>
+                <div class="card col-md-12"><h4> No of Stops:{{result.tripData.upStopCount}}</h4></div>
+                <br>
+                <br>
+                <br>
+                <div class="card col-md-12"><label>Down Journey</label></div>
+                <br>
+                <div class="card col-md-12" ng-repeat="trip in result.tripData.downFlightDetails">
+                    <div class ="card col-md-4" height="50%"><h3>{{trip.departureAirport}}</h3> </div>
+                    <div class ="card col-md-4" height="50%"><i>{{trip.airLineCode}}-{{trip.flightNo}}</i></div>
+                    <div class ="card col-md-4" height="50%"><h3>{{trip.arrAirport}}</h3></div>
+                    <div class="card col-md-4"  height="50%"><i>{{trip.departureDateTime}}(GMT{{trip.departureTimeZone}})</i></div>
+                    <div class="card col-md-4"  height="50%"><img src="../images/Arrow-Right-128.png"/></div>
+                    <div class="card col-md-4"  height="50%"><i>{{trip.arrDateTime}}(GMT{{trip.arrTimeZone}})</i></div>
+                </div>
+                <div class="card col-md-12"><h4> No of Stops:{{result.tripData.downStopCount}}</h4></div>
+                <br>
+                <br>
+                <div class="card col-md-12"><label>Fares</label></div>
+                <br>
+                <br>
+                <div class="card col-md-6" style="text-align: start"><i>BaseFare</i></div>
+                <div class="card col-md-6" style="text-align: end"><i>{{result.faresDetails.baseFare}}</i></div>
+                <div class="col card-md-12" ng-repeat="tax in result.faresDetails.taxes">
+                    <div class="card col-md-6" style="text-align: start"><i>{{tax.type}} Tax</i></div>
+                    <div class="card col-md-6" style="text-align: end"><i>{{tax.amount}}</i></div>
+                </div>
+                <div class="card col-md-6" style="text-align: start"><i>Total Taxes</i></div>
+                <div class="card col-md-6" style="text-align: end"><i>{{result.faresDetails.totalTax}}</i></div>
+                <div class="card col-md-6" style="text-align: start"><i>Total Fare</i></div>
+                <div class="card col-md-6" style="text-align: end"><i>{{result.faresDetails.totalFare}}</i></div>
+                <div class="card col-md-6" style="text-align: start"><b>Non-Refundable??</b></div>
+                <div class="card col-md-6" style="text-align: end"><b>{{result.nonRefundable}}</b></div>
+                <hr>
 
             </div>
         </div>
