@@ -5,6 +5,7 @@
 (function () {
         angular
             .module('Travelator')
+            .controller('dataController', dataController)
             .controller('resultController', resultController);
 
         function resultController($location, searchServices,$routeParams) {
@@ -15,7 +16,7 @@
 
             function init() {
                searchServices
-                            .searchFlight(model.userId)
+                            .searchFlights(model.userId)
                             .then(function (found) {
                                   if (found !== null) {
                                     //  console.log(found);
@@ -33,6 +34,42 @@
             {
                 $location.url("/user/"+ model.userId +"/search");
             }
+
+        }
+
+        function dataController($location,
+                                $routeParams,
+                                searchServices) {
+            var model = this;
+            model.userId = $routeParams['userId'];
+            model.searchData =searchData;
+
+
+            // model.user = userService.findUserById(model.userId);
+            /* function init(){
+             searchServices
+             .findAllData(model.userId)
+             .then(renderData);
+             }
+             init();*/
+
+            function searchData(userId, criteria)
+            {
+                searchServices
+                    .findAllData(model.userId,criteria)
+                    .then(renderData);
+            }
+
+            function renderData(response){
+                model.searchData=response;
+            }
+
+            model.goBackToProfile = goBackToProfile;
+            function goBackToProfile()
+            {
+                $location.url("/user/"+ model.userId);
+            }
+
 
         }
     }
