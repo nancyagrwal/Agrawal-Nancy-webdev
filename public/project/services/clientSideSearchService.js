@@ -64,11 +64,12 @@
                     var url = "/api/project/user/"+ userId +"/search/storeTheme";
                     return $http.post(url, themeFlightData)
                         .then(function (response) {
-                            return response.data;
+                           // return response.data;
+                            return themeFlightData;
                         });
 
 
-                    return themeFlightData;
+
                 });
         }
 
@@ -135,12 +136,13 @@
                     var url = "/api/project/user/"+ userId +"/search/storeFlight";
                     return $http.post(url, flightData)
                         .then(function (response) {
-                            return response.data;
+                          //  return response.data;
+                            return flightData;
                         });
 
 
 
-                    return flightData;
+
                 });
         }
         function findAllOffers(userId){

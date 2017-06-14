@@ -5,7 +5,7 @@
 
     function planController($location,
                                $routeParams,
-                            searchServices) {
+                            searchServices, ClientSideServices) {
         var model = this;
         model.searchFlights = searchFlights;
         model.placePlan = placePlan;
@@ -37,11 +37,11 @@
         function placePlan(validFromDate,validTillDate,offerId,fromCity,toCity,departureDate,returnDate,realFare,discountedFare,userId)
              {
 
-            if (offerId === null || offerId === '' || typeof offerId === 'undefined') {
+            /*if (offerId === null || offerId === '' || typeof offerId === 'undefined') {
                 model.error = 'Select the airline!';
                 return;
             }
-
+*/
             if (fromCity === '' || fromCity === null || typeof fromCity === 'undefined') {
                 model.error = "Flying from  is required";
                 return;
@@ -62,37 +62,46 @@
                 return;
             }
 
-            searchServices
-                .findPlan(validFromDate,validTillDate,offerId,fromCity,toCity,departureDate,returnDate,realFare,discountedFare,model.userId)
-                .then(
-                    function () {
-                        model.error = "sorry, Plan already Exists";
-                    },
-                    function () {
-                        var newPlan = {
-
-                            offerId: offerId,
-                            realFare:realFare,
-                            discountedFare:discountedFare,
-                            validFromDate:validFromDate,
-                            validTillDate:validTillDate,
-                            fromCity: fromCity,
-                            toCity: toCity,
-                            departureDate: departureDate,
-                            returnDate: returnDate,
-                            offeredBy:"Adriana Black: Wiz Tech"
-                        };
-
-                        return searchServices
-                            .placePlan(newPlan,model.userId);
-                    }
-                )
-                .then(function (plan) {
-                    model.message = "Plan Created!";
-                //    $location.url('/user/' + model.userId);
-                });
+            ClientSideServices
+                     .findUserById(model.userId)
+                     .then(renderUser);
 
 
+                 function renderUser (user) {
+                     model.user = user;
+
+
+                     searchServices
+                         .findPlan(validFromDate, validTillDate, offerId, fromCity, toCity, departureDate, returnDate, realFare, discountedFare, model.userId)
+                         .then(
+                             function () {
+                                 model.error = "sorry, Plan already Exists";
+                             },
+                             function () {
+                                 var newPlan = {
+
+                                     offerId: offerId,
+                                     realFare: realFare,
+                                     discountedFare: discountedFare,
+                                     validFromDate: validFromDate,
+                                     validTillDate: validTillDate,
+                                     fromCity: fromCity,
+                                     toCity: toCity,
+                                     departureDate: departureDate,
+                                     returnDate: returnDate,
+                                     offeredBy: model.user.username
+                                 };
+
+                                 return searchServices
+                                     .placePlan(newPlan, model.userId);
+                             }
+                         )
+                         .then(function (plan) {
+                             model.message = "Plan Created!";
+                             //    $location.url('/user/' + model.userId);
+                         });
+
+                 }
 
             /*function placePlan(offerId,fromCity,toCity,departure,returnDate){
              model.offerId='';
@@ -104,7 +113,9 @@
              }
              */
         }
-        function goBackToProfile()
+
+
+            function goBackToProfile()
         {
             $location.url("/user/"+ model.userId);
         }
