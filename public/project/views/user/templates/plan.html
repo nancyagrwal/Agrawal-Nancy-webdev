@@ -32,8 +32,10 @@
     <label>Offer valid from</label>
     <input type="text"
            ng-model="model.validFromDate"
+           placeholder="yyyy-MM-dd"
            id="validFromDate"
            class="form-control"
+           ng-pattern='/\d{4}-\d{2}-\d{2}/'
         >
     <div class="form-group">
 
@@ -41,8 +43,10 @@
     <label>Offer valid till</label>
      <input type="text"
           ng-model="model.validTillDate"
+            placeholder="yyyy-MM-dd"
           id="validTillDate"
           class="form-control"
+          ng-pattern='/\d{4}-\d{2}-\d{2}/'
      >
      <div class="form-group">
 
