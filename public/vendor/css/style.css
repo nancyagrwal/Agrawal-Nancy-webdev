@@ -93,26 +93,26 @@ body {
 
 .slide1 {
     background-image: url(/../../images/travel1.jpg);
-    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+   min-height: 560px;
     background-size: cover;
     background-position: center center;
 }
 .slide2 {
     background-image: url(/../../images/travel2.jpg);
-    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+    min-height: 560px;
     background-size: cover;
     background-position: center center;
 }
 .slide3 {
     background-image: url(/../../images/travel3.jpg);
-    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+    min-height: 560px;
     background-size: cover;
     background-position: center center;
 }
 
 .slide4 {
     background-image: url(/../../images/travel4.jpg);
-    min-height: 560px; /* Must have a height or min-height set due to use of background images */
+    min-height: 560px;
     background-size: cover;
     background-position: center center;
 }
