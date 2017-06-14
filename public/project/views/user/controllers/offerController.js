@@ -8,7 +8,7 @@
                             searchServices) {
         var model = this;
         model.userId = $routeParams['userId'];
-        // model.user = userService.findUserById(model.userId);
+
         function init(){
             searchServices
                 .findAllOffers(model.userId)

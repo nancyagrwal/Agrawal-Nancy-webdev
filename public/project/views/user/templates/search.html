@@ -26,13 +26,24 @@
 
 <div class="container-fluid">
 
+    <div ng-hide="model.showSwitch">
+    <a class="btn btn-primary "
+       ng-click="model.setHideShow()">
+       Dont know where to go? Let us help!
+    </a>
 
+    <p>OR</p>
+    </div>
+</br>
+</br>
+
+    <div ng-show="model.showBudget">
             <label>Your Budget</label>
             <input type="number"
                    ng-model="model.budget"
                    id="budget"
                    class="form-control"/>
-
+    </div>
 
             <label>Flying from?</label>
             <select ng-model="model.location"
@@ -42,6 +53,15 @@
 
             </select>
 
+    <div ng-hide="model.showFlyingTo">
+            <label>Flying To?</label>
+            <select ng-model="model.toCity"
+                    class="form-control"
+                    id="toCity"
+                    ng-options="airport.name as airport.iataCode for airport in model.airports">
+
+            </select>
+    </div>
 
             <label>Departure Date</label>
             <input type="date"
@@ -63,6 +83,7 @@
         </div>
 
 
+    <div ng-show="model.showTheme">
         <div class="row">
             <div class="col-md-3" ng-model="model.theme"
                  ng-repeat="theme in model.themes"
@@ -76,20 +97,79 @@
                 </div>
             </div>
         </div>
+    </div>
 
-    <a class="btn btn-primary btn-block"
-        ng-click="model.searchFlight(model.budget,model.location,model.departureDate,model.returnDate,model.theme,model.userId)">
-       <!--href="#!user/{{model.userId}}/search/results"-->
-       Search Places
+    <div ng-show="model.showThemeSearchButton">
+    <a class="btn btn-primary "
+        ng-click="model.searchThemes(model.budget,model.location,model.departureDate,model.returnDate,model.theme,model.userId)">
+         Search Places
     </a>
+    </div>
 
+
+    <div ng-hide="model.showFlightSearchButton">
+    <a class="btn btn-primary "
+       ng-click="model.searchFlights(model.location,model.toCity,model.departureDate,model.returnDate,model.userId)">
+        Search Flights
+    </a>
+    </div>
 
     </br>
-    <a class="btn btn-danger  btn-block"
-       href="#!/login">
-        Logout
-    </a>
+
 
 </div>
     </div>
+
+
+
+<div ng-show="model.showThemeDiv">
+<div class="container-fluid">
+<div class="row">
+    <div class="card col-md-4" ng-repeat="result in model.data">
+
+
+        <h3>Destination: {{ result.destination}}</h3>
+
+        <h3>Flight Carrier: {{ result.airlineCode }}</h3>
+
+        <h3>Lowest Fare(has Stops): {{result.airlineCode }}</h3>
+
+        <h3>Lowest Fare(Non-stop): {{result.lowestNonStopfare }}</h3>
+
+        <h3>NonStop Airlines: {{result.nonStopAirline }}</h3>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+
+<div ng-show="model.showFlightDiv">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card col-md-4" ng-repeat="result in model.simpleData">
+
+                <h3>Flight Carrier: {{ result.airlineCode }}</h3>
+
+                <h3>Lowest Fare(has Stops): {{result.airlineCode }}</h3>
+
+                <h3>Lowest Fare(Non-stop): {{result.lowestNonStopfare }}</h3>
+
+                <h3>NonStop Airlines: {{result.nonStopAirline }}</h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+
+<a class="btn btn-danger pull-right"
+   href="#!/login">
+    Logout
+</a>
+
+</div>
 <div ng-include="'views/common/footer.view.client.html'"></div>

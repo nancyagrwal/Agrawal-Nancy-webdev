@@ -7,10 +7,9 @@
                                $routeParams,
                             searchServices) {
         var model = this;
-        model.findFlightsFromTo = findFlightsFromTo;
+        model.searchFlights = searchFlights;
         model.placePlan = placePlan;
         model.userId = $routeParams['userId'];
-        // model.user = userService.findUserById(model.userId);
         model.goBackToProfile = goBackToProfile;
 
         function init() {
@@ -26,9 +25,9 @@
 
         }
 
-        function findFlightsFromTo(from, to, arrival, departure) {
+        function searchFlights(from, to, arrival, departure) {
             // alert('ok');
-            searchServices.findFlightsFromTo(from, to, arrival, departure).then(function (flightData) {
+            searchServices.searchFlights(from, to, arrival, departure).then(function (flightData) {
                // console.log(flightData);
                 model.offerData = flightData;
                 // alert(model.offerData);

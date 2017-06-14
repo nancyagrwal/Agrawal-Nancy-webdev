@@ -19,29 +19,65 @@
 </nav>
 
 <div class="container-fluid">
+
+    <label for="criteria">Criteria</label>
+    <select id="criteria"
+            ng-model="model.criteria"
+            ng-change="model.searchData(model.userId, model.criteria)"
+            class="form-control">
+        <option>Theme</option>
+        <option>Searched On Data</option>
+        <option>Destination City</option>
+        <option>Origin City</option>
+        <option>Budget</option>
+    </select>
+
+
 <li ng-repeat="plan in model.searchData"
     class="list-group-item">
 
-    <div>
-        <p> For Date:  {{plan.searchedOnDate}} </p>
-    </div>
-</br>
-</br>
+ <!--THEME-->
+        <div class="row">
+         <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> destination:  {{plan.destination}} </p>
+        </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> airlineCode:  {{plan.airlineCode}} </p>
+            </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p>  lowest Fare:  {{plan.lowestFare}} </p>
+            </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> lowest Non Stop fare:  {{plan.lowestNonStopfare}} </p>
+            </div>
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <p> non Stop Airline:  {{plan.nonStopAirline}} </p>
+            </div>
+        </div>
 
+<!--FLIGHT-->
     <div class="row">
         <div class="col-lg-4 col-md-7 col-xs-10">
-            <p> Most Searched Source :  {{plan.searchedSource}} </p>
+            <p> flightComp :  {{plan.flightComp}} </p>
         </div>
 
         <div class="col-lg-4 col-md-7 col-xs-10">
-            <p> Most searched Destination:  {{plan.searchedDestination}} </p>
+            <p> elapsedTime:  {{plan.elapsedTime}} </p>
         </div>
 
         <div class="col-lg-4 col-md-7 col-xs-10">
-            <p> Most searched Themes:  {{plan.searchedThemes}} </p>
+            <p> totalFare:  {{plan.totalFare}} </p>
         </div>
         <div class="col-lg-4 col-md-7 col-xs-10">
-            <p> Near budget:  {{plan.budget}} </p>
+            <p> offeredBy:  {{plan.offeredBy}} </p>
+        </div>
+
+        <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> discountPercent:  {{plan.discountPercent}} </p>
+        </div>
+
+        <div class="col-lg-4 col-md-7 col-xs-10">
+            <p> netValue:  {{plan.netValue}} </p>
         </div>
         </div>
 </li>

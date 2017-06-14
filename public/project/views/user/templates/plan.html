@@ -53,7 +53,7 @@
             id="fromCity"
             class="form-control"
             ng-options="cities.city as cities.cityCode for cities in model.cities"
-            ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
+            ng-change="model.searchFlights(fromCiy,model.toCity,model.departureDate,model.returnDate)">
 
     </select>
     <label>
@@ -63,7 +63,7 @@
             id="toCity"
             class="form-control"
             ng-options="cities.city as cities.cityCode for cities in model.cities"
-            ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
+            ng-change="model.searchFlights(fromCiy,model.toCity,model.departureDate,model.returnDate)">
     </select>
 
     <label>Departure Date</label>
@@ -76,7 +76,7 @@
            >
     <div class="form-group">
 
-        <label>Arrival Date</label>
+        <label>Return Date</label>
         <input type="text"
                ng-model="model.returnDate"
                id="returnDate"
@@ -93,7 +93,7 @@
             id="offerId"
             class="form-control"
             ng-options="plans.flightComp as plans.flightComp for plans in model.offerData"
-            ng-change="model.findFlightsFromTo(fromCiy,model.toCity,model.departureDate,model.returnDate)">
+            ng-change="model.searchFlights(fromCiy,model.toCity,model.departureDate,model.returnDate)">
     </select>
 
    <!-- <label>

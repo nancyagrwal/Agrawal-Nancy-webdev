@@ -207,6 +207,47 @@ var searchData=[
 
 }];
 
+
+var flightResults =[
+    {
+        _id: 1,
+        flightComp: "Lufthansa",
+        flightNo: "LU234",
+        elapsedTime: "1 hr 30 min",
+        totalFare: 456,
+        offeredBy: "Lufthansa",
+        discountPercent: 'None',
+        netValue: 456
+    },
+    {
+        _id: 2,
+        flightComp: "Emirates",
+        flightNo: "EM876",
+        elapsedTime: "1 hr 45 min",
+        totalFare: 456,
+        offeredBy: "Emirates",
+        discountPercent: 15,
+        netValue: 248
+    }
+];
+
+var themeResults = [
+    {
+        destination: "city1",
+        airlineCode: "air1",
+        lowestFare: 123,
+        lowestNonStopfare: 12,
+        nonStopAirline: "Lufthansa"
+    }
+    ,
+    {
+        destination: "city2",
+        airlineCode: "air2",
+        lowestFare: 456,
+        lowestNonStopfare: 56,
+        nonStopAirline: "Emirates"
+    }];
+
 app.get('/api/project/user/:userId/search', findAllThemesForUser);
 //app.get('/api/project/user/:userId/search', findAllAirportsForUser);
 app.get('/api/project/user/:userId/makePlan',findAllCities);
@@ -214,6 +255,8 @@ app.get('/api/project/user/:userId/makePlan/offer',findPlan);
 app.post('/api/project/user/:userId/makePlan',placePlan);
 app.get('/api/project/user/:userId/offers',findAllOffers);
 app.get('/api/project/user/:userId/getData',findAllData);
+app.get('api/project/user/:userId/search/storeFlight' , storeUserFlightData);
+app.get('api/project/user/:userId/search/storeTheme' , storeUserThemeData);
 
 function findPlan(req, res) {
     var   offerId =req.query.offerId;
@@ -267,22 +310,31 @@ function findAllThemesForUser(req, res) {
 
 
 function findAllCities(req, res){
-    //console.log('****');
-    var results=cities;
+     var results=cities;
     res.json(results);
 
 }
 
 function findAllOffers(req, res) {
     var results=offers;
-  //  console.log("===")
     res.json(results);
-  //  console.log(results);
     return;
 }
 function findAllData(req,res){
-    var results=searchData;
-    res.json(searchData);
+    var criteria = req.query.criteria ;
+    var userId = req.query.userId;
+    if(criteria === "Theme")
+    {
+        var results=themeResults;
+        res.json(themeResults);
+    }
+
+    if(criteria === "Destination City" || "Origin City"  || "Budget")
+    {
+        var results=flightResults;
+        res.json(flightResults);
+    }
+
 }
 
 function placePlan(req, res) {
@@ -291,6 +343,28 @@ function placePlan(req, res) {
     offers.push(offer);
     res.json(offer);
 }
+
+function storeUserThemeData(req,res) {
+    var themeData = req.body;
+    themeData._id = (new Date()).getTime() + "";
+    for (var theme in themeData) {
+        themeResults.push(themeData[theme]);
+    }
+    themeResults.push(user);
+    res.json(user);
+}
+
+    function storeUserFlightData(req,res)
+    {
+        var flightData = req.body;
+        data._id = (new Date()).getTime() + "";
+        for (var flight in flightData) {
+            flightResults.push(flightData[flight]);
+        }
+        res.json(flightData);
+
+  }
+
 
 /*function findAllAirportsForUser(req, res) {
      var results1 = [];

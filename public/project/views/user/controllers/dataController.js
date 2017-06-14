@@ -11,13 +11,24 @@
                              searchServices) {
         var model = this;
         model.userId = $routeParams['userId'];
+        model.searchData =searchData;
+
+
         // model.user = userService.findUserById(model.userId);
-        function init(){
+       /* function init(){
             searchServices
                 .findAllData(model.userId)
                 .then(renderData);
         }
-        init();
+        init();*/
+
+        function searchData(userId, criteria)
+        {
+            searchServices
+                .findAllData(model.userId,criteria)
+                .then(renderData);
+        }
+
         function renderData(response){
             model.searchData=response;
         }

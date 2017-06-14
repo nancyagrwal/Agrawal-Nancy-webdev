@@ -13,7 +13,10 @@
         model.userId = $routeParams['userId'];
         model.selectTheme = selectTheme;
         model.goBackToProfile = goBackToProfile;
-        model.searchFlight= searchFlight;
+        model.searchThemes= searchThemes;
+        model.searchFlights = searchFlights;
+        model.setHideShow = setHideShow;
+
 
          function init() {
             /*searchServices
@@ -40,6 +43,7 @@
 
         function selectTheme(theme)
         {
+           // console.log(theme);
             model.theme = theme;
         }
 
@@ -48,7 +52,47 @@
             $location.url("/user/"+ model.userId);
         }
 
-        function searchFlight(budget, location, departureDate, returnDate, theme , userId) {
+
+        //simple flight search:
+        function searchFlights(location,toCity,departureDate,returnDate,userId)
+        {
+            if (toCity === null || toCity === '' || typeof toCity === 'undefined') {
+                model.error = 'Destination city is required';
+                return;
+            }
+
+            if (location === '' || location === null || typeof location === 'undefined') {
+                model.error = "flying From is required";
+                return;
+            }
+
+            if (departureDate === '' || departureDate === null || typeof departureDate === 'undefined') {
+                model.error = "correct departure is required";
+                return;
+            }
+
+            if (returnDate === null || typeof returnDate === 'undefined' || returnDate === '') {
+                model.error = "correct returnDate is required";
+                return;
+            }
+
+            searchServices
+                .searchFlights(location, toCity, departureDate , returnDate, model.userId)
+                .then(function (found) {
+                    if (found !== null) {
+                        //  console.log(found);
+                        model.simpleData = found;
+                        model.showFlightDiv=true;
+                        //   $location.url('/user/:userId/search/results');
+                    } else {
+                        model.message = "Please change your options!";
+                    }
+                });
+        }
+
+
+        // for theme based search
+            function searchThemes(budget, location, departureDate, returnDate, theme , userId) {
             if (budget === null || budget === '' || typeof budget === 'undefined') {
                 model.error = 'budget is required';
                 return;
@@ -69,17 +113,35 @@
                 return;
             }
 
+                if (theme === null || typeof theme === 'undefined' || theme === '') {
+                    model.error = "theme is required";
+                    return;
+                }
+
+
             searchServices
-                .findFlightsFromTo(location, "" , returnDate, departureDate)
+                .searchThemes(budget, location, departureDate , returnDate,  theme, model.userId)
                 .then(function (flightData) {
                     if (flightData !== null) {
                         //  console.log(found);
                         model.data = flightData;
-                        $location.url('/user/:userId/search/results');
+                        model.showThemeDiv=true;
+                     //   $location.url('/user/:userId/search/results');
                     } else {
                         model.message = "Please change your options!";
                     }
                 });
+        }
+
+        function setHideShow()
+        {
+            model.showSwitch = true;
+            model.showBudget=true;
+            model.showFlyingTo= true;
+            model.showTheme = true;
+            model.showFlightSearchButton = true;
+            model.showThemeSearchButton = true;
+
         }
    }
 }
