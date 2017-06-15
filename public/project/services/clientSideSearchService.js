@@ -48,15 +48,11 @@
             $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
             return $http.get(url)
                 .then(function (response) {
-                    console.log(response.data);
                     var themeFlightData=[];
                     var flData=response.data;
-
                     var fareInfo=flData.FareInfo;
-
                     for(var i=0;i<fareInfo.length;i++){
                         var desintation=fareInfo[i].DestinationLocation;
-
                         var depDateTime=fareInfo[i].DepartureDateTime;
                         var dateTime=depDateTime.split("T");
                         var date=dateTime[0];
@@ -64,9 +60,9 @@
                         var departDateTime=date+"@"+time;
 
                         var retDateTime=fareInfo[i].ReturnDateTime;
-                        var dateTime=retDateTime.split("T");
-                        var date=dateTime[0];
-                        var time=dateTime[1];
+                        dateTime=retDateTime.split("T");
+                        date=dateTime[0];
+                        time=dateTime[1];
                         var returnDateTime=date+"@"+time;
 
                         var distance=fareInfo[i].Distance;
@@ -83,15 +79,17 @@
                         var lowestFareWS=fareInfo[i].LowestFare.Fare;
 
                         var lowestFaresNonStop=[];
-                        for(var j=0;j<fareInfo[i].LowestNonStopFare.AirlineCodes.length;j++){
-                            var airLinecode=fareInfo[i].LowestNonStopFare.AirlineCodes[j];
-                            var airCodes={
+                        for(var m=0;m<fareInfo[i].LowestNonStopFare.AirlineCodes.length;m++){
+                            airLinecode=fareInfo[i].LowestNonStopFare.AirlineCodes[m];
+                            airCodes={
                                 airLineCode:airLinecode
                             };
                             lowestFaresNonStop.push(airCodes);
                         }
                         var lowestFareNS=fareInfo[i].LowestNonStopFare.Fare;
                         var themeSearch={
+                            _id : i,
+                            theme:themeName,
                             destination:desintation,
                             departDateTime:departDateTime,
                             returnDateTime:returnDateTime,
@@ -103,7 +101,7 @@
                             lowestFareNS:lowestFareNS
 
 
-                        }
+                        };
                         themeFlightData.push(themeSearch);
                         // console.log(themeFlightData);
                     }
@@ -164,11 +162,11 @@
         function searchFlights(fromCity,toCity,departureDate,arrivalDate,userId){
             /*var url='https://api.test.sabre.com/v1/shop/flights?origin=JFK&destination=LAX&departuredate=2017-07-07&returndate=2017-07-08&onlineitinerariesonly=N&limit=10&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
              */
-            var url='https://api.test.sabre.com/v1/shop/flights?origin='+fromCity+'&destination='+toCity+'&departuredate='+departureDate+'&returndate='+arrivalDate+'&onlineitinerariesonly=N&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
+            var url='https://api.test.sabre.com/v1/shop/flights?origin='+fromCity+'&destination='+toCity+'&departuredate='+departureDate+'&returndate='+arrivalDate+'&onlineitinerariesonly=N&limit=10&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
             $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
             return $http.get(url)
                 .then(function (response){
-                     console.log("flight data is...." + response.data);
+                     console.log("flight data is...." + response);
                     var flData=response.data;
                     //flData.push(response.data);
 
@@ -192,16 +190,16 @@
                                 var arrAirport = upFlDat[j].ArrivalAirport.LocationCode;
                                 var datetimeData=upFlDat[j].ArrivalDateTime.split("T");
                                 var date=datetimeData[0];
-                                var time=datetimeData[1]
+                                var time=datetimeData[1];
 
 
                                 var arrDateTime = date+"@"+time;
                                 var arrTimeZone = upFlDat[j].ArrivalTimeZone.GMTOffset;
                                 var departureAirport = upFlDat[j].DepartureAirport.LocationCode;
 
-                                var datetimeData=upFlDat[j].DepartureDateTime.split("T");
+                                datetimeData=upFlDat[j].DepartureDateTime.split("T");
                                 date=datetimeData[0];
-                                time=datetimeData[1]
+                                time=datetimeData[1];
 
                                 var departureDateTime =  date+"@"+time;
                                 var departureTimeZone = upFlDat[j].DepartureTimeZone.GMTOffset;
@@ -222,7 +220,7 @@
                                     airLineName: airLineName
 
                                 };
-                                if(k==0)
+                                if(k === 0)
                                     upflightDetails.push(airData);
                                 else
                                     downFlightDetails.push(airData);
@@ -239,17 +237,17 @@
                             downFlightDetails:downFlightDetails
                         };
                         var cabinData=[];
-                        for( var j=0;j<pricingDataJson.FareInfos.FareInfo.length;j++){
-                            var cabinType=pricingDataJson.FareInfos.FareInfo[j].TPA_Extensions.Cabin.Cabin;
-                            var seatsRemaining=pricingDataJson.FareInfos.FareInfo[j].TPA_Extensions.SeatsRemaining.number;
+                        for(var l=0;l<pricingDataJson.FareInfos.FareInfo.length;l++){
+                            var cabinType=pricingDataJson.FareInfos.FareInfo[l].TPA_Extensions.Cabin.Cabin;
+                            var seatsRemaining=pricingDataJson.FareInfos.FareInfo[l].TPA_Extensions.SeatsRemaining.number;
                             var cabinDetails={
                                 cabinType:cabinType,
                                 seatsRemaining:seatsRemaining
-                            }
+                            };
                             cabinData.push(cabinDetails);
                         }
                         var faresData=[];
-                        var fareBreakDown=pricingDataJson.PTC_FareBreakdowns.PTC_FareBreakdown
+                        var fareBreakDown=pricingDataJson.PTC_FareBreakdowns.PTC_FareBreakdown;
                         var nonRefundable=fareBreakDown.Endorsements.NonRefundableIndicator;
                         var bookingCodes=[];
                         for(j=0;j<fareBreakDown.FareBasisCodes.FareBasisCode.length;j++){
@@ -258,22 +256,22 @@
                             var bookings={
                                 bookingCode:bookingCode,
                                 content:content
-                            }
+                            };
                             bookingCodes.push(bookings)
                         }
                         var baseFare=fareBreakDown.PassengerFare.BaseFare.Amount;
                         var baseFareCurrency=fareBreakDown.PassengerFare.CurrencyCode;
                         var taxes=[];
                         var taxData=fareBreakDown.PassengerFare.Taxes.Tax;
-                        for(var j=0;j<taxData.length;j++){
-                            var taxAmt=taxData[j].Amount;
-                            var taxType=taxData[j].TaxCode;
-                            var taxCurr=taxData[j].CurrencyCode;
+                        for(var m=0;m<taxData.length;m++){
+                            var taxAmt=taxData[m].Amount;
+                            var taxType=taxData[m].TaxCode;
+                            var taxCurr=taxData[m].CurrencyCode;
                             var allTaxes={
                                 amount:taxAmt,
                                 type:taxType,
                                 currency:taxCurr
-                            }
+                            };
                             taxes.push(allTaxes);
                         }
                         var totalTax=fareBreakDown.PassengerFare.Taxes.TotalTax.Amount;
@@ -284,7 +282,7 @@
                             taxes:taxes,
                             totalTax:totalTax,
                             totalFare:totalFare
-                        }
+                        };
 
                         var plans={
                             _id:i,
@@ -296,7 +294,7 @@
                             discountedFare:0.0,
                             nonRefundable:nonRefundable
 
-                        }   //console.log(plans);
+                        } ;  //console.log(plans);
                         flightData.push(plans);
                     }
                     //storing the theme search data:

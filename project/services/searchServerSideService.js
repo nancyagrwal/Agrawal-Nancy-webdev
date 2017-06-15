@@ -97,7 +97,6 @@ var airports = [
         iataCode: "DTW"
     }];
 
-
 var states = [
 
     {
@@ -436,45 +435,103 @@ var searchData=[
 
 }];
 
-var flightResults =[
-    {
-        _id: 1,
-        flightComp: "Lufthansa",
-        flightNo: "LU234",
-        elapsedTime: "1 hr 30 min",
-        totalFare: 456,
-        offeredBy: "Lufthansa",
-        discountPercent: 'None',
-        netValue: 456
-    },
-    {
-        _id: 2,
-        flightComp: "Emirates",
-        flightNo: "EM876",
-        elapsedTime: "1 hr 45 min",
-        totalFare: 456,
-        offeredBy: "Emirates",
-        discountPercent: 15,
-        netValue: 248
-    }
-];
+var flightResults =  [
+        {   _id:0,
+            tripData:
+                {
+                    carrierCode:"AA",
+                    ticketType:"eTicket",
+                    upStopCount:1,
+                    downStopCount:1,
+                    upflightDetails: [
+                                            {   arrAirport:"BNA",
+                                                arrDateTime:"2017-07-07@10:23:00",
+                                                arrTimeZone:-5,
+                                                departureAirport:"CLT",
+                                                departureDateTime:"2017-07-07@09:50:00",
+                                                departureTimeZone:-4,
+                                                flightNo:5242,
+                                                elapsedTime:93,
+                                                airLineCode:"AA",
+                                                airLineName:"PSA AIRLINES AS AMERICAN EAGLE"
+                                            }
+
+                                     ],
+                    downFlightDetails: [
+                                            {   arrAirport:"BNA",
+                                                arrDateTime:"2017-07-07@10:23:00",
+                                                arrTimeZone:-5,
+                                                departureAirport:"CLT",
+                                                departureDateTime:"2017-07-07@09:50:00",
+                                                departureTimeZone:-4,
+                                                flightNo:5242,
+                                                elapsedTime:93,
+                                                airLineCode:"AA",
+                                                airLineName:"PSA AIRLINES AS AMERICAN EAGLE"
+                                            }
+
+                                       ]
+                },
+            cabinData:[
+                                    {cabinType:"Y"},
+                                    {cabinType:"Y"}
+
+                      ],
+            bookingCodes:[
+                                      {
+                                          bookingCode:"N",
+                                          content:"NVAIZNN3"
+                                      },
+                                      {
+                                          bookingCode:"Q",
+                                          content:"QVAJZNN3"
+                                      }
+
+                         ],
+            faresDetails:{
+                                        baseFare:223.26,
+                                        taxes:[
+                                                    {
+                                                        amount:16.74,
+                                                        type:"US1",
+                                                        currency:"USD"},
+                                                    {
+                                                        amount:"16.40",
+                                                        type:"ZP",
+                                                        currency:"USD"}
+
+                                                ],
+                                        totalTax:60.84,
+                                        totalFare:"284.10"
+                          },
+            offeredBy:"",
+            discountedFare:0,
+            nonRefundable:true
+        }
+    ];
 
 var themeResults = [
-    {
-        destination: "city1",
-        airlineCode: "air1",
-        lowestFare: 123,
-        lowestNonStopfare: 12,
-        nonStopAirline: "Lufthansa"
-    }
-    ,
-    {
-        destination: "city2",
-        airlineCode: "air2",
-        lowestFare: 456,
-        lowestNonStopfare: 56,
-        nonStopAirline: "Emirates"
-    }];
+
+{
+    _id:1,
+    theme:"ROMANTIC",
+    destination:"ATL",
+    departDateTime:"2017-07-07T00:00:00",
+    returnDateTime:"2017-07-10T00:00:00",
+    distance:397,
+    pricePerMile:0.27,
+    lowestFares:{         airlineCodes:[
+                            {0:"NK", 1:"BC"}
+                                       ],
+                          fare: 223.26},
+
+
+    lowestFaresNonStop:[
+        {airLineCode:"NK",fare: 223.26},
+        {airLineCode:"BC",fare: 53.26}
+    ]
+}
+];
 
 app.get('/api/project/user/:userId/search', findAllThemesForUser);
 //app.get('/api/project/user/:userId/search', findAllAirportsForUser);
@@ -483,8 +540,8 @@ app.get('/api/project/user/:userId/makePlan/offer',findPlan);
 app.post('/api/project/user/:userId/makePlan',placePlan);
 app.get('/api/project/user/:userId/offers',findAllOffers);
 app.get('/api/project/user/:userId/getData',findAllData);
-app.post('api/project/user/:userId/search/storeFlight' , storeUserFlightData);
-app.post('api/project/user/:userId/search/storeTheme' , storeUserThemeData);
+app.post('/api/project/user/:userId/search/storeFlight' , storeUserFlightData);
+app.post('/api/project/user/:userId/search/storeTheme' , storeUserThemeData);
 
 function findPlan(req, res) {
     var   offerId =req.query.offerId;
@@ -550,13 +607,13 @@ function findAllOffers(req, res) {
 function findAllData(req,res){
     var criteria = req.query.criteria ;
     var userId = req.query.userId;
-    if(criteria === "Theme")
+    if(criteria === "Theme" || "Budget")
     {
         var results=themeResults;
         res.json(themeResults);
     }
 
-    if(criteria === "Destination City" || "Origin City"  || "Budget")
+    if(criteria === "Destination City" || "Origin City"  )
     {
         var results=flightResults;
         res.json(flightResults);
@@ -587,6 +644,7 @@ function storeUserFlightData(req,res)
     var flightData = req.body;
     console.log(req.body);
     flightData._id = (new Date()).getTime() + "";
+    console.log("new id is...." +flightData._id );
     for (var flight in flightData) {
         flightResults.push(flightData[flight]);
     }

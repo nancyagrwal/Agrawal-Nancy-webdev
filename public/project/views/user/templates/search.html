@@ -121,43 +121,46 @@
     </div>
 
 
-<div ng-show="model.showThemeDiv">
-<div class="container-fluid">
-    <div class="row">
-        <div class="card col-md-12" ng-repeat="result in model.data">
-            <hr>
-            <div class ="card col-md-4" height="50%"><h3>{{model.location}}</h3> </div>
-            <div class ="card col-md-4" height="33%" ><i>{{result.distance}}&nbspmiles(${{result.pricePerMile}}/mi) </i></div>
-            <div class ="card col-md-4" height="50%"><h3>{{result.destination}}</h3></div>
-            <div class="card col-md-4"  height="25%"><i>{{result.departDateTime}}</i></div>
-            <div class="card col-md-4"  height="20%"><img src="../images/Arrow-Right-128.png"/></div>
-            <div class="card col-md-4"  height="25%"><i>{{result.returnDateTime}}</i></div>
-            <div class="card col-md-12">
-                <label>
-                    Lowest Fares(with Stops)
-                </label>
-            </div>
-            <br>
-            <br>
-            <div class="card col-md-12" ng-repeat="lowestFr in result.lowestFares">
-                <div class="card col-md-6" style="text-align: start">{{lowestFr.airLineCode}}</div>
-                <div class="card col-md-6" style="text-align: end">{{result.lowestFareWS}}</div>
-            </div>
-            <div class="card col-md-12">
-                <label>
-                    Lowest Fares(Non-Stop)
-                </label>
-            </div>
-            <br>
-            <br>
-            <div class="card col-md-12" ng-repeat="lowestFr in result.lowestFaresNonStop">
-                <div class="card col-md-6" style="text-align: start">{{lowestFr.airLineCode}}</div>
-                <div class="card col-md-6" style="text-align: end">{{result.lowestFareNS}}</div>
-            </div>
-        </div>
 
+
+<div ng-show="model.showThemeDiv">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card col-md-12" ng-repeat="result in model.data">
+                <hr>
+                <div class ="card col-md-4" height="50%"><h3>{{result.theme}}</h3> </div>
+                <div class ="card col-md-4" height="50%"><h3>{{model.location}}</h3> </div>
+                <div class ="card col-md-4" height="33%" ><i>{{result.distance}}&nbspmiles(${{result.pricePerMile}}/mi) </i></div>
+                <div class ="card col-md-4" height="50%"><h3>{{result.destination}}</h3></div>
+                <div class="card col-md-4"  height="25%"><i>{{result.departDateTime}}</i></div>
+                <div class="card col-md-4"  height="20%"><img src="../images/Arrow-Right-128.png"/></div>
+                <div class="card col-md-4"  height="25%"><i>{{result.returnDateTime}}</i></div>
+                <div class="card col-md-12">
+                    <label>
+                        Lowest Fares(with Stops)
+                    </label>
+                </div>
+                <br>
+                <br>
+                <div class="card col-md-12" ng-repeat="lowestFr in result.lowestFares">
+                    <div class="card col-md-6" style="text-align: start">{{lowestFr.airLineCode}}</div>
+                    <div class="card col-md-6" style="text-align: end">{{result.lowestFareWS}}</div>
+                </div>
+                <div class="card col-md-12">
+                    <label>
+                        Lowest Fares(Non-Stop)
+                    </label>
+                </div>
+                <br>
+                <br>
+                <div class="card col-md-12" ng-repeat="lowestFr in result.lowestFaresNonStop">
+                    <div class="card col-md-6" style="text-align: start">{{lowestFr.airLineCode}}</div>
+                    <div class="card col-md-6" style="text-align: end">{{result.lowestFareNS}}</div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 </div>
 
 
