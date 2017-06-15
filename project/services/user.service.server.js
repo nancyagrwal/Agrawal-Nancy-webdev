@@ -4,7 +4,7 @@
 
 
 module.exports = function(app, model) {
-    var userModel = model.userModel;
+    var UserModel1 = model.UserModel1;
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../public/assignment/uploads'});
 
@@ -29,7 +29,7 @@ module.exports = function(app, model) {
             profilePicture: "/project/uploads/" + filename
         };
         model
-            .userModel
+            .UserModel1
             .updateUser(userId, user)
             .then(function (resp) {
                 res.redirect(url);
@@ -43,7 +43,7 @@ module.exports = function(app, model) {
     function deleteUser(req, res) {
         var userId = req.params.userId;
         model
-            .userModel
+            .UserModel1
             .deleteUser(userId)
             .then(
                 function (resp) {
@@ -59,7 +59,7 @@ module.exports = function(app, model) {
         var user = req.body;
         var userId = req.params.userId;
         model
-            .userModel
+            .UserModel1
             .updateUser(userId, user)
             .then(
                 function (resp) {
@@ -75,7 +75,7 @@ module.exports = function(app, model) {
     function createUser(req, res) {
         var user = req.body;
         model
-            .userModel
+            .UserModel1
             .createUser(user)
             .then(function (resp) {
                 res.send(resp)
@@ -91,7 +91,7 @@ module.exports = function(app, model) {
         var password = req.query.password;
 
         model
-            .userModel
+            .UserModel1
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
@@ -114,7 +114,7 @@ module.exports = function(app, model) {
         var password = req.query.password;
 
         model
-            .userModel
+            .UserModel1
             .findUserByUsername(username)
             .then(
                 function (user) {
@@ -134,7 +134,7 @@ module.exports = function(app, model) {
     function findUserById(req, res) {
         var userId = req.params['userId'];
         model
-            .userModel
+            .UserModel1
             .findUserById(userId)
             .then(
                 function (user) {

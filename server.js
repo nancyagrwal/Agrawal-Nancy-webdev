@@ -5,6 +5,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(app.express.static(__dirname + '/public'));
 require ("./test/app.js")(app);
 require('./assignment/app')(app);
-require('./project/app');
+require('./project/app')(app);
 var port = process.env.PORT || 3000;
 app.listen(port);

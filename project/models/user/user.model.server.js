@@ -2,7 +2,7 @@
 module.exports = function() {
     var mongoose = require('mongoose');
     var UserSchema = require('./user.schema.server')();
-    var UserModel = mongoose.model('userModel', UserSchema);
+    var UserModel1 = mongoose.model('UserModel1', UserSchema);
 
     var api = {
         createUser: createUser,
@@ -19,32 +19,32 @@ module.exports = function() {
     var model = {};
 
     function findUserByFacebookId(facebookId) {
-        return UserModel.findOne({'facebook.id': facebookId});
+        return UserModel1.findOne({'facebook.id': facebookId});
     }
 
     function createUser(user) {
-        return UserModel
+        return UserModel1
             .create(user);
     }
 
     function findUserByCredentials(username, password) {
 
-        return UserModel
+        return UserModel1
             .findOne({username:username, password:password});
     }
 
     function findUserByUsername(username) {
-        return UserModel
+        return UserModel1
             .findOne({username:username});
     }
 
 
     function findUserById(userId) {
-        return UserModel.findById(userId);
+        return UserModel1.findById(userId);
     }
 
     function updateUser(userId, user) {
-        return UserModel
+        return UserModel1
             .update(
                 {
                     _id: userId
@@ -59,7 +59,7 @@ module.exports = function() {
     }
 
     function deleteUser(userId) {
-        return UserModel
+        return UserModel1
             .remove(
                 {
                     _id:userId

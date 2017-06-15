@@ -2,7 +2,10 @@
  * Created by nancy on 6/7/2017.
  */
 
-var app = require('../../express');
+module.exports = function(app, model) {
+    var UserModel1 = model.UserModel1;
+
+//var app = require('../../express');
 
 
 var datas=[
@@ -72,4 +75,5 @@ function searchFlight(req,res){
         dataSet.push(datas[v]);
     }
     res.json(dataSet);
+}
 }
