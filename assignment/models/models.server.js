@@ -1,7 +1,7 @@
 
 module.exports = function () {
 
-    var connectionString = 'mongodb://localhost/test';
+    var connectionString = 'mongodb://localhost/test2';
     var mongoose =  require('mongoose');
     mongoose.Promise = require('q').Promise;
 
