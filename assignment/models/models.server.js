@@ -3,6 +3,7 @@ module.exports = function () {
 
     var connectionString = 'mongodb://localhost/test';
     var mongoose =  require('mongoose');
+    mongoose.Promise = require('q').Promise;
 
     if(process.env.MLAB_DB_USERNAME) {
         connectionString = process.env.MLAB_DB_URL_INIT +

@@ -54,10 +54,27 @@
            ng-model="model.widget.width"
            placeholder="100%"
            id="width"/>
+
     <label> Upload Image</label>
-    <a class ="btn btn-primary btn-block" ng-click="model.searchImage()">
-        Search
+    </br>
+    </br>
+    <div>
+    <a class ="btn btn-primary pull-left" ng-click="model.searchImage()">
+        Search Image online!
     </a>
+    <a class ="btn btn-primary pull-right" ng-click="model.editImage()">
+        Upload searched Image
+    </a>
+    </div>
+
+    </br>
+    </br>
+
+    <p style="margin-left:550px">                                                                  OR </p>
+
+    </br>
+    </br>
+
     <form action="/api/upload"   method="post" enctype="multipart/form-data">
         <input  name="myFile"    type="file" class="form-control"/>
         <input  name="widgetId"  value="{{model.widgetId}}"       style="display: none"/>

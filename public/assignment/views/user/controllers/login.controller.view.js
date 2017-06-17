@@ -9,7 +9,7 @@
         model.login = login;
         model.register = register;
 
-        function login(username, password) {
+          function login(username, password) {
 
             if(username === null || username === '' || typeof username === 'undefined') {
                 model.error = 'Please enter Username!';
@@ -21,11 +21,15 @@
                 return;
             }
 
-            userService
-                .findUserByCredentials(username, password)
+           /* userService
+                .findUserByCredentials(username, password)*/
+              userService
+                  .login(username,password)
                 .then(function (found) {
                     if(found !== null) {
-                        $location.url('/user/' + found._id);
+                       // $location.url('/user/' + found._id);
+                        console.log("found is......." + found);
+                        $location.url('/profile');
                     } else {
                         model.message = "sorry, " + username + " not found. please try again!";
                     }
