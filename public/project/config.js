@@ -45,6 +45,15 @@
                 controllerAs: 'model'
             })
 
+            .when('/user/viewUser',{
+                templateUrl: 'views/user/templates/userPage.html',
+                controller: 'adminController',
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
+            })
+
             .when('/search', {
             templateUrl: 'views/user/templates/search.html',
             controller: 'searchController',

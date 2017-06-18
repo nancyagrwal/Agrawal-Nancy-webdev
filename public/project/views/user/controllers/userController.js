@@ -188,7 +188,7 @@
         var model = this;
 
         model.register = register;
-
+ model.registerAdmin = registerAdmin;
         function registerAdmin(username, password, password2, userType) {
 
             if (username === null || username === '' || typeof username === 'undefined') {
@@ -219,7 +219,7 @@
                             userType: userType
                         };
                         return ClientSideServices
-                            .createUser(newUser);
+                            .registerUser(newUser);
                     }
                 )
                 .then(function (user) {
