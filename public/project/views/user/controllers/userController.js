@@ -162,7 +162,6 @@
             ClientSideServices
                 .findAllUsers()
                 .then(function(response){
-                    console.log(response);
                     allUsers=response;
                 });
             $location.url('/user/viewUser');
@@ -186,9 +185,9 @@
     function registerController($location, ClientSideServices) {
 
         var model = this;
-
         model.register = register;
- model.registerAdmin = registerAdmin;
+        model.registerAdmin = registerAdmin;
+
         function registerAdmin(username, password, password2, userType) {
 
             if (username === null || username === '' || typeof username === 'undefined') {

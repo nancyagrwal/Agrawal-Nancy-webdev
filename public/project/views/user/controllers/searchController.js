@@ -60,8 +60,7 @@
 
         function selectTheme(theme)
         {
-           // console.log(theme);
-            model.theme = theme;
+           model.theme = theme;
         }
 
         function goBackToProfile()

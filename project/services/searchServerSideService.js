@@ -4252,7 +4252,7 @@ module.exports = function(app, model) {
             model.PlanModel
                 .findPlan(plans)
                 .then(function(resp){
-                    console.log(resp);
+
                     if(resp==null){
                         res.sendStatus(400);
                     }
@@ -4315,7 +4315,7 @@ module.exports = function(app, model) {
             model.LogsModel
                 .findAllData("F")
                 .then(function(resp){
-                    console.log(resp);
+
                     res.json(resp);
                 });
         }
@@ -4338,7 +4338,7 @@ module.exports = function(app, model) {
 
     function storeUserThemeData(req, res) {
         var themeData=req.body;
-        console.log(themeData);
+
         for (var u in themeData){
             var themes=themeData[u];
             var log ={
