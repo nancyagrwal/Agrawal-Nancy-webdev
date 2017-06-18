@@ -1,41 +1,338 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nancy Agrawal - Software Engineer</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicons
+        ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+    <!-- Bootstrap -->
+    <link href="../vendor/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/css/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
+
+    <link href="../vendor/css/bootstrap/css/theme.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet"/>
+
+    <!-- Stylesheet
+        ================================================== -->
+
+    <link rel="stylesheet" type="text/css" href="../vendor/css/prettyPhoto.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-<style>
-    body{background-color: cornsilk;}
-    
-    .blue-text {color:blue ; font-size: 25px; margin-left: 550px;}
-    .active {line-height: 50em;}
-    .avatar-frame{
-        width: 230px;
-        height: 230px;
-        -webkit-border-radius: 30px; /* Saf3+, Chrome */
-        border-radius: 50px; /* Opera 10.5, IE 9 */
-        margin-left: 650px;
-        margin-top:80px ;}
-    
- </style>
-<div class="container-fluid">
-<h1 class="blue-text">CS 5610: Web Development Summer 1</h1>
-<img src="display_pic.jpg" class="avatar-frame img-responsive">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-<div class ="row" style= "margin-top:100px; margin-left: 120px">
-        <div class="col-xs-3"> <a href="project/index.html" class="btn btn-info">Project</a></div>
-        <div class="col-xs-3"> <a href="assignment/index.html" class="btn btn-info">Assignment</a></div>
-        <div class="col-xs-3"> <a href="test/index.html" class="btn btn-info">Test MongoDB</a></div>
-        <div class="col-xs-3"> <a href="https://github.com/nancyagrwal/Agrawal-Nancy-webdev" class="btn btn-info">Github Repository</a></div>
+<!-- Header -->
+<header id="header">
+    <div class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="intro-text">
+                    <h1><span class="name">Nancy Agrawal</span></h1>
+                    <p>Computer Science Grad at Northeastern</p>
+                    <!--<a href="#about" class="btn btn-default btn-lg page-scroll">Learn More</a>--> </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Navigation -->
+<div id="nav">
+    <nav class="navbar navbar-custom">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Nancy Agrawal</a> </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden"> <a href="#page-top"></a> </li>
+                    <li> <a class="page-scroll" href="#about">About</a> </li>
+                    <li> <a class="page-scroll" href="#skills">Skills</a> </li>
+                    <li> <a class="page-scroll" href="#portfolio">Portfolio</a> </li>
+                    <li> <a class="page-scroll" href="#resume">Resume</a> </li>
+                    <li> <a class="page-scroll" href="#contact">Contact</a> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- About Section -->
+<div id="about">
+    <div class="container">
+        <div class="section-title text-center center">
+            <h2>About Me</h2>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center"><img src="img/bot.jpg" class="img-responsive"></div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="about-text">
+                    <p>Hi, I am Nancy Agrawal. I am a Computer Science Graduate student at Northeastern University.
+                        My areas of interest are Algorithms,Web Development and Operating Systems.</p>
+                    <p class="text-center"><a class="btn btn-primary" href="https://www.linkedin.com/in/nancy-agrawal-16a25858/">
+                        <i class="fa fa-download"></i> Download Resume</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Skills Section -->
+<div id="skills" class="text-center">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Skills</h2>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="95"> <span class="percent">80</span> </span>
+                <h4>C</h4>
+            </div>
+            <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="85"> <span class="percent">95</span> </span>
+                <h4>Java</h4>
+            </div>
+            <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="80"> <span class="percent">80</span> </span>
+                <h4>Python</h4>
+            </div>
+            <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="80"> <span class="percent">90</span> </span>
+                <h4>Web Development</h4>
+            </div>
+            <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="70"> <span class="percent">80</span> </span>
+                <h4>Algorithms</h4>
+            </div>
+            <div class="col-md-4 col-sm-6 skill"> <span class="chart" data-percent="65"> <span class="percent">85</span> </span>
+                <h4>Systems</h4>
+            </div>
+
+        </div>
+    </div>
 </div>
 
-  <div style="margin-top:150px; margin-right: 50px">
-    <p><strong> Nancy Agrawal </strong></p>
-    <p>	<strong> Computer Science Grad Student @ Northeastern University</strong> </p>
+<div id="portfolio">
+    <div class="container">
+        <div class="section-title text-center center">
+            <h2>Important Links</h2>
+            <hr>
+        </div>
+
+        <div class="row">
+            <div class="portfolio-items">
+                <div class="col-sm-6 col-md-3 col-md-3 web">
+                    <div class="portfolio-item">
+                        <div class="hover-bg"> <a href="project/index.html" title="Project description" >
+                            <div class="hover-text">
+                                <h4>Project</h4>
+                                <small>CS5610 Project</small> </div>
+                            <img src="img/portfolio/someday.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-md-3 app">
+                    <div class="portfolio-item">
+                        <div class="hover-bg"> <a href="assignment/index.html" title="Project description">
+                            <div class="hover-text">
+                                <h4>Assignment</h4>
+                                <small>CS5610 Assignment</small> </div>
+                            <img src="img/portfolio/assignment.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-md-3 web">
+                    <div class="portfolio-item">
+                        <div class="hover-bg"> <a href="test/index.html" title="Project description">
+                            <div class="hover-text">
+                                <h4>Test</h4>
+                                <small>MonogDB Test</small> </div>
+                            <img src="img/portfolio/mongodb.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-md-3 web">
+                    <div class="portfolio-item">
+                        <div class="hover-bg"> <a href="http://www.github.com/NancyAgrawal" title="Project description">
+                            <div class="hover-text">
+                                <h4>Github</h4>
+                                <small>Code Repository</small> </div>
+                            <img src="img/portfolio/display_pic.jpg" class="img-responsive" alt="Project Title"> </a> </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
 </div>
 
+
+<div id="resume" class="text-center">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Experience and Education</h2>
+            <hr>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <ul class="timeline">
+
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="img/portfolio/neu.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Northeastern University</h4>
+                                    <h4 class="subheading">Computer Science Grad Student</h4>
+                                    <h5 class="subheading">Sep,2016-Present</h5>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="img/portfolio/ibm.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>IBM India</h4>
+                                    <h4 class="subheading">Application Developer</h4>
+                                    <h5 class="subheading">July, 2014-July 2016</h5>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">
+                                        Worked on iLMS.
+                                        Lead Management System for Airtel, India. It involved full stack development , including
+                                        designing user-interactive and dynamic pages. The system is integrated with various other call-center applications and lead sources using
+                                        Web Service clients, and similarly to security framework using DB2 SQL procedures.
+                                        So the project basically manages the total clientele and the complete lifecycle of every lead
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+
+
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="img/portfolio/uptu.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Uttar Pradesh Technical University</h4>
+                                    <h4 class="subheading">Bachelors in Computer Science and Engineering</h4>
+                                    <h5 class="subheading">2009-2013</h5>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                        </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+   </div>
+
+<!-- Contact Section -->
+<div id="contact" class="text-center">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Contact Me!</h2>
+            <hr>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-4"> <i class="fa fa-map-marker fa-2x"></i>
+                <p>155 St Alphonsus Street,<br>
+                    Boston, MA 02120</p>
+            </div>
+            <div class="col-md-4"> <i class="fa fa-envelope-o fa-2x"></i>
+                <p>nancyagrwal@gmail.com , agrawal.n@husky.neu.edu</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+         <!--   <h3>Leave me a message</h3>-->
+            <!--<form name="sentMessage" id="contactForm" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div id="success"></div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>-->
+            <div class="social">
+                <ul>
+                    <li><a href="http://www.github.com/nancyagrwal"><i class="fa fa-github"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/nancy-agrawal-16a25858/"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
+<div id="footer">
+    <div class="container text-center">
+        <div class="fnav">
+            <p>2017 Nancy Agrawal</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/easypiechart.js"></script>
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.js"></script>
+<script type="text/javascript" src="js/waypoints.js"></script>
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="js/contact_me.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
