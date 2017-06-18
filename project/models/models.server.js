@@ -17,7 +17,6 @@ module.exports = function () {
         connectionString += '@ds033123.mlab.com:33123/heroku_6lh609hz'; // user yours
     }
 
-    //var connectionString = 'mongodb://localhost/test';
     var mongoose =  require('mongoose');
     mongoose.connect(connectionString);
     mongoose.Promise = require('q').Promise;
