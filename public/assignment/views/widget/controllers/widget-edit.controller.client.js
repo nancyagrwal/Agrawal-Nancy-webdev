@@ -104,7 +104,7 @@
                 url: model.widget.url
             };
             widgetService.updateWidget(model.widgetId,widgetYouTube)
-                .then(redirectWidget, errorWidget);;
+                .then(redirectWidget, errorWidget);
         }
 
         function renderWidget(widget) {
@@ -129,7 +129,7 @@
 
         function logout()
         {
-            $location.url("/user/" + model.userId);
+            $location.url("/profile");
         }
 
         function searchImage()

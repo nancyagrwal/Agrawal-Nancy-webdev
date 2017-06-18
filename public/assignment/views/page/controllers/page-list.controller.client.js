@@ -32,7 +32,7 @@
 
 
         function goBackToWebsites () {
-            $location.url("/user/" + model.userId +"/website");
+            $location.url("/user/website");
             model.pages = pages;
         }
 

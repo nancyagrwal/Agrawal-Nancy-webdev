@@ -32,12 +32,16 @@
                             username: username,
                             password: password
                         };
+                        /*return userService
+                            .createUser(newUser);*/
                         return userService
-                            .createUser(newUser);
+                            .registerUser(newUser);
                     }
                 )
                 .then(function (user) {
-                    $location.url('/user/' + user._id);
+                    console.log("why not coming here???????????");
+                    $location.url('/profile');
+                  //  $location.url('/user/' + user._id);
                 });
 
 

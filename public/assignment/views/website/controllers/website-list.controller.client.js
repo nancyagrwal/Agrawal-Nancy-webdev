@@ -3,10 +3,13 @@
         .module('WebAppMaker')
         .controller('websiteListController', websiteListController);
     
-    function websiteListController($routeParams,
+    function websiteListController(currentUser,$routeParams,
                                    websiteService, $location) {
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
+        model.user = currentUser;
+        //model.userId = $routeParams['userId'];
+        console.log("user id id.........." + model.userId);
         model.websiteId = $routeParams['websiteId'];
         model.fetchUser = fetchUser;
         model.newWebsite = newWebsite;
@@ -26,12 +29,12 @@
 
         function fetchUser()
         {
-            $location.url("/user/"+ model.userId);
+            $location.url("/profile");
         }
 
         function newWebsite()
         {
-            $location.url("/user/"+ model.userId +"/website/new");
+            $location.url("/user/website/new");
         }
 
          function fetchPages(website)
@@ -41,7 +44,7 @@
 
          function backToWebsites(website)
         {
-            $location.url("/user/"+ model.userId +"/website/" + website._id);
+            $location.url("/user/website/" + website._id);
         }
 
     }
