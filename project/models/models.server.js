@@ -1,6 +1,6 @@
 module.exports = function () {
 
-    var connectionString = 'mongodb://127.0.0.1:27017/myDb';
+    var connectionString = 'mongodb://127.0.0.1:27017/projectDb';
 
     if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
@@ -33,5 +33,7 @@ module.exports = function () {
 
 
     userModel1.setModel(model);
+    userModel2.setModel(model);
+    userModel3.setModel(model);
     return model;
 };

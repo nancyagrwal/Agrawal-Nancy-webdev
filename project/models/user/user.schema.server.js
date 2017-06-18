@@ -1,8 +1,7 @@
 
-
 module.exports = function () {
     var mongoose =  require('mongoose');
-    var UserSchema = mongoose.Schema(
+    var UserProjectSchema = mongoose.Schema(
         {
             username: {type: String, required: true, unique: true},
             userType: String,
@@ -23,5 +22,5 @@ module.exports = function () {
         }, {
             collection:"user"
         });
-    return UserSchema;
+    return UserProjectSchema;
 };

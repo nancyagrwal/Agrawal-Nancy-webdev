@@ -23,8 +23,7 @@ module.exports = function() {
 
     function findPlan(plan) {
         console.log(plan.offerId);
-        console.log
-        return UserModel2
+            return UserModel2
             .findOne({
                 offerId: plan.offerId,
                 offeredBy: plan.offeredBy,

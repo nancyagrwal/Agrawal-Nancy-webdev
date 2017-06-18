@@ -1,12 +1,3 @@
-/*
-require('./services/ServerSideUserServices');
-require('./services/searchServerSideService');
-require('./services/resultsServerSide');
-
-*/
-
-// WILL BE THE DATABSE CODE .... UPPER CODE WILL BE REMOVED
-
 
 module.exports = function(app) {
     var models = require("./models/models.server")();

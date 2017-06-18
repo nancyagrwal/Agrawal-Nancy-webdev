@@ -1,8 +1,8 @@
 
 module.exports = function() {
     var mongoose = require('mongoose');
-    var UserSchema = require('./user.schema.server')();
-    var UserModel1 = mongoose.model('UserModel1', UserSchema);
+    var UserProjectSchema = require('./user.schema.server')();
+    var UserModel1 = mongoose.model('UserModel1', UserProjectSchema);
 
     var api = {
         createUser: createUser,
@@ -18,8 +18,14 @@ module.exports = function() {
     return api;
     var model = {};
 
+    function findUserByGoogleId(googleId) {
+        return UserModel1
+            .findOne({'google.id':googleId});
+    }
+
     function findUserByFacebookId(facebookId) {
-        return UserModel1.findOne({'facebook.id': facebookId});
+        return UserModel1
+            .findOne({'facebook.id': facebookId});
     }
 
     function createUser(user) {
