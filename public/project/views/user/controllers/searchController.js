@@ -66,7 +66,7 @@
 
         function goBackToProfile()
         {
-            $location.url("/user/"+ model.userId);
+            $location.url("/profile");
         }
 
 
@@ -194,7 +194,7 @@
             model.goBackToProfile = goBackToProfile;
             function goBackToProfile()
             {
-                $location.url("/user/"+ model.userId);
+                $location.url("/profile");
             }
         }
 
@@ -242,7 +242,7 @@
             }
             function fetchFare(plans){
                 for(var u in plans){
-                    if(plans[u].bookingList==model.offerId){
+                    if(plans[u].bookingList === model.offerId){
                         model.realFare=plans[u].faresDetails.baseFare;
                         airLines=plans[u].tripData.carrierCode;
 
@@ -339,7 +339,7 @@
 
             function goBackToProfile()
             {
-                $location.url("/user/"+ model.userId);
+                $location.url("/profile");
             }
         }
 

@@ -69,7 +69,7 @@
             model.goBackToProfile = goBackToProfile;
             function goBackToProfile()
             {
-                $location.url("/user/"+ model.userId);
+                $location.url("/profile");
             }
 
 
