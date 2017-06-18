@@ -10,7 +10,8 @@ module.exports = function() {
     var api = {
        insertPlan:insertPlan,
         findPlan:findPlan,
-        findAllOffers:findAllOffers
+        findAllOffers:findAllOffers,
+        setModel:setModel
     };
 
     return api;
@@ -40,4 +41,8 @@ module.exports = function() {
         return PlanModel
             .find();
     }
+    function setModel(_model) {
+        model = _model;
+    }
+
 }

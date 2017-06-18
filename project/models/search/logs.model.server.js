@@ -6,7 +6,8 @@ module.exports = function() {
 
     var api = {
         insertLogs: insertLogs,
-        findAllData:findAllData
+        findAllData:findAllData,
+        setModel:setModel
     };
 
     return api;
@@ -22,4 +23,8 @@ module.exports = function() {
         return LogsModel
             .find({type:type})
     }
+    function setModel(_model) {
+        model = _model;
+    }
+
 }
