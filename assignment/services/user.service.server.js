@@ -53,7 +53,7 @@ module.exports = function(app, model) {
 
 
     function googleStrategy(token, refreshToken, profile, done) {
-        userModel
+        model.userModel
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
@@ -92,7 +92,7 @@ module.exports = function(app, model) {
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     function facebookStrategy(token, refreshToken, profile, done) {
-        userModel
+        model.userModel
             .findUserByFacebookId(profile.id)
             .then(
                 function(user) {
@@ -133,7 +133,7 @@ module.exports = function(app, model) {
     function register(req,res) {
         var user = req.body;
 
-        userModel
+        model.userModel
             .createUser(user)
             .then(function (user) {
                 req
@@ -166,7 +166,7 @@ module.exports = function(app, model) {
 
 // we extract the user by finding the user by id by unwrapping the user object from the cookie
     function deserializeUser(user, done) {
-        userModel
+        model.userModel
             .findUserById(user._id)
             .then(
                 function(user){
@@ -180,7 +180,7 @@ module.exports = function(app, model) {
 
 
     function localStrategy(username, password, done) {
-        userModel
+       model.userModel
             .findUserByCredentials(username,password)
             .then(
                 function(user) {

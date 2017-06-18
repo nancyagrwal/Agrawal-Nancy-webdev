@@ -11,9 +11,61 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            // added for security:
+            login:login,
+            logout:logout,
+            registerUser: registerUser,
+            findUsers:findUsers,
+            checkLoggedIn:checkLoggedIn
+
         };
         return api;
+
+        function findUsers() {
+            var url = '/api/project/user';
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                })
+        }
+
+        function registerUser(user) {
+            var url = "/api/project/register";
+            return $http.post(url,user)
+                .then(function (response) {
+                    return response.data;
+                })
+
+        }
+
+        function checkLoggedIn() {
+            var url = "/api/project/checkLoggedIn";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function logout() {
+            var url = "/api/project/logout";
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function login(username,password) {
+            var url = "/api/project/login";
+            var credentials = {
+                username:username,
+                password:password
+            };
+            return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
 
         function findUserByUsername(username) {

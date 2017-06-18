@@ -1,12 +1,31 @@
-/**
- * Created by nancy on 6/15/2017.
- */
-
 
 module.exports = function(app, model) {
     var UserModel1 = model.userModel1;
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../public/assignment/uploads'});
+
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    var googleConfig = {
+        clientID: process.env.GOOGLE_CLIENT_ID,//"50624278738-fl28qob44pj8vba6diflflfqkkpmiq2d.apps.googleusercontent.com",
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET, //PRQOZJPPTCUwbtxE0JfeIlCO",
+        callbackURL: process.env.GOOGLE_CALLBACK_URL //http://localhost:3000/auth/google/callback"
+    };
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,//"1910908232491447",
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET, //"f76f5e4ca579e271506e3554f1cc52ec",
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL //"http://localhost:3000/auth/facebook/callback"
+    };
+
+
 
     //Listen for incoming http requests
 
@@ -18,6 +37,176 @@ module.exports = function(app, model) {
     app.delete('/api/project/user/:userId', deleteUser);
     app.post ('/api/project/upload', upload.single('myFile'), uploadImage);
 
+// added for security:
+    app.post('/api/project/register' ,register);
+    app.post('/api/project/logout',logout);
+
+    app.post  ('/api/project/login', passport.authenticate('local'), login);
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/project/index.html#!/profile',
+            failureRedirect: '/project/index.html#!/login'
+        }));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/project/index.html#!/profile',
+            failureRedirect: '/project/index.html#!/login'
+        }));
+
+
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+
+    function googleStrategy(token, refreshToken, profile, done) {
+        model.userModel1
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel1.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    function facebookStrategy(token, refreshToken, profile, done) {
+        model.userModel1
+            .findUserByFacebookId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newFacebookUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            facebook: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel1.createUser(newFacebookUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+
+    function register(req,res) {
+        var user = req.body;
+
+        model.userModel1
+            .createUser(user)
+            .then(function (user) {
+                req
+                    .login(user,function (status) {
+                        res.send(status);
+                    });
+            });
+    }
+
+    function logout(req, res) {
+        // removes the user from the session by invalidating the cookie
+        req.logOut();
+        res.sendStatus(200);
+    }
+
+    function checkLoggedIn(req,res) {
+        // if the current user is currently logged in, then send the user
+        if(req.isAuthenticated()) {
+
+            res.send(req.user);
+        }
+        else
+            res.send('0');
+    }
+
+// what we are putting in the cookie
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+// we extract the user by finding the user by id by unwrapping the user object from the cookie
+    function deserializeUser(user, done) {
+        model.userModel1
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+
+    function localStrategy(username, password, done) {
+        model.userModel1
+            .findUserByCredentials(username,password)
+            .then(
+                function(user) {
+                    if (!user) {
+                        // if error then return null, else return false implying that the user is not an object
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    function login(req,res) {
+        res.json(req.user);
+    }
 
     function uploadImage(req, res) {
 

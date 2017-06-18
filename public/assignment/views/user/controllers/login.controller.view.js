@@ -28,7 +28,7 @@
                 .then(function (found) {
                     if(found !== null) {
                        // $location.url('/user/' + found._id);
-                        console.log("found is......." + found);
+                      //  console.log("found is......." + found);
                         $location.url('/profile');
                     } else {
                         model.message = "sorry, " + username + " not found. please try again!";

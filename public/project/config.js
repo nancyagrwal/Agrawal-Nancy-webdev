@@ -21,40 +21,80 @@
             .when('/search', {
             templateUrl: 'views/user/templates/search.html',
             controller: 'searchController',
-            controllerAs: 'model'
+            controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
         })
 
             .when('/user/:userId/search', {
                 templateUrl: 'views/user/templates/search.html',
                 controller: 'searchController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
+
             })
 
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
             })
             .when('/user/:userId/search/results', {
                 templateUrl: 'views/user/templates/results.html',
                 controller: 'resultController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
             })
             .when('/user/:userId/makePlan', {
                 templateUrl: 'views/user/templates/plan.html',
                 controller: 'planController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
             })
             .when('/user/:userId/offers', {
                 templateUrl: 'views/user/templates/offers.html',
                 controller: 'offerController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
             })
             .when('/user/:userId/getData', {
                 templateUrl: 'views/user/templates/userData.html',
                 controller: 'dataController',
-                controllerAs: 'model'
-            })
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
+            });
 
     }
+
+    function checkLoggedIn($q,userService,$location) {
+        var deferred = $q.defer();
+        ClientSideServices
+            .checkLoggedIn()
+            .then(function (response) {
+                if(response === '0'){
+                    deferred.reject();
+                    $location.url('/login');
+                }else{
+                    deferred.resolve(response);
+                }
+            });
+        return deferred.promise;
+    }
+
 })();
+
+

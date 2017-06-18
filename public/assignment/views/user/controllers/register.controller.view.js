@@ -39,8 +39,7 @@
                     }
                 )
                 .then(function (user) {
-                    console.log("why not coming here???????????");
-                    $location.url('/profile');
+                     $location.url('/profile');
                   //  $location.url('/user/' + user._id);
                 });
 
