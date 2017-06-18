@@ -3,11 +3,13 @@
         .module('WebAppMaker')
         .controller('websiteEditController', websiteEditController);
     
-    function websiteEditController($routeParams,
+    function websiteEditController(currentUser, $routeParams,
                                    $location,
                                    websiteService) {
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
+        model.user = currentUser;
+        //model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.deleteWebsite = deleteWebsite;
         model.updateWebsite = updateWebsite;
@@ -48,7 +50,7 @@
             websiteService
                 .updateWebsite(model.websiteId, website)
                 .then(function (response) {
-                    $location.url("/user/" + model.userId + "/website");
+                    $location.url("/user/website");
                 }, function (error) {
                     console.log("Error: Unable to update website");
                 });
@@ -59,7 +61,7 @@
             websiteService
                 .deleteWebsite(websiteId)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/user/website');
                 });
         }
 
@@ -70,22 +72,22 @@
         model.back=back;
 
         function profile() {
-            $location.url("/user/"+model.userId);
+            $location.url("/profile");
         }
 
         function newWebsite() {
-            $location.url("/user/"+ model.userId + "/website/new");
+            $location.url("/user/website/new");
         }
 
         function openWebsite(website) {
-            $location.url("/user/"+ model.userId + "/website/"+website._id + "/page");
+            $location.url("/user/website/"+website._id + "/page");
         }
         function editWebsite(website) {
-            $location.url("/user/"+ model.userId +"/website/"+website._id);
+            $location.url("/user/website/"+website._id);
         }
 
         function back() {
-            $location.url("/user/"+model.userId);
+            $location.url("/user/website/");
         }
 
 

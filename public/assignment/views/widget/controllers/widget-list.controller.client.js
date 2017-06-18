@@ -77,7 +77,7 @@
 
         function logout()
         {
-            $location.url("/user/" + model.userId);
+            $location.url("/profile");
 
         }
     }
