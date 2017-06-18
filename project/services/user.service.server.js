@@ -291,25 +291,25 @@ module.exports = function(app, model) {
                     }
                 }
             );
-    }
 
-    if(username)
-    {
 
-        model
-            .ProjectUserModel
-            .findUserByUsername(username)
-            .then(
-                function (user) {
-                    if (user) {
+        if (username) {
 
-                        res.send(user);
-                    } else {
+            model
+                .ProjectUserModel
+                .findUserByUsername(username)
+                .then(
+                    function (user) {
+                        if (user) {
 
-                        res.sendStatus(404);
+                            res.send(user);
+                        } else {
+
+                            res.sendStatus(404);
+                        }
                     }
-                }
-            );
+                );
+        }
     }
 
 
