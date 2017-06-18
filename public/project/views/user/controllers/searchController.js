@@ -97,7 +97,7 @@
                 .searchFlights(location, toCity, departureDate , returnDate, model.userId)
                 .then(function (found) {
                     if (found !== null) {
-                        //  console.log(found);
+
                         model.simpleData = found;
                         model.showFlightDiv=true;
 
@@ -143,7 +143,7 @@
                 .searchThemes(budget, location, departureDate , returnDate,  theme, model.userId)
                 .then(function (flightData) {
                     if (flightData !== null) {
-                        //  console.log(found);
+
                         model.data = flightData;
                         model.showThemeDiv=true;
                         model.showFlightDiv=false;
@@ -235,7 +235,7 @@
             function searchFlights(from, to, arrival, departure,userId) {
                 // alert('ok');
                 searchServices.searchFlights(from, to, arrival, departure,model.userId).then(function (flightData) {
-                    // console.log(flightData);
+
                     model.offerData = flightData;
                     // alert(model.offerData);
                 });

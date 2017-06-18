@@ -55,7 +55,7 @@
                                ClientSideServices) {
         var model = this;
         model.userId = currentLoggedInUser._id;
-        console.log("user id is........"+ model.userId);
+
         model.user = currentLoggedInUser;
         //model.userId = $routeParams['userId'];
         model.updateUser = updateUser;
@@ -66,7 +66,7 @@
             .then(renderUser, userError);
 */
         function init() {
-            console.log("user id is........"+ model.userId);
+
             renderUser(currentLoggedInUser);
             ClientSideServices
                 .findUsers()

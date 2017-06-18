@@ -19,7 +19,7 @@
                             .searchFlights(model.userId)
                             .then(function (found) {
                                   if (found !== null) {
-                                    //  console.log(found);
+
                                     model.data = found;
                                     $location.url('/user/:userId/search/results');
                                 } else {
