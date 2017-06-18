@@ -292,10 +292,7 @@
 
         init();
 
-        function renderWebsites (websites) {
-            model.websites = websites;
-        }
-
+      
         function goBack()
         {
             $location.url("/user/viewUser");
@@ -316,16 +313,16 @@
             ClientSideServices
                 .findAllUsers()
                 .then(function (response) {
-                    model.websites = response.data;
+                    model.userData = response.data;
                 }, function (error) {
                     console.log("Error: Unable to find any users");
                 });
             ClientSideServices
                 .findUserById(model.userId)
                 .then(function (response) {
-                    model.website = response.data;
+                    model.user = response.data;
                 }, function (error) {
-                    console.log("Error: Unable to find website for user");
+                    console.log("Error: Unable to find user");
                 });
         }
         init();
