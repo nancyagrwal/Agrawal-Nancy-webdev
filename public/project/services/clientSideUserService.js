@@ -32,7 +32,6 @@
 
         function registerUser(user) {
             var url = "/api/project/register";
-            console.log("are we inside regitre?????????");
             return $http.post(url,user)
                 .then(function (response) {
                     return response.data;
@@ -71,8 +70,7 @@
 
         function findUserByUsername(username) {
             var url = "/api/project/userRegister?username=" + username;
-            console.log(url);
-            return $http.get(url)
+             return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
@@ -82,7 +80,6 @@
             var url = "/api/project/user?username=" + username + "&password=" + password;
             return $http.get(url)
                 .then(function (response) {
-                    console.log(response.data);
                     return response.data;
                 });
         }

@@ -18,24 +18,17 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/search', {
-            templateUrl: 'views/user/templates/search.html',
-            controller: 'searchController',
-            controllerAs: 'model'
-                /*resolve:{
-                    currentLoggedInUser:checkLoggedIn
-                }*/
-        })
 
-            .when('/user/:userId/search', {
-                templateUrl: 'views/user/templates/search.html',
-                controller: 'searchController',
-                controllerAs: 'model',
-                resolve:{
-                    currentLoggedInUser:checkLoggedIn
-                }
 
-            })
+            /*.when('/user/:userId', {
+             templateUrl: 'views/user/templates/profile.html',
+             controller: 'profileController',
+             controllerAs: 'model',
+             resolve:{
+             currentLoggedInUser:checkLoggedIn
+             }
+             })*/
+
 
             .when('/profile',{
                 templateUrl : 'views/user/templates/profile.html',
@@ -46,14 +39,25 @@
                 }
             })
 
-            /*.when('/user/:userId', {
-                templateUrl: 'views/user/templates/profile.html',
-                controller: 'profileController',
+            .when('/search', {
+            templateUrl: 'views/user/templates/search.html',
+            controller: 'searchController',
+            controllerAs: 'model'
+                /*resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }*/
+        })
+
+            .when('/user/search', {
+                templateUrl: 'views/user/templates/search.html',
+                controller: 'searchController',
                 controllerAs: 'model',
                 resolve:{
                     currentLoggedInUser:checkLoggedIn
                 }
-            })*/
+
+            })
+
             .when('/user/:userId/search/results', {
                 templateUrl: 'views/user/templates/results.html',
                 controller: 'resultController',
@@ -62,7 +66,7 @@
                     currentLoggedInUser:checkLoggedIn
                 }
             })
-            .when('/user/:userId/makePlan', {
+            .when('/user/makePlan', {
                 templateUrl: 'views/user/templates/plan.html',
                 controller: 'planController',
                 controllerAs: 'model',
@@ -70,7 +74,7 @@
                     currentLoggedInUser:checkLoggedIn
                 }
             })
-            .when('/user/:userId/offers', {
+            .when('/user/offers', {
                 templateUrl: 'views/user/templates/offers.html',
                 controller: 'offerController',
                 controllerAs: 'model',
@@ -78,7 +82,7 @@
                     currentLoggedInUser:checkLoggedIn
                 }
             })
-            .when('/user/:userId/getData', {
+            .when('/user/getData', {
                 templateUrl: 'views/user/templates/userData.html',
                 controller: 'dataController',
                 controllerAs: 'model',

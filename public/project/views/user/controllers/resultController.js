@@ -37,11 +37,13 @@
 
         }
 
-        function dataController($location,
+        function dataController(currentLoggedInUser,$location,
                                 $routeParams,
                                 searchServices) {
             var model = this;
-            model.userId = $routeParams['userId'];
+            model.userId = currentLoggedInUser._id;
+            model.user = currentLoggedInUser;
+           // model.userId = $routeParams['userId'];
             model.searchData =searchData;
 
 

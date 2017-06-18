@@ -9,10 +9,12 @@
         .controller('offerController', offerController)
         .controller('planController', planController);
 
-    function searchController($location, searchServices,$routeParams) {
+    function searchController(currentLoggedInUser,$location, searchServices,$routeParams) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentLoggedInUser._id;
+        model.user = currentLoggedInUser;
+       // model.userId = $routeParams['userId'];
         model.selectTheme = selectTheme;
         model.goBackToProfile = goBackToProfile;
         model.searchThemes= searchThemes;
@@ -165,11 +167,13 @@
    }
 
 
-        function offerController($location,
+        function offerController(currentLoggedInUser,$location,
                                  $routeParams,
                                  searchServices) {
             var model = this;
-            model.userId = $routeParams['userId'];
+            model.userId = currentLoggedInUser._id;
+            model.user = currentLoggedInUser;
+           // model.userId = $routeParams['userId'];
 
             function init(){
                 searchServices
@@ -195,13 +199,15 @@
         }
 
 
-        function planController($location,
+        function planController(currentLoggedInUser,$location,
                                 $routeParams,
                                 searchServices, ClientSideServices) {
             var model = this;
             model.searchFlights = searchFlights;
             model.placePlan = placePlan;
-            model.userId = $routeParams['userId'];
+            model.userId = currentLoggedInUser._id;
+            model.user = currentLoggedInUser;
+            //model.userId = $routeParams['userId'];
             model.goBackToProfile = goBackToProfile;
             model.fetchFare=fetchFare;
             model.offerDiscount=offerDiscount;

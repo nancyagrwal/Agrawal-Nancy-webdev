@@ -14,9 +14,9 @@ module.exports = function(app, model) {
     passport.deserializeUser(deserializeUser);
 
     var googleConfig = {
-        clientID: process.env.GOOGLE_PROJECT_CLIENT_ID,//"50624278738-fl28qob44pj8vba6diflflfqkkpmiq2d.apps.googleusercontent.com",
+        clientID: process.env.GOOGLE_PROJECT_CLIENT_ID,
         clientSecret: process.env.GOOGLE_PROJECT_SECRET_KEY,
-        callbackURL: process.env.GOOGLE_PROJECT_CALLBACK_URL //http://localhost:3000/auth/google/callback"
+        callbackURL: process.env.GOOGLE_PROJECT_CALLBACK_URL
     };
 
     var facebookConfig = {
