@@ -4248,7 +4248,7 @@ module.exports = function(app, model) {
                 validTillDate:validTillDate,
                 airLines:airLines
             };
-            console.log('**********');
+           
             model.PlanModel
                 .findPlan(plans)
                 .then(function(resp){
@@ -4391,8 +4391,6 @@ module.exports = function(app, model) {
 
     }
     function findAirlinename(req,res){
-        console.log('*********');
-
         res.json(airlineCodeMap);
     }
 
