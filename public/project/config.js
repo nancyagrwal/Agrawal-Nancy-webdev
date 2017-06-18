@@ -39,6 +39,12 @@
                 }
             })
 
+            .when('/user/addUser',{
+                templateUrl: 'views/user/templates/adduser.html',
+                controller: 'registerController',
+                controllerAs: 'model'
+            })
+
             .when('/search', {
             templateUrl: 'views/user/templates/search.html',
             controller: 'searchController',

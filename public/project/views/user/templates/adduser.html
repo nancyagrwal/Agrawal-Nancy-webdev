@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <h1>Add User</h1>
+
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div ng-show="model.message" class="alert">
+        {{model.message}}
+    </div>
+
+    <label for="username">Username</label>
+    <input type="text"
+           id="username"
+           ng-model="username"
+           class="form-control"
+           placeholder="AliceW"/>
+    <label for="password">Password</label>
+    <input type="password"
+           id="password"
+           ng-model="password"
+           class="form-control"
+           placeholder="AliceW@123"/>
+
+    <label for="password2">Verify Password</label>
+    <input type="password"
+           id="password2"
+           ng-model="password2"
+           class="form-control"
+           placeholder="AliceW@123"/>
+
+    <label for="userType">Type of User </label>
+    <select ng-model="userType" class="form-control" id="userType">
+        <option name="Business" >Business User</option>
+        <option name="Commercial">Commercial</option>
+        <option name="Researcher">Researcher</option>
+    </select>
+
+    <a ng-click="model.registerAdmin(username, password, password2,userType)"
+       class="btn btn-primary btn-block">
+        Add User
+    </a>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

@@ -17,10 +17,19 @@
             logout:logout,
             registerUser: registerUser,
             findUsers:findUsers,
-            checkLoggedIn:checkLoggedIn
+            checkLoggedIn:checkLoggedIn,
+            findAllUsers:findAllUsers
 
         };
         return api;
+
+        function findAllUsers(){
+            var url='/api/project/allUsers';
+            return $http.get(url)
+                .then(function(response){
+                    return response.data;
+                });
+        }
 
         function findUsers() {
             var url = '/api/project/user';

@@ -12,11 +12,17 @@ module.exports = function() {
         findUserByFacebookId:findUserByFacebookId,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        setModel: setModel
+        setModel: setModel,
+        findAllUsers:findAllUsers
     };
 
     return api;
     var model = {};
+
+    function findAllUsers(){
+        return ProjectUserModel
+            .find();
+    }
 
     function findUserByGoogleId(googleId) {
         return ProjectUserModel

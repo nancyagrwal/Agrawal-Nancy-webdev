@@ -7,6 +7,7 @@
         .module('Travelator')
         .controller('loginController', loginController)
         .controller('profileController',profileController)
+        .controller('adminController',adminController)
         .controller('registerController',registerController);
 
 
@@ -60,6 +61,8 @@
         //model.userId = $routeParams['userId'];
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.addUserRed =addUserRed;
+        model.updateUserPage=updateUserPage;
 
           /*ClientSideServices
             .findUserById(model.userId)
@@ -147,6 +150,23 @@
             }
         }
 
+        function updateUserPage() {
+
+            ClientSideServices
+                .findAllUsers()
+                .then(function(response){
+                    console.log(response);
+                    allUsers=response;
+                });
+            $location.url('/user/viewUser');
+
+        }
+
+
+        function addUserRed(){
+            $location.url('/user/addUser');
+        }
+
         /*function renderUser (user) {
          model.user = user;
          }*/
@@ -161,6 +181,46 @@
         var model = this;
 
         model.register = register;
+
+        function registerAdmin(username, password, password2, userType) {
+
+            if (username === null || username === '' || typeof username === 'undefined') {
+                model.error = 'username is required';
+                return;
+            }
+
+            if (password !== password2 || password === null || typeof password === 'undefined') {
+                model.error = "passwords must match";
+                return;
+            }
+
+            if (userType === null || typeof userType === 'undefined' || userType === '') {
+                model.error = "please select a user type you want to register as";
+                return;
+            }
+
+            ClientSideServices
+                .findUserByUsername(username)
+                .then(
+                    function () {
+                        model.error = "sorry, that username is taken";
+                    },
+                    function () {
+                        var newUser = {
+                            username: username,
+                            password: password,
+                            userType: userType
+                        };
+                        return ClientSideServices
+                            .createUser(newUser);
+                    }
+                )
+                .then(function (user) {
+                    model.message="User Added!";
+                });
+
+
+        }
 
         function register(username, password, password2, userType) {
 
@@ -204,4 +264,23 @@
 
 
         }
-    }})();
+    }
+
+    function adminController($location,ClientSideServices,$routeParams){
+        var model=this;
+
+
+      function init(){
+            model.userData=allUsers;
+            model.userId = $routeParams['userId'];
+            ClientSideServices
+                .findUserById(model.userId)
+                .then(function(response){
+                    model.user=response;
+                });
+        }
+
+        init();
+
+    }
+})();

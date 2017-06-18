@@ -36,7 +36,37 @@
 
 </br>
 
-<div>
+    <div ng-show="model.admin">
+        <div class="card col-md-12">
+            <div class="card col-md-3">
+                <div class="btn-user-img-class">
+                    <img src="../images/add_user-512.png" class="btn-user-img-class userHover" title="Add User" ng-click="model.addUserRed()">
+                </div>
+            </div>
+
+
+            <div class="card col-md-3">
+                <div class="btn-user-img-class">
+                    <img src="../images/delete_user-512.png" class="btn-user-img-class userHover" title="Delete User" ng-click="model.updateUserPage()">
+                </div>
+            </div>
+
+            <div class="card col-md-3">
+                <div class="btn-user-img-class">
+                    <img src="../images/update_user-512.png" class="btn-user-img-class userHover" title="Update User" ng-click="model.updateUserPage()">
+                </div>
+            </div>
+
+            <div class="card col-md-3">
+                <div class="btn-user-img-class">
+                    <img src="../images/search_user-512.png" class="btn-user-img-class userHover" title="Search User" ng-click="model.updateUserPage()">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-show="model.nonAdmin">
 
             <input ng-model="model.user.username"
                    readonly
@@ -75,6 +105,7 @@
                    id="last-name"
                    placeholder="Wonderland">
         </div>
+
 
 <div ng-show="model.comm">
     <a class="btn btn-primary btn-block"

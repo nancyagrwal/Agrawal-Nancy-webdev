@@ -9,6 +9,19 @@ body {
     padding-bottom: 60px;
 }
 
+.btn-user-img-class {
+    display:block;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 1px solid grey;
+
+}
+.userHover:hover{
+    border-color: #a6e1ec;
+
+}
+
 @media (max-width: 768px) {
     .wd-margin-sx {
         padding-left: 15px;
