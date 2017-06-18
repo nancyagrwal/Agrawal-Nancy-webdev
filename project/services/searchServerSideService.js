@@ -4218,7 +4218,7 @@ module.exports = function(app, model) {
     app.get('/api/project/user/:userId/findPlan', findPlan);
     app.post('/api/project/user/:userId/makePlan', placePlan);
     app.get('/api/project/user/:userId/offers', findAllOffers);
-    app.get('/api/project/user/:userId/getData', findAllData);
+    app.get('/api/project/user/:userId/:criteria/getData', findAllData);
     app.post('/api/project/user/:userId/search/storeFlight', storeUserFlightData);
     app.post('/api/project/user/:userId/search/storeTheme', storeUserThemeData);
     app.get('/api/project/user/:userId/search/airlinecode',findAirlinename);
@@ -4302,12 +4302,21 @@ module.exports = function(app, model) {
 
     function findAllData(req, res) {
         var criteria = req.query.criteria;
+        console.log(criteria);
         var userId = req.query.userId;
         if (criteria === "Theme" || "Budget") {
             model.LogsModel
                 .findAllData("T")
                 .then(function(resp){
-                    res.json(resp);
+
+                    var dataLogs=[];
+                    for(var u in resp) {
+                        var log = resp[u];
+                      
+                        dataLogs.push(log);
+                        return dataLogs;
+                    }
+                  //  res.json(resp);
                 });
         }
 
@@ -4316,7 +4325,7 @@ module.exports = function(app, model) {
                 .findAllData("F")
                 .then(function(resp){
 
-                    res.json(resp);
+                     res.json(resp);
                 });
         }
 

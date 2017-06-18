@@ -23,7 +23,7 @@
     <label for="criteria">Criteria</label>
     <select id="criteria"
             ng-model="model.criteria"
-            ng-change="model.searchData(model.userId, model.criteria)"
+            ng-change="model.searchOfferData(model.userId, model.criteria)"
             class="form-control">
         <option>Theme</option>
         <option>Destination City</option>
@@ -75,14 +75,12 @@
             </li>
         </div>
 
-
         <div ng-switch-when="Destination City|Origin City" ng-switch-when-separator="|">
             <div class="row">
+
                 <li ng-repeat="plan in model.searchData"
                     class="list-group-item">
                     <div class="row">
-
-
                         <div class="col-lg-4 col-md-7 col-xs-10">
                             <p> Origin :  {{plan.origin}} </p>
                         </div>

@@ -19,7 +19,6 @@ module.exports = function() {
     }
 
     function findAllData(type){
-        console.log('*8888**');
         return LogsModel
             .find({type:type})
     }

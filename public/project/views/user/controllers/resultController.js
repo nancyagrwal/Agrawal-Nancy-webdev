@@ -44,7 +44,7 @@
             model.userId = currentLoggedInUser._id;
             model.user = currentLoggedInUser;
            // model.userId = $routeParams['userId'];
-            model.searchData =searchData;
+            model.searchOfferData =searchOfferData;
 
 
             // model.user = userService.findUserById(model.userId);
@@ -55,7 +55,7 @@
              }
              init();*/
 
-            function searchData(userId, criteria)
+            function searchOfferData(userId, criteria)
             {
                 searchServices
                     .findAllData(model.userId,criteria)

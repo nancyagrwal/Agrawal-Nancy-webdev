@@ -42,12 +42,14 @@
             + '&airLines='+airLines;
             return $http.get(url)
                 .then(function (response) {
-
+                    console.log(response.data);
                     return response.data;
                 });
         }
 
         function searchThemes(budget,location,departureDate,returnDate,theme,userId) {
+            console.log(theme.name);
+
             var themeName=theme.name.toUpperCase();
             var url = "https://api.test.sabre.com/v2/shop/flights/fares?origin="+location+"&departuredate="+departureDate+"&returndate="+returnDate+"&theme="+themeName+"&maxfare="+budget+"&pointofsalecountry=US";
             $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
@@ -137,7 +139,7 @@
                         // console.log(themeFlightData);
                     }
                     //storing the flight search data:
-
+                    console.log(themeFlightData);
                     var url = "/api/project/user/"+ userId +"/search/storeTheme";
                     $http.defaults.headers.common.Authorization =undefined;
                     return $http.post(url, themeFlightData)
@@ -163,7 +165,7 @@
          }*/
 
         function getThemeFlightData(){
-
+            console.log(themeFlightData);
             return themeFlightData;
         }
 
@@ -215,7 +217,7 @@
             $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
             return $http.get(url)
                 .then(function (response){
-
+                     console.log("flight data is...." + response);
                     var flData=response.data;
                     //flData.push(response.data);
 
@@ -404,8 +406,8 @@
                     return offersData;
                 });
         }
-        function findAllData(userId){
-            var url='/api/project/user/'+userId+'/getData';
+        function findAllData(userId,criteria){
+            var url='/api/project/user/'+userId+ '/' + criteria +"/getData";
             return $http.get(url)
                 .then(function(response){
 
