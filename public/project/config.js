@@ -93,7 +93,7 @@
 
     }
 
-    function checkLoggedIn($q,userService,$location) {
+    function checkLoggedIn($q,ClientSideServices,$location) {
         var deferred = $q.defer();
         ClientSideServices
             .checkLoggedIn()

@@ -32,18 +32,19 @@ module.exports = function(app, model) {
     app.get('/api/project/user/:userId', findUserById);
     app.get('/api/project/user' , findUserByCredentials);
     app.get('/api/project/userRegister', findUserByUsername);
+    app.get('/api/project/checkLoggedIn',checkLoggedIn);
     app.post('/api/project/user', createUser);
     app.put('/api/project/user/:userId', updateUser);
     app.delete('/api/project/user/:userId', deleteUser);
     app.post ('/api/project/upload', upload.single('myFile'), uploadImage);
 
-// added for security:
+    // added for security:
     app.post('/api/project/register' ,register);
     app.post('/api/project/logout',logout);
-
-    app.post  ('/api/project/login', passport.authenticate('local'), login);
+    app.post('/api/project/login', passport.authenticate('local'), login);
     app.get('/project/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
+
     app.get('/google/auth/project/callback',
         passport.authenticate('google', {
             successRedirect: '/project/index.html#!/profile',
@@ -315,7 +316,7 @@ module.exports = function(app, model) {
     function findUserByUsername(req, res) {
 
         var username = req.query.username;
-     //   var password = req.query.password;
+        var password = req.query.password;
 
         model.ProjectUserModel
             .findUserByUsername(username)
@@ -327,10 +328,10 @@ module.exports = function(app, model) {
                     } else {
                         res.sendStatus(404);
                     }
-                },
+                }/*,
                 function (error) {
                     res.sendStatus(404);
-                }
+                }*/
             );
 
     }
@@ -347,10 +348,10 @@ module.exports = function(app, model) {
                     } else {
                         res.sendStatus(404);
                     }
-                },
+                }/*,
                 function (error) {
                     res.sendStatus(404);
-                }
+                }*/
             );
 
 

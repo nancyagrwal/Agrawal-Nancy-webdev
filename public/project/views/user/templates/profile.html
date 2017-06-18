@@ -24,7 +24,7 @@
             <label> Upload Image</label>
             <form action="/api/upload"   method="post" enctype="multipart/form-data">
                 <input  name="myFile"    type="file" class="form-control"/>
-                <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+               <!-- <input  name="userId"    value="{{model.userId}}"   style="display: none"/>-->
                 <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
             </form>
             <br/>
@@ -78,14 +78,14 @@
 
 <div ng-show="model.comm">
     <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/search">
+       href="#!/user/search">
         Search Trips
     </a>
 
     <br>
 
     <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/offers" >
+       href="#!/user/offers" >
         View Offers
     </a>
 </div>
@@ -93,7 +93,7 @@
 
 <div ng-show="model.bizUser">
     <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/makePlan" >
+       href="#!/user/makePlan" >
         Make Plan Package
     </a>
 </div>
@@ -102,7 +102,7 @@
 
 <div ng-show="model.resUser">
     <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/getData">
+       href="#!/user/getData">
         Get Data
     </a>
 </div>

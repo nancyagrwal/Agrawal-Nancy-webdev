@@ -40,8 +40,6 @@ module.exports = function() {
     }
 
     function findUserByUsername(username) {
-
-        console.log('findUserByUsername');
         return ProjectUserModel
             .findOne({username:username});
     }

@@ -56,6 +56,7 @@
         var model = this;
 
         model.userId = currentLoggedInUser._id;
+        console.log("user id is........"+ model.userId);
         model.user = currentLoggedInUser;
         //model.userId = $routeParams['userId'];
         model.updateUser = updateUser;
@@ -66,6 +67,7 @@
             .then(renderUser, userError);
 */
         function init() {
+            console.log("user id is........"+ model.userId);
             renderUser(currentLoggedInUser);
             ClientSideServices
                 .findUsers()
@@ -131,16 +133,17 @@
             model.firstName = model.user.firstName;
             model.email = model.user.email;
             model.lastName = model.user.lastName;
+            model.userType = model.user.userType;
 
-            if (model.user.userType.toString()=== 'Commercial') {
+            if (model.userType.toString()=== 'Commercial') {
                 model.comm = "true";
                 //alert('ok');
             }
-            if(model.user.userType.toString() === 'Business User') {
+            if(model.userType.toString() === 'Business User') {
                 model.bizUser ="true";
                 //alert('oki');
             }
-            if(model.user.userType.toString() === 'Researcher') {
+            if(model.userType.toString() === 'Researcher') {
                 // alert('okiee');
                 model.resUser = "true";
             }

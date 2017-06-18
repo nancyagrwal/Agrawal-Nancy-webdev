@@ -1,7 +1,7 @@
 module.exports = function() {
     var mongoose = require('mongoose');
-    var PlanSchema = require('./logs.schema.server')();
-    var LogsModel = mongoose.model('LogsModel', PlanSchema);
+    var LogSchema = require('./logs.schema.server')();
+    var LogsModel = mongoose.model('LogsModel', LogSchema);
 
 
     var api = {
