@@ -131,6 +131,8 @@
 
         function renderUser (user) {
             model.user = user;
+            model.nonAdmin=true;
+
             model.username = model.user.username;
             model.firstName = model.user.firstName;
             model.email = model.user.email;
@@ -147,6 +149,11 @@
             if(model.user.userType.toString() === 'Researcher') {
                 // alert('okiee');
                 model.resUser = "true";
+            }
+            if(model.user.userType.toString()== 'Administrator'){
+
+                model.nonAdmin=false;
+                model.admin=true;
             }
         }
 

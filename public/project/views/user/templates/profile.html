@@ -16,11 +16,11 @@
 
 <div class="container-fluid">
 
-        <div ng-show="model.message" class="alert alert-success">
-            {{model.message}}
-        </div>
-
-    <div class="navbar-text wd-navbar-header pull-right ">
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}}
+    </div>
+    <div ng-show="model.nonAdmin">
+        <div class="navbar-text wd-navbar-header pull-right ">
             <label> Upload Image</label>
             <form action="/api/upload"   method="post" enctype="multipart/form-data">
                 <input  name="myFile"    type="file" class="form-control"/>
@@ -28,14 +28,13 @@
                 <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
             </form>
             <br/>
-    </div>
-
-    <div class="navbar-text wd-navbar-header pull-left">
-    <img ng-src="{{model.user.profilePicture}}"/>
         </div>
 
-</br>
-
+        <div class="navbar-text wd-navbar-header pull-left">
+            <img ng-src="{{model.user.profilePicture}}"/>
+        </div>
+    </div>
+    </br>
     <div ng-show="model.admin">
         <div class="card col-md-12">
             <div class="card col-md-3">
@@ -68,43 +67,46 @@
 
     <div ng-show="model.nonAdmin">
 
-            <input ng-model="model.user.username"
-                   readonly
-                   type="text"
-                   class="form-control"
-                   id="username"
-                   placeholder="AliceW">
+        <input ng-model="model.user.username"
+               readonly
+               type="text"
+               class="form-control"
+               id="username"
+               placeholder="AliceW">
 
 
-            <label for="email">
-                Email address
-            </label>
-            <input ng-model="model.user.email"
-                   type="email"
-                   class="form-control"
-                   id="email"
-                   placeholder="alice@wonderland.com">
+        <label for="email">
+            Email address
+        </label>
+        <input ng-model="model.user.email"
+               type="email"
+               class="form-control"
+               id="email"
+               placeholder="alice@wonderland.com">
 
 
-            <label for="first-name">
-                First Name
-            </label>
-            <input ng-model="model.user.firstName"
-                   type="text"
-                   class="form-control"
-                   id="first-name"
-                   placeholder="Alice">
+        <label for="first-name">
+            First Name
+        </label>
+        <input ng-model="model.user.firstName"
+               type="text"
+               class="form-control"
+               id="first-name"
+               placeholder="Alice">
 
 
-            <label for="last-name">
-                Last Name
-            </label>
-            <input ng-model="model.user.lastName"
-                   type="text"
-                   class="form-control"
-                   id="last-name"
-                   placeholder="Wonderland">
-        </div>
+        <label for="last-name">
+            Last Name
+        </label>
+        <input ng-model="model.user.lastName"
+               type="text"
+               class="form-control"
+               id="last-name"
+               placeholder="Wonderland">
+    </div>
+
+</div>
+
 
 
 <div ng-show="model.comm">
@@ -114,7 +116,6 @@
     </a>
 
     <br>
-
     <a class="btn btn-primary btn-block"
        href="#!/user/offers" >
         View Offers
@@ -138,11 +139,11 @@
     </a>
 </div>
 
-    <br>
-    <a class="btn btn-danger  btn-block"
-       href="#!/login">
-        Logout
-    </a>
+<br>
+<a class="btn btn-danger  btn-block"
+   href="#!/login">
+    Logout
+</a>
 </div>
 
 
