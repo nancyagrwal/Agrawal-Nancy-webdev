@@ -313,7 +313,7 @@
                                     offeredBy: model.user.username,
                                     airLines:airLines
                                 };
-                                console.log("**********");
+
                                 return searchServices
                                     .placePlan(newPlan, model.userId)
                                     .then(function (plan) {

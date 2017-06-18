@@ -28,8 +28,6 @@
         var citydata=[];
 
         function findPlan(validFromDate,validTillDate,offerId, fromCity,toCity,departureDate,returnDate,realFare,discountedFare,userId,username,airLines) {
-            console.log("find plan client...." + validFromDate + "," + validTillDate+ "," +offerId+ "," + fromCity+ "," +
-                toCity + "," + departureDate + "," +returnDate+ "," +realFare+ "," +discountedFare+ "," +userId);
             var url = "/api/project/user/" + userId + "/findPlan?"
             + "validFromDate=" + validFromDate
             + '&validTillDate=' + validTillDate

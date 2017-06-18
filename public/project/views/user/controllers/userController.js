@@ -54,7 +54,6 @@
                                $routeParams,
                                ClientSideServices) {
         var model = this;
-
         model.userId = currentLoggedInUser._id;
         console.log("user id is........"+ model.userId);
         model.user = currentLoggedInUser;
@@ -133,17 +132,16 @@
             model.firstName = model.user.firstName;
             model.email = model.user.email;
             model.lastName = model.user.lastName;
-            model.userType = model.user.userType;
 
-            if (model.userType.toString()=== 'Commercial') {
+            if (model.user.userType.toString()=== 'Commercial') {
                 model.comm = "true";
                 //alert('ok');
             }
-            if(model.userType.toString() === 'Business User') {
+            if(model.user.userType.toString() === 'Business User') {
                 model.bizUser ="true";
                 //alert('oki');
             }
-            if(model.userType.toString() === 'Researcher') {
+            if(model.user.userType.toString() === 'Researcher') {
                 // alert('okiee');
                 model.resUser = "true";
             }
