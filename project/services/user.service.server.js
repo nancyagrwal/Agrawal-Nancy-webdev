@@ -140,7 +140,6 @@ module.exports = function(app, model) {
 
     function register(req,res) {
         var user = req.body;
-        console.log("user here is...." + user);
         model.ProjectUserModel
             .createUser(user)
             .then(function (user) {
@@ -230,7 +229,7 @@ module.exports = function(app, model) {
 
 
     function deleteUser(req, res) {
-        console.log('deleteUser');
+
         var userId = req.params.userId;
         model.ProjectUserModel
             .deleteUser(userId)
@@ -245,7 +244,7 @@ module.exports = function(app, model) {
     }
 
     function updateUser(req, res) {
-        console.log('updateUser');
+
         var user = req.body;
         var userId = req.params.userId;
         model.ProjectUserModel
@@ -263,7 +262,7 @@ module.exports = function(app, model) {
 
     function createUser(req, res) {
         var user = req.body;
-        console.log('createUser');
+
         model.ProjectUserModel
             .createUser(user)
             .then(function (resp) {
@@ -276,7 +275,7 @@ module.exports = function(app, model) {
 
 
     function findUserByCredentials(req, res) {
-        console.log('findUserByCredentials');
+
         var username = req.query.username;
         var password = req.query.password;
 
@@ -314,7 +313,7 @@ module.exports = function(app, model) {
 
 
     function findUserByUsername(req, res) {
-        console.log('findUserByUsername');
+
         var username = req.query.username;
      //   var password = req.query.password;
 
@@ -322,7 +321,7 @@ module.exports = function(app, model) {
             .findUserByUsername(username)
             .then(
                 function (user) {
-                    console.log(user);
+
                     if (user) {
                         res.send(user);
                     } else {
@@ -337,7 +336,7 @@ module.exports = function(app, model) {
     }
 
     function findUserById(req, res) {
-        console.log('findUserById');
+
         var userId = req.params['userId'];
         model.ProjectUserModel
             .findUserById(userId)
