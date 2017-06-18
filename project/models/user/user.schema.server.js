@@ -10,6 +10,7 @@ module.exports = function () {
             lastName: String,
             email: String,
             phone: String,
+            profilePicture: String,
             dateCreated: {type: Date, default: Date.now()},
             facebook : {
                 id: String,

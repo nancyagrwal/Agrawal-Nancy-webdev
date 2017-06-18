@@ -209,17 +209,13 @@ module.exports = function(app, model) {
     }
 
     function uploadImage(req, res) {
-
-
         var myFile = req.file;
-        var userId = req.body.userId;
+        var user = req.body.user;
+        console.log("userId here is....." + user);
         var filename = myFile.filename;     // new file name in upload folder
         var path = myFile.path;         // full path of uploaded file
         var destination = myFile.destination;  // folder where file is saved to
         var size = myFile.size;
-        var mimetype = myFile.mimetype;
-
-
 
         model
             .ProjectUserModel

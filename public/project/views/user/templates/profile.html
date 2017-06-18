@@ -17,12 +17,12 @@
 <div class="container-fluid">
 
         <div ng-show="model.message" class="alert alert-success">
-            {{model.userId}}
+            {{model.message}}
         </div>
 
     <div class="navbar-text wd-navbar-header pull-right ">
             <label> Upload Image</label>
-            <form action="/api/project/upload"   method="post" enctype="multipart/form-data">
+            <form action="/api/upload"   method="post" enctype="multipart/form-data">
                 <input  name="myFile"    type="file" class="form-control"/>
                 <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
                 <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
@@ -102,7 +102,7 @@
 
 <div ng-show="model.resUser">
     <a class="btn btn-primary btn-block"
-       href="#!/user/getData">
+       href="#!/user/{{model.userId}}/getData">
         Get Data
     </a>
 </div>
