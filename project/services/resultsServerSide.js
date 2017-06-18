@@ -3,7 +3,7 @@
  */
 
 module.exports = function(app, model) {
-    var UserModel1 = model.UserModel1;
+    var ProjectUserModel = model.ProjectUserModel;
 
 //var app = require('../../express');
 

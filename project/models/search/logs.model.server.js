@@ -1,7 +1,7 @@
 module.exports = function() {
     var mongoose = require('mongoose');
     var PlanSchema = require('./logs.schema.server')();
-    var UserModel3 = mongoose.model('UserModel3', PlanSchema);
+    var LogsModel = mongoose.model('LogsModel', PlanSchema);
 
 
     var api = {
@@ -13,13 +13,13 @@ module.exports = function() {
     var model = {};
 
     function insertLogs(data) {
-        return UserModel3
+        return LogsModel
             .create(data);
     }
 
     function findAllData(type){
         console.log('*8888**');
-        return UserModel3
+        return LogsModel
             .find({type:type})
     }
 }

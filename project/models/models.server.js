@@ -1,6 +1,6 @@
 module.exports = function () {
 
-    var connectionString = 'mongodb://127.0.0.1:27017/projectDb';
+    var connectionString = 'mongodb://127.0.0.1:27017/test';
 
     if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
@@ -21,19 +21,19 @@ module.exports = function () {
     mongoose.connect(connectionString);
     mongoose.Promise = require('q').Promise;
 
-    var userModel1 = require('./user/user.model.server')();
-    var userModel2= require('./search/plan.model.server')();
-    var userModel3= require('./search/logs.model.server')();
+    var ProjectUserModel = require('./user/user.model.server')();
+    var PlanModel= require('./search/plan.model.server')();
+    var LogsModel= require('./search/logs.model.server')();
 
     var model = {
-        userModel1: userModel1,
-        userModel2: userModel2,
-        userModel3:userModel3
+        ProjectUserModel: ProjectUserModel,
+        PlanModel: PlanModel,
+        LogsModel:LogsModel
     };
 
 
-    userModel1.setModel(model);
-    userModel2.setModel(model);
-    userModel3.setModel(model);
+    ProjectUserModel.setModel(model);
+    PlanModel.setModel(model);
+    LogsModel.setModel(model);
     return model;
 };

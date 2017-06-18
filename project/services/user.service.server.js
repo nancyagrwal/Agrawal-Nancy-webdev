@@ -1,12 +1,12 @@
 
 module.exports = function(app, model) {
-    var UserModel1 = model.userModel1;
+    var ProjectUserModel = model.ProjectUserModel;
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
     var multer = require('multer');
-    var upload = multer({dest: __dirname + '/../../public/assignment/uploads'});
+    var upload = multer({dest: __dirname + '/../../public/project/uploads'});
 
 
     passport.use(new LocalStrategy(localStrategy));
@@ -14,9 +14,9 @@ module.exports = function(app, model) {
     passport.deserializeUser(deserializeUser);
 
     var googleConfig = {
-        clientID: process.env.GOOGLE_CLIENT_ID,//"50624278738-fl28qob44pj8vba6diflflfqkkpmiq2d.apps.googleusercontent.com",
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET, //PRQOZJPPTCUwbtxE0JfeIlCO",
-        callbackURL: process.env.GOOGLE_CALLBACK_URL //http://localhost:3000/auth/google/callback"
+        clientID: process.env.GOOGLE_PROJECT_CLIENT_ID,//"50624278738-fl28qob44pj8vba6diflflfqkkpmiq2d.apps.googleusercontent.com",
+        clientSecret: process.env.GOOGLE_PROJECT_SECRET_KEY,
+        callbackURL: process.env.GOOGLE_PROJECT_CALLBACK_URL //http://localhost:3000/auth/google/callback"
     };
 
     var facebookConfig = {
@@ -42,14 +42,14 @@ module.exports = function(app, model) {
     app.post('/api/project/logout',logout);
 
     app.post  ('/api/project/login', passport.authenticate('local'), login);
-    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
-    app.get('/auth/google/callback',
+    app.get('/project/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
+    app.get('/google/auth/project/callback',
         passport.authenticate('google', {
             successRedirect: '/project/index.html#!/profile',
             failureRedirect: '/project/index.html#!/login'
         }));
-    app.get('/auth/facebook/callback',
+    app.get('/facebook/auth/project/callback',
         passport.authenticate('facebook', {
             successRedirect: '/project/index.html#!/profile',
             failureRedirect: '/project/index.html#!/login'
@@ -61,7 +61,7 @@ module.exports = function(app, model) {
 
 
     function googleStrategy(token, refreshToken, profile, done) {
-        model.userModel1
+        model.ProjectUserModel
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
@@ -80,7 +80,7 @@ module.exports = function(app, model) {
                                 token: token
                             }
                         };
-                        return userModel1.createUser(newGoogleUser);
+                        return ProjectUserModel.createUser(newGoogleUser);
                     }
                 },
                 function(err) {
@@ -100,7 +100,7 @@ module.exports = function(app, model) {
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     function facebookStrategy(token, refreshToken, profile, done) {
-        model.userModel1
+        model.ProjectUserModel
             .findUserByFacebookId(profile.id)
             .then(
                 function(user) {
@@ -119,7 +119,7 @@ module.exports = function(app, model) {
                                 token: token
                             }
                         };
-                        return userModel1.createUser(newFacebookUser);
+                        return ProjectUserModel.createUser(newFacebookUser);
                     }
                 },
                 function(err) {
@@ -140,8 +140,8 @@ module.exports = function(app, model) {
 
     function register(req,res) {
         var user = req.body;
-
-        model.userModel1
+        console.log("user here is...." + user);
+        model.ProjectUserModel
             .createUser(user)
             .then(function (user) {
                 req
@@ -174,7 +174,7 @@ module.exports = function(app, model) {
 
 // we extract the user by finding the user by id by unwrapping the user object from the cookie
     function deserializeUser(user, done) {
-        model.userModel1
+        model.ProjectUserModel
             .findUserById(user._id)
             .then(
                 function(user){
@@ -188,7 +188,7 @@ module.exports = function(app, model) {
 
 
     function localStrategy(username, password, done) {
-        model.userModel1
+        model.ProjectUserModel
             .findUserByCredentials(username,password)
             .then(
                 function(user) {
@@ -218,7 +218,7 @@ module.exports = function(app, model) {
         var user = {
             profilePicture: "/project/uploads/" + filename
         };
-        UserModel1
+        ProjectUserModel
             .updateUser(userId, user)
             .then(function (resp) {
                 res.redirect(url);
@@ -232,7 +232,7 @@ module.exports = function(app, model) {
     function deleteUser(req, res) {
         console.log('deleteUser');
         var userId = req.params.userId;
-        UserModel1
+        ProjectUserModel
             .deleteUser(userId)
             .then(
                 function (resp) {
@@ -248,7 +248,7 @@ module.exports = function(app, model) {
         console.log('updateUser');
         var user = req.body;
         var userId = req.params.userId;
-        UserModel1
+        ProjectUserModel
             .updateUser(userId, user)
             .then(
                 function (resp) {
@@ -264,7 +264,7 @@ module.exports = function(app, model) {
     function createUser(req, res) {
         var user = req.body;
         console.log('createUser');
-        UserModel1
+        ProjectUserModel
             .createUser(user)
             .then(function (resp) {
                 res.send(resp)
@@ -280,7 +280,7 @@ module.exports = function(app, model) {
         var username = req.query.username;
         var password = req.query.password;
 
-        UserModel1
+        ProjectUserModel
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
@@ -303,7 +303,7 @@ module.exports = function(app, model) {
         var username = req.query.username;
      //   var password = req.query.password;
 
-        UserModel1
+        ProjectUserModel
             .findUserByUsername(username)
             .then(
                 function (user) {
@@ -324,7 +324,7 @@ module.exports = function(app, model) {
     function findUserById(req, res) {
         console.log('findUserById');
         var userId = req.params['userId'];
-        UserModel1
+        ProjectUserModel
             .findUserById(userId)
             .then(
                 function (user) {
