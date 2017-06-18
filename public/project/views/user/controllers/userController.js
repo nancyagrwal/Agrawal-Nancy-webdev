@@ -66,7 +66,7 @@
             .then(renderUser, userError);
 */
         function init() {
-            renderUser(currentUser);
+            renderUser(currentLoggedInUser);
             ClientSideServices
                 .findUsers()
                 .then(function (users) {

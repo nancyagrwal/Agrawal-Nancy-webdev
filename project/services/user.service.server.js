@@ -218,7 +218,7 @@ module.exports = function(app, model) {
         var user = {
             profilePicture: "/project/uploads/" + filename
         };
-        ProjectUserModel
+        model.ProjectUserModel
             .updateUser(userId, user)
             .then(function (resp) {
                 res.redirect(url);
@@ -232,7 +232,7 @@ module.exports = function(app, model) {
     function deleteUser(req, res) {
         console.log('deleteUser');
         var userId = req.params.userId;
-        ProjectUserModel
+        model.ProjectUserModel
             .deleteUser(userId)
             .then(
                 function (resp) {
@@ -248,7 +248,7 @@ module.exports = function(app, model) {
         console.log('updateUser');
         var user = req.body;
         var userId = req.params.userId;
-        ProjectUserModel
+        model.ProjectUserModel
             .updateUser(userId, user)
             .then(
                 function (resp) {
@@ -264,7 +264,7 @@ module.exports = function(app, model) {
     function createUser(req, res) {
         var user = req.body;
         console.log('createUser');
-        ProjectUserModel
+        model.ProjectUserModel
             .createUser(user)
             .then(function (resp) {
                 res.send(resp)
@@ -280,7 +280,7 @@ module.exports = function(app, model) {
         var username = req.query.username;
         var password = req.query.password;
 
-        ProjectUserModel
+        model.ProjectUserModel
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
@@ -289,21 +289,36 @@ module.exports = function(app, model) {
                     } else {
                         res.sendStatus(404);
                     }
-                },
-                function (error) {
-                    res.sendStatus(404);
                 }
             );
-
-
     }
+
+    if(username)
+    {
+
+        model
+            .ProjectUserModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if (user) {
+
+                        res.send(user);
+                    } else {
+
+                        res.sendStatus(404);
+                    }
+                }
+            );
+    }
+
 
     function findUserByUsername(req, res) {
         console.log('findUserByUsername');
         var username = req.query.username;
      //   var password = req.query.password;
 
-        ProjectUserModel
+        model.ProjectUserModel
             .findUserByUsername(username)
             .then(
                 function (user) {
@@ -324,7 +339,7 @@ module.exports = function(app, model) {
     function findUserById(req, res) {
         console.log('findUserById');
         var userId = req.params['userId'];
-        ProjectUserModel
+        model.ProjectUserModel
             .findUserById(userId)
             .then(
                 function (user) {

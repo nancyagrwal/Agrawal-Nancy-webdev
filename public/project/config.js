@@ -37,14 +37,23 @@
 
             })
 
-            .when('/user/:userId', {
-                templateUrl: 'views/user/templates/profile.html',
+            .when('/profile',{
+                templateUrl : 'views/user/templates/profile.html',
                 controller: 'profileController',
                 controllerAs: 'model',
                 resolve:{
                     currentLoggedInUser:checkLoggedIn
                 }
             })
+
+            /*.when('/user/:userId', {
+                templateUrl: 'views/user/templates/profile.html',
+                controller: 'profileController',
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
+            })*/
             .when('/user/:userId/search/results', {
                 templateUrl: 'views/user/templates/results.html',
                 controller: 'resultController',

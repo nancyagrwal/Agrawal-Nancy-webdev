@@ -4249,7 +4249,7 @@ module.exports = function(app, model) {
                 airLines:airLines
             };
             console.log('**********');
-            PlanModel
+            model.PlanModel
                 .findPlan(plans)
                 .then(function(resp){
                     console.log(resp);
@@ -4291,7 +4291,7 @@ module.exports = function(app, model) {
     }
 
     function findAllOffers(req, res) {
-       PlanModel
+        model.PlanModel
           .findAllOffers()
           .then(function(resp){
               res.json(resp);
@@ -4304,7 +4304,7 @@ module.exports = function(app, model) {
         var criteria = req.query.criteria;
         var userId = req.query.userId;
         if (criteria === "Theme" || "Budget") {
-            LogsModel
+            model.LogsModel
                 .findAllData("T")
                 .then(function(resp){
                     res.json(resp);
@@ -4312,7 +4312,7 @@ module.exports = function(app, model) {
         }
 
         if (criteria === "Destination City" || "Origin City") {
-            LogsModel
+            model.LogsModel
                 .findAllData("F")
                 .then(function(resp){
                     console.log(resp);
@@ -4326,7 +4326,7 @@ module.exports = function(app, model) {
 
         var offer = req.body;
        // offer._id = (new Date()).getTime() + "";
-        PlanModel
+        model.PlanModel
             .insertPlan(offer)
             .then(function (resp) {
                 res.send(resp)
@@ -4353,7 +4353,7 @@ module.exports = function(app, model) {
                 type:'T',
                 theme :themes.theme
             };
-            LogsModel
+            model.LogsModel
                 .insertLogs(log)
                 .then(function(resp){
 
@@ -4380,7 +4380,7 @@ module.exports = function(app, model) {
                 theme :'ALL'
 
             };
-            LogsModel
+            model.LogsModel
                 .insertLogs(log)
                 .then(function(resp){
 
