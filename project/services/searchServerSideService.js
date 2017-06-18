@@ -4312,11 +4312,11 @@ module.exports = function(app, model) {
                     var dataLogs=[];
                     for(var u in resp) {
                         var log = resp[u];
-                      
+
                         dataLogs.push(log);
                         return dataLogs;
                     }
-                  //  res.json(resp);
+
                 });
         }
 

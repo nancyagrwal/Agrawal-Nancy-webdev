@@ -7,7 +7,8 @@
         .module('Travelator')
         .controller('loginController', loginController)
         .controller('profileController',profileController)
-        .controller('adminController',adminController)
+        .controller('userListController',userListController)
+        .controller('userEditController',userEditController)
         .controller('registerController',registerController);
 
 
@@ -272,14 +273,17 @@
         }
     }
 
-    function adminController($location,ClientSideServices,$routeParams){
+    function userListController(currentLoggedInUser,$location,ClientSideServices,$routeParams){
         var model=this;
+        model.userId = currentLoggedInUser._id;
+        model.user = currentLoggedInUser;
+        model.goBack = goBack;
 
 
-      function init(){
+
+        function init(){
             model.userData=allUsers;
-            model.userId = $routeParams['userId'];
-            ClientSideServices
+             ClientSideServices
                 .findUserById(model.userId)
                 .then(function(response){
                     model.user=response;
@@ -288,5 +292,83 @@
 
         init();
 
+        function renderWebsites (websites) {
+            model.websites = websites;
+        }
+
+        function goBack()
+        {
+            $location.url("/user/viewUser");
+        }
+
+
+
+
+
     }
+
+    function userEditController(currentLoggedInUser,$location,ClientSideServices,$routeParams){
+        var model=this;
+        model.userId = currentLoggedInUser._id;
+        model.user = currentLoggedInUser;
+
+        function init() {
+            ClientSideServices
+                .findAllUsers()
+                .then(function (response) {
+                    model.websites = response.data;
+                }, function (error) {
+                    console.log("Error: Unable to find any users");
+                });
+            ClientSideServices
+                .findUserById(model.userId)
+                .then(function (response) {
+                    model.website = response.data;
+                }, function (error) {
+                    console.log("Error: Unable to find website for user");
+                });
+        }
+        init();
+
+        function updateUser(user) {
+
+            ClientSideServices
+                .updateUser(model.userId, user)
+                .then(function (response) {
+                    $location.url("/user/viewUser");
+                }, function (error) {
+                    console.log("Error: Unable to update user");
+                });
+        }
+
+
+        function deleteUser(userId) {
+            ClientSideServices
+                .deleteUser(userId)
+                .then(function () {
+                    $location.url('/user/viewUser');
+                });
+        }
+
+        model.profile = profile;
+        model.editUser = editUser;
+        model.back=back;
+
+        function profile() {
+            $location.url("/profile");
+        }
+
+
+        function editUser(user) {
+            $location.url("/user/editUser/"+user._id);
+        }
+
+        function back() {
+            $location.url("/user/viewUser/");
+        }
+
+
+    }
+
+
 })();

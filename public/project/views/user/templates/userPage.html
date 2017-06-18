@@ -1,34 +1,60 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                Users
-            </a>
-            <p class="navbar-text pull-right">
-                <a ng-click="model.updateUser(model.user)"
-                   class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="navbar-header wd-margin-sx">
+                    <p class="navbar-text pull-left">
+                        <a ng-click="model.goBack()"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                    </p>
+                    <a class="navbar-brand">
+                        Existing Users
+                    </a>
+
+                </div>
+            </div>
         </div>
     </div>
 </nav>
-<div class="container-fluid">
-    <div class="row">
-        <div class="card col-md-12" ng-repeat="user in model.userData">
-            <hr>
-            <div class="card col-md-8 " style="text-align: start">
-                <p class="userHover"><h5> {{user.username}}</h5></p>
-            </div>
-            <div class="card col-md-2">
 
+<ul class="list-group">
+    <li class="list-group-item active">
+        <div class="row">
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                Name
             </div>
-            <div class="card col-md-2">
-
+            <div class="col-lg-3 visible-lg">
+                Created
             </div>
-            <div class="card col-md-2">
-
+            <div class="col-md-3 hidden-sm hidden-xs">
+                Accessed
+            </div>
+            <div class="col-xs-2">
             </div>
         </div>
-    </div>
-</div>
+    </li>
+
+    <li ng-repeat="user in model.userData"
+        class="list-group-item">
+        <div class="row">
+            <div class="col-lg-4 col-md-7 col-xs-10">
+                <a> {{user.username}}
+                </a>
+            </div>
+            <div class="col-lg-3 visible-lg">
+                {{website.dateCreated | date}}
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs">
+                {{website.dateCreated | date}}
+            </div>
+            <div class="col-xs-2">
+                <a ng-click="model.editUser(user)">
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+</ul>
+

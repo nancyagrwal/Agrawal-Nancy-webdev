@@ -1,0 +1,71 @@
+<nav class="navbar navbar-blue navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="no-padding-left pull-left">
+            <a class="navbar-brand navbar-link navbar-blue" ng-click="model.back()">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+
+        <div class="nav-sidebar no-padding-left col-sm-4 col-md-3">
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand navbar-blue">
+                    Users
+                </a>
+            </div>
+            <p class="navbar-text pull-right">
+                <a class="navbar-link navbar-blue" ng-click="model.newUser()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
+        </div>
+
+        <div class="col-sm-6 col-md-7 no-padding-left">
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand navbar-blue">
+                    Edit User
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-text pull-right">
+            <a class="navbar-link navbar-blue" ng-click="model.updateUser(model.user)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="col-sm-4 col-md-3 sidebar">
+        <p ng-repeat="website in model.websites">
+            <a ng-click="model.openUser(user)">
+                {{user.username}}
+                <a ng-click="model.editUser(user)">
+                    <span class="pull-right glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+            </a>
+        </p>
+    </div>
+    <div class="inverse-sidebar col-sm-8 col-md-9">
+        <label for="username">User Name</label>
+        <input ng-model="model.user.username"
+               type="text"
+               id="username"
+               class="form-control"
+               placeholder="username"
+               value="{{model.user.username}}"
+        />
+
+        <a ng-click="model.deleteUser(model.userId)"
+           class="btn btn-block btn-danger">
+            Delete
+        </a>
+    </div>
+</div>
+
+<nav class="navbar navbar-blue navbar-fixed-bottom">
+    <div class="navbar-text pull-right">
+        <a class="navbar-link navbar-blue" ng-click="model.profile()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+    </div>
+</nav>

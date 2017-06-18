@@ -42,12 +42,24 @@
             .when('/user/addUser',{
                 templateUrl: 'views/user/templates/adduser.html',
                 controller: 'registerController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
+            })
+
+            .when('/user/editUser',{
+                templateUrl: 'views/user/templates/edituser.html',
+                controller: 'userEditController',
+                controllerAs: 'model',
+                resolve:{
+                    currentLoggedInUser:checkLoggedIn
+                }
             })
 
             .when('/user/viewUser',{
                 templateUrl: 'views/user/templates/userPage.html',
-                controller: 'adminController',
+                controller: 'userListController',
                 controllerAs: 'model',
                 resolve:{
                     currentLoggedInUser:checkLoggedIn
