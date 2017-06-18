@@ -13,9 +13,13 @@ module.exports = function () {
     mongoose.connect(connectionString);
 
     var userModel1 = require('./user/user.model.server')();
+    var userModel2= require('./search/plan.model.server')();
+    var userModel3= require('./search/logs.model.server')();
 
     var model = {
-        userModel1: userModel1
+        userModel1: userModel1,
+        userModel2: userModel2,
+        userModel3:userModel3
     };
 
 

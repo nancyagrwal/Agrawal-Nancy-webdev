@@ -34,6 +34,8 @@ module.exports = function() {
     }
 
     function findUserByUsername(username) {
+
+        console.log('findUserByUsername');
         return UserModel1
             .findOne({username:username});
     }

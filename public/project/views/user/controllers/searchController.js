@@ -18,6 +18,7 @@
         model.searchThemes= searchThemes;
         model.searchFlights = searchFlights;
         model.setHideShow = setHideShow;
+        var airLineData=[];
 
 
          function init() {
@@ -29,6 +30,17 @@
             searchServices
                 .findAllThemesForUser(model.userId)
                 .then(renderTheThemes);
+
+            searchServices
+                .findAirlineData(model.userId)
+                .then(function(response){
+
+                });
+             searchServices
+                 .findAllCitiesUS(model.userId)
+                 .then(function(response){
+
+                 });
 
         }
 
@@ -161,11 +173,17 @@
 
             function init(){
                 searchServices
+                    .findAirlineData();
+                searchServices
+                    .findAllCitiesUS();
+
+                searchServices
                     .findAllOffers(model.userId)
                     .then(renderOffer);
             }
             init();
             function renderOffer(response){
+                var offers=response;
                 model.plans=response;
             }
 
@@ -185,11 +203,20 @@
             model.placePlan = placePlan;
             model.userId = $routeParams['userId'];
             model.goBackToProfile = goBackToProfile;
+            model.fetchFare=fetchFare;
+            model.offerDiscount=offerDiscount;
+            var cityData=[];
+            var airLines='';
 
             function init() {
                 //alert(model.userId);
                 searchServices.findAllCities(model.userId)
                     .then(renderCities);
+
+                searchServices.findAllCitiesUS(model.userId)
+                    .then(function (response) {
+                        cityData=response;
+                    });
             }
 
             init();
@@ -207,7 +234,21 @@
                     // alert(model.offerData);
                 });
             }
+            function fetchFare(plans){
+                for(var u in plans){
+                    if(plans[u].bookingList==model.offerId){
+                        model.realFare=plans[u].faresDetails.baseFare;
+                        airLines=plans[u].tripData.carrierCode;
 
+                    }
+                }
+
+            }
+            function  offerDiscount(discount,fare) {
+                var discounted=(discount /100)*fare;
+                model.discountedFare=fare-discounted;
+                
+            }
             function placePlan(validFromDate,validTillDate,offerId,fromCity,toCity,departureDate,returnDate,realFare,discountedFare,userId)
             {
 
@@ -235,7 +276,7 @@
                     model.error = "correct return Date is required";
                     return;
                 }
-
+                
                 ClientSideServices
                     .findUserById(model.userId)
                     .then(renderUser);
@@ -246,9 +287,9 @@
 
 
                     searchServices
-                        .findPlan(validFromDate, validTillDate, offerId, fromCity, toCity, departureDate, returnDate, realFare, discountedFare, model.userId)
+                        .findPlan(validFromDate, validTillDate, offerId, fromCity, toCity, departureDate, returnDate, realFare, discountedFare, model.userId,model.user.username,airLines)
                         .then(
-                            function () {
+                            function (response) {
                                 model.error = "sorry, Plan already Exists";
                             },
                             function () {
@@ -263,17 +304,18 @@
                                     toCity: toCity,
                                     departureDate: departureDate,
                                     returnDate: returnDate,
-                                    offeredBy: model.user.username
+                                    offeredBy: model.user.username,
+                                    airLines:airLines
                                 };
-
+                                console.log("**********");
                                 return searchServices
-                                    .placePlan(newPlan, model.userId);
+                                    .placePlan(newPlan, model.userId)
+                                    .then(function (plan) {
+                                        model.message = "Plan Created!";
+                                        //    $location.url('/user/' + model.userId);
+                                    });
                             }
-                        )
-                        .then(function (plan) {
-                            model.message = "Plan Created!";
-                            //    $location.url('/user/' + model.userId);
-                        });
+                        );
 
                 }
 

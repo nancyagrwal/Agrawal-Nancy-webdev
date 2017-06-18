@@ -4,18 +4,19 @@
 
 
 module.exports = function(app, model) {
-    var UserModel1 = model.UserModel1;
+    var UserModel1 = model.userModel1;
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../public/assignment/uploads'});
 
+    //Listen for incoming http requests
 
-    app.get('/api/user/:userId', findUserById);
-    app.get('/api/user', findUserByCredentials);
-    app.get('/api/user', findUserByUsername);
-    app.post('/api/user', createUser);
-    app.put('/api/user/:userId', updateUser);
-    app.delete('/api/user/:userId', deleteUser);
-    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.get('/api/project/user/:userId', findUserById);
+    app.get('/api/project/user' , findUserByCredentials);
+    app.get('/api/project/userRegister', findUserByUsername);
+    app.post('/api/project/user', createUser);
+    app.put('/api/project/user/:userId', updateUser);
+    app.delete('/api/project/user/:userId', deleteUser);
+    app.post ('/api/project/upload', upload.single('myFile'), uploadImage);
 
 
     function uploadImage(req, res) {
@@ -28,8 +29,7 @@ module.exports = function(app, model) {
         var user = {
             profilePicture: "/project/uploads/" + filename
         };
-        model
-            .UserModel1
+        UserModel1
             .updateUser(userId, user)
             .then(function (resp) {
                 res.redirect(url);
@@ -41,9 +41,9 @@ module.exports = function(app, model) {
 
 
     function deleteUser(req, res) {
+        console.log('deleteUser');
         var userId = req.params.userId;
-        model
-            .UserModel1
+        UserModel1
             .deleteUser(userId)
             .then(
                 function (resp) {
@@ -56,10 +56,10 @@ module.exports = function(app, model) {
     }
 
     function updateUser(req, res) {
+        console.log('updateUser');
         var user = req.body;
         var userId = req.params.userId;
-        model
-            .UserModel1
+        UserModel1
             .updateUser(userId, user)
             .then(
                 function (resp) {
@@ -74,8 +74,8 @@ module.exports = function(app, model) {
 
     function createUser(req, res) {
         var user = req.body;
-        model
-            .UserModel1
+        console.log('createUser');
+        UserModel1
             .createUser(user)
             .then(function (resp) {
                 res.send(resp)
@@ -87,11 +87,11 @@ module.exports = function(app, model) {
 
 
     function findUserByCredentials(req, res) {
+        console.log('findUserByCredentials');
         var username = req.query.username;
         var password = req.query.password;
 
-        model
-            .UserModel1
+        UserModel1
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
@@ -110,14 +110,15 @@ module.exports = function(app, model) {
     }
 
     function findUserByUsername(req, res) {
+        console.log('findUserByUsername');
         var username = req.query.username;
-        var password = req.query.password;
+     //   var password = req.query.password;
 
-        model
-            .UserModel1
+        UserModel1
             .findUserByUsername(username)
             .then(
                 function (user) {
+                    console.log(user);
                     if (user) {
                         res.send(user);
                     } else {
@@ -132,9 +133,9 @@ module.exports = function(app, model) {
     }
 
     function findUserById(req, res) {
+        console.log('findUserById');
         var userId = req.params['userId'];
-        model
-            .UserModel1
+        UserModel1
             .findUserById(userId)
             .then(
                 function (user) {
@@ -151,4 +152,4 @@ module.exports = function(app, model) {
 
 
     }
-};
+}

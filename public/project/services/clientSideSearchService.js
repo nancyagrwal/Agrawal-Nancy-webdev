@@ -17,15 +17,20 @@
             findAllOffers:findAllOffers,
             findAllData:findAllData,
             placePlan:placePlan,
-            findPlan:findPlan
+            findPlan:findPlan,
+            findAirlineData:findAirlineData,
+            findAllCitiesUS:findAllCitiesUS
            // findAllAirportsForUser: findAllAirportsForUser
         };
         return api;
 
-        function findPlan(validFromDate,validTillDate,offerId, fromCity,toCity,departureDate,returnDate,realFare,discountedFare,userId) {
+        var airlineData=[];
+        var citydata=[];
+
+        function findPlan(validFromDate,validTillDate,offerId, fromCity,toCity,departureDate,returnDate,realFare,discountedFare,userId,username,airLines) {
             console.log("find plan client...." + validFromDate + "," + validTillDate+ "," +offerId+ "," + fromCity+ "," +
                 toCity + "," + departureDate + "," +returnDate+ "," +realFare+ "," +discountedFare+ "," +userId);
-            var url = "/api/project/user/" + userId + "/makePlan/offer?"
+            var url = "/api/project/user/" + userId + "/findPlan?"
             + "validFromDate=" + validFromDate
             + '&validTillDate=' + validTillDate
             + '&offerId=' + offerId
@@ -34,15 +39,19 @@
             + '&departureDate=' + departureDate
             + '&returnDate=' + returnDate
             + '&realFare=' + realFare
-            + '&discountedFare=' + discountedFare;
+            + '&discountedFare=' + discountedFare
+            + '&offeredBy=' + username
+            + '&airLines='+airLines;
             return $http.get(url)
                 .then(function (response) {
+                    console.log(response.data);
                     return response.data;
                 });
         }
 
         function searchThemes(budget,location,departureDate,returnDate,theme,userId) {
             console.log(theme.name);
+
             var themeName=theme.name.toUpperCase();
             var url = "https://api.test.sabre.com/v2/shop/flights/fares?origin="+location+"&departuredate="+departureDate+"&returndate="+returnDate+"&theme="+themeName+"&maxfare="+budget+"&pointofsalecountry=US";
             $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
@@ -52,7 +61,17 @@
                     var flData=response.data;
                     var fareInfo=flData.FareInfo;
                     for(var i=0;i<fareInfo.length;i++){
+                        var originName='';
+                        var destinationName='';
                         var desintation=fareInfo[i].DestinationLocation;
+                        for(var u in citydata){
+                            if(citydata[u].cityCode==location){
+                                originName=citydata[u].city;
+                            }
+                            if(citydata[u].cityCode==desintation){
+                                destinationName=citydata[u].city;
+                            }
+                        }
                         var depDateTime=fareInfo[i].DepartureDateTime;
                         var dateTime=depDateTime.split("T");
                         var date=dateTime[0];
@@ -71,8 +90,15 @@
                         var lowestFares=[];
                         for(var j=0;j<fareInfo[i].LowestFare.AirlineCodes.length;j++){
                             var airLinecode=fareInfo[i].LowestFare.AirlineCodes[j];
+                            var airlineName='';
+                            for(var u in airlineData){
+                                if(airLinecode == airlineData[u].iata){
+                                    airlineName=airlineData[u].name;
+                                    break;
+                                }
+                            }
                             var airCodes={
-                                airLineCode:airLinecode
+                                airLineCode:airlineName+'('+airLinecode+')'
                             };
                             lowestFares.push(airCodes);
                         }
@@ -81,8 +107,15 @@
                         var lowestFaresNonStop=[];
                         for(var m=0;m<fareInfo[i].LowestNonStopFare.AirlineCodes.length;m++){
                             airLinecode=fareInfo[i].LowestNonStopFare.AirlineCodes[m];
-                            airCodes={
-                                airLineCode:airLinecode
+                            var airlineName='';
+                            for(var u in airlineData){
+                                if(airLinecode == airlineData[u].iata){
+                                    airlineName=airlineData[u].name;
+                                    break;
+                                }
+                            }
+                            var airCodes={
+                                airLineCode:airlineName+'('+airLinecode+')'
                             };
                             lowestFaresNonStop.push(airCodes);
                         }
@@ -90,7 +123,8 @@
                         var themeSearch={
                             _id : i,
                             theme:themeName,
-                            destination:desintation,
+                            origin:originName+'('+location+')',
+                            destination:destinationName+'('+desintation+')',
                             departDateTime:departDateTime,
                             returnDateTime:returnDateTime,
                             distance:distance,
@@ -98,7 +132,8 @@
                             lowestFares:lowestFares,
                             lowestFaresNonStop:lowestFaresNonStop,
                             lowestFareWS:lowestFareWS,
-                            lowestFareNS:lowestFareNS
+                            lowestFareNS:lowestFareNS,
+                            budget:budget
 
 
                         };
@@ -147,6 +182,14 @@
             });
 
     }
+        function findAirlineData(userId){
+            var url='/api/project/user/'+userId+'/search/airlinecode';
+            return $http.get(url)
+                .then(function(response){
+                    airlineData=response.data;
+                });
+
+        }
 
         function findAllCities(userId){
             var url="/api/project/user/"+userId+"/makePlan";
@@ -154,7 +197,17 @@
             return $http.get(url)
                 .then(function(response){
                     //alert('ok');
-                    //console.log(response.data);
+                    return response.data;
+                });
+        }
+
+        function findAllCitiesUS(userId){
+            var url="/api/project/user/"+userId+"/fetchCity";
+            //  console.log(userId);
+            return $http.get(url)
+                .then(function(response){
+                    //alert('ok');
+                    citydata=response.data;
                     return response.data;
                 });
         }
@@ -188,6 +241,8 @@
                             for(var j=0;j<upFlDat.length;j++)
                             {
                                 var arrAirport = upFlDat[j].ArrivalAirport.LocationCode;
+                                var arrCityName='';
+
                                 var datetimeData=upFlDat[j].ArrivalDateTime.split("T");
                                 var date=datetimeData[0];
                                 var time=datetimeData[1];
@@ -196,6 +251,16 @@
                                 var arrDateTime = date+"@"+time;
                                 var arrTimeZone = upFlDat[j].ArrivalTimeZone.GMTOffset;
                                 var departureAirport = upFlDat[j].DepartureAirport.LocationCode;
+                                var depCityName='';
+
+                                for ( var u in citydata){
+                                    if(citydata[u].cityCode == arrAirport){
+                                        arrCityName=citydata[u].city;
+                                    }
+                                    if(citydata[u].cityCode == departureAirport){
+                                        depCityName=citydata[u].city;
+                                    }
+                                }
 
                                 datetimeData=upFlDat[j].DepartureDateTime.split("T");
                                 date=datetimeData[0];
@@ -208,10 +273,10 @@
                                 var airLineCode = upFlDat[j].OperatingAirline.Code;
                                 var airLineName = upFlDat[j].OperatingAirline.CompanyShortName;
                                 var airData = {
-                                    arrAirport: arrAirport,
+                                    arrAirport: arrCityName+'('+arrAirport+')',
                                     arrDateTime: arrDateTime,
                                     arrTimeZone: arrTimeZone,
-                                    departureAirport: departureAirport,
+                                    departureAirport: depCityName+'('+departureAirport+')',
                                     departureDateTime: departureDateTime,
                                     departureTimeZone: departureTimeZone,
                                     flightNo: flightNo,
@@ -250,9 +315,11 @@
                         var fareBreakDown=pricingDataJson.PTC_FareBreakdowns.PTC_FareBreakdown;
                         var nonRefundable=fareBreakDown.Endorsements.NonRefundableIndicator;
                         var bookingCodes=[];
+                        var bookingList='';
                         for(j=0;j<fareBreakDown.FareBasisCodes.FareBasisCode.length;j++){
                             var bookingCode=fareBreakDown.FareBasisCodes.FareBasisCode[j].BookingCode;
                             var content=fareBreakDown.FareBasisCodes.FareBasisCode[j].content;
+                            bookingList=content+'/'+bookingList;
                             var bookings={
                                 bookingCode:bookingCode,
                                 content:content
@@ -260,6 +327,7 @@
                             bookingCodes.push(bookings)
                         }
                         var baseFare=fareBreakDown.PassengerFare.BaseFare.Amount;
+                       // model.realFare=baseFare;
                         var baseFareCurrency=fareBreakDown.PassengerFare.CurrencyCode;
                         var taxes=[];
                         var taxData=fareBreakDown.PassengerFare.Taxes.Tax;
@@ -287,6 +355,7 @@
                         var plans={
                             _id:i,
                             tripData:tripData,
+                            bookingList:bookingList,
                             cabinData:cabinData,
                             bookingCodes:bookingCodes,
                             faresDetails:faresDetails ,
@@ -313,15 +382,37 @@
             var url='/api/project/user/'+userId+'/offers';
             return $http.get(url)
                 .then(function(response){
-                 //   console.log(response.data);
-                    return response.data;
+                   console.log(response.data);
+                   var offers=response.data;
+                   var offersData=[];
+                   for(var u in offers){
+                       var plan=offers[u];
+                       for(var c in citydata){
+                           if(citydata[c].cityCode==plan.fromCity){
+                               plan.fromCity=citydata[c].city+'('+plan.fromCity+')';
+
+                           }
+                           if(citydata[c].cityCode==plan.toCity){
+                               plan.toCity=citydata[c].city+'('+plan.toCity+')';
+
+                           }
+                       }
+                       for(var a in airlineData){
+                           if(plan.airLines==airlineData[a].iata){
+                               plan.airLines=airlineData[a].name + '('+plan.airLines+')';
+                           }
+                       }
+                       offersData.push(plan);
+                   }
+                    console.log(offersData);
+                    return offersData;
                 });
         }
         function findAllData(userId){
             var url='/api/project/user/'+userId+'/getData';
             return $http.get(url)
                 .then(function(response){
-                  //  console.log(response.data);
+                    console.log(response.data);
                     return response.data;
                 });
         }

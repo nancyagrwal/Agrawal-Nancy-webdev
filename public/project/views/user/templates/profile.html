@@ -76,7 +76,7 @@
                    placeholder="Wonderland">
         </div>
 
-
+<div ng-show="model.comm">
     <a class="btn btn-primary btn-block"
        href="#!/user/{{model.userId}}/search">
         Search Trips
@@ -88,7 +88,7 @@
        href="#!/user/{{model.userId}}/offers" >
         View Offers
     </a>
-
+</div>
 </br>
 
 <div ng-show="model.bizUser">
@@ -107,7 +107,7 @@
     </a>
 </div>
 
-
+    <br>
     <a class="btn btn-danger  btn-block"
        href="#!/login">
         Logout
