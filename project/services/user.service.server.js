@@ -16,7 +16,7 @@ module.exports = function(app, model) {
     var googleConfig2 = {
         clientID: "50624278738-ok6cie6pfrg51b5u95ocn33d6r6ihq7e.apps.googleusercontent.com",
         clientSecret: "d0LiDHoNh16ovUIPXr23Y3YT",
-        callbackURL: "http://localhost:3000/authGoogle/callback"
+        callbackURL: "http://agrawal-nancy-webdev.herokuapp.com/authGoogle/callback"
     };
 
   /*  var facebookConfig = {
