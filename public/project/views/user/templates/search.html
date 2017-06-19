@@ -18,13 +18,21 @@
     </div>
 </nav>
 
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <form role="form">
+                    <fieldset>
 
-<div class="container-fluid">
     <h1>Search Trips</h1>
     <hr class="colorgraph">
-<div ng-show="model.error" class="alert alert-danger">
-    {{model.error}}
-</div>
+
 
 <div class="container-fluid">
 
@@ -121,6 +129,8 @@
 
 
 </div>
+                    </fieldset>
+                </form>
     </div>
 
 
@@ -234,3 +244,6 @@
 
 </div>
 <div ng-include="'views/common/footer.view.client.html'"></div>
+        </div>
+    </div>
+</div>

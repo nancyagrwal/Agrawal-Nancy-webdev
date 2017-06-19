@@ -19,17 +19,25 @@
 </nav>
 
 
-<div class="container-fluid" ng-init="model.OfferData=[];val=0">
+<div class="container" ng-init="model.OfferData=[];val=0">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
 
-        <h1>Make a plan</h1>
+            <div ng-show="model.message" class="alert">
+                {{model.message}}
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <form role="form">
+                    <fieldset>
+
+    <h1>Make a plan</h1>
         <hr class="colorgraph">
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.error}}
-    </div>
 
-    <div ng-show="model.message" class="alert">
-        {{model.message}}
-    </div>
 
     <label>Offer valid from</label>
     <input type="text"
@@ -147,6 +155,8 @@
 
         </div>
     </div>
+                    </fieldset>
+                </form>
 </div>
 
 <div ng-include="'views/common/footer.view.client.html'"></div>

@@ -1,10 +1,19 @@
-<div class="container-fluid">
+ <div class="container">
+                <div class="row" style="margin-top:20px">
+                        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                            <div ng-show="model.error"
+                                 class="alert alert-danger">
+                                {{model.error}}
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:20px">
+                                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                                        <form role="form">
+                                                <fieldset>
+
 <h1>Register</h1>
         <hr class="colorgraph">
-        <div ng-show="model.error"
-             class="alert alert-danger">
-                {{model.error}}
-        </div>
 
 <label for="username">Username</label>
 <input type="text"
@@ -39,4 +48,9 @@
 </a>
 <a class="btn btn-danger  btn-block"
    href="#!/login">Already a User? Login Here!</a>
+                                                </fieldset>
+                                        </form>
 </div>
+                        </div>
+                </div>
+ </div>

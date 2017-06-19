@@ -1,19 +1,24 @@
-<div class="container-fluid">
-    <h1>Login</h1>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 
-    <hr class="colorgraph">
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.error}}
-    </div>
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <form role="form">
+                    <fieldset>
+                        <h2>Please Sign In</h2>
+                        <hr class="colorgraph">
+
+
     <a href="/authGoogle" class="btn btn-danger btn-block">
         <span class="fa fa-google-plus"></span>
         Google
     </a>
 
-    <!--<a href="/project/auth/facebook" class="btn btn-primary btn-block">
-        <span class="fa fa-facebook"></span>
-        Facebook
-    </a>-->
 
     <h5>or</h5>
 
@@ -31,15 +36,19 @@
            class="form-control"
            placeholder="AliceW@123"/>
 
-    <a ng-click="model.login(username, password)"
-       class="btn btn-primary btn-block">
-        Login
-    </a>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input ng-click="model.login(username, password)"type="submit" class="btn btn-lg btn-success btn-block" value="Log In">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <a ng-click="model.register()" class="btn btn-lg btn-primary btn-block">Register</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
 
 
-    <a class="btn btn-success btn-block"  ng-click="model.register()"
-       >
-        Not a user yet? Register Here
-    </a>
-</div>
 
