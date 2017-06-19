@@ -258,7 +258,7 @@ module.exports = function(app, model) {
                 .then(function (uid) {
                     uid.profilePicture = '/project/uploads/' + filename;
                     uid.save();
-                    callbackUrl = "/profile";
+                    callbackUrl = "/project/index.html#!/profile";
                     res.redirect(callbackUrl);
                 });
 
