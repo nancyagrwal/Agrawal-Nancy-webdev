@@ -80,7 +80,7 @@ module.exports = function(app, model) {
                             username:  emailParts[0],
                             firstName: profile.name.givenName,
                             lastName:  profile.name.familyName,
-                            userType: "Administrator",
+                            userType: "Commercial",
                             email:     email,
                             google: {
                                 id:    profile.id,
