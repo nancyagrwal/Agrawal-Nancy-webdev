@@ -116,7 +116,8 @@
                         email: model.email
                     };
                     ClientSideServices
-                        .updateUser(model.userId,user)
+                       // .updateUser(model.userId,user)
+                        .updateProfileUser(model.userId,user)
                         .then(function () {
                             model.message = "Profile updated successfully";
                         });

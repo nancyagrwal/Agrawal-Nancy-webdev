@@ -35,6 +35,7 @@ module.exports = function(app, model) {
     app.get('/api/project/checkLoggedIn',checkLoggedIn);
     app.post('/api/project/user', createUser);
     app.put('/api/project/user', updateUser);
+    app.put('/api/project/user/:userId', updateProfileUser);
     app.delete('/api/project/user/:userId', deleteUser);
     app.post ('/api/project/upload', upload.single('myFile'), uploadImage);
     app.get('/api/project/allUsers', findAllUsers);
@@ -60,6 +61,21 @@ module.exports = function(app, model) {
 
 
 
+    function updateProfileUser(req, res) {
+        var user = req.body;
+        var userId = req.params.userId;
+        model
+            .ProjectUserModel
+            .updateUser(userId, user)
+            .then(
+                function (resp) {
+                    res.sendStatus(200);
+                }, function (error) {
+                    res.sendStatus(400);
+                }
+            );
+
+    }
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
@@ -303,18 +319,20 @@ module.exports = function(app, model) {
             var username = req.query.username;
             var password = req.query.password;
 
-            model.ProjectUserModel
-                .findUserByCredentials(username, password)
-                .then(
-                    function (user) {
-                        if (user) {
-                            res.send(user);
-                        } else {
-                            res.sendStatus(404);
+            if (username && password) {
+                model.ProjectUserModel
+                    .findUserByCredentials(username, password)
+                    .then(
+                        function (user) {
+                            if (user) {
+                                res.send(user);
+                            } else {
+                                res.sendStatus(404);
+                            }
                         }
-                    }
-                );
+                    );
 
+            }
 
             if (username) {
 

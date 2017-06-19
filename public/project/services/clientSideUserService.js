@@ -18,7 +18,8 @@
             registerUser: registerUser,
             findUsers:findUsers,
             checkLoggedIn:checkLoggedIn,
-            findAllUsers:findAllUsers
+            findAllUsers:findAllUsers,
+            updateProfileUser:updateProfileUser
 
         };
         return api;
@@ -109,6 +110,17 @@
                     return response.data;
                 });
         }
+
+
+        function updateProfileUser(userId, user) {
+            var url = "/api/project/user/" + userId;
+            return $http.put(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
 
         function updateUser(userId, user) {
             var url = "/api/project/user?userId=" + userId;
