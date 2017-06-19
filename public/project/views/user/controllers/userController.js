@@ -11,6 +11,9 @@
         .controller('userEditController',userEditController)
         .controller('registerController',registerController);
 
+    var editUserDetails=[];
+    var allUsers=[];
+
 
     function loginController($location, ClientSideServices) {
 
@@ -151,7 +154,7 @@
                 // alert('okiee');
                 model.resUser = "true";
             }
-            if(model.user.userType.toString()== 'Administrator'){
+            if(model.user.userType.toString()=== 'Administrator'){
 
                 model.nonAdmin=false;
                 model.admin=true;
@@ -274,15 +277,19 @@
     }
 
     function userListController(currentLoggedInUser,$location,ClientSideServices,$routeParams){
+
         var model=this;
         model.userId = currentLoggedInUser._id;
         model.user = currentLoggedInUser;
         model.goBack = goBack;
-
+        model.profile = profile;
+        model.editUser = editUser;
+        model.back=back;
 
 
         function init(){
             model.userData=allUsers;
+
              ClientSideServices
                 .findUserById(model.userId)
                 .then(function(response){
@@ -292,10 +299,25 @@
 
         init();
 
-      
+        function profile() {
+            $location.url("/profile");
+        }
+
+
+        function editUser(user) {
+            console.log('*****');
+            editUserDetails=user;
+            $location.url("/user/editUser/");
+        }
+
+        function back() {
+            $location.url("/user/viewUser/");
+        }
+
+
         function goBack()
         {
-            $location.url("/user/viewUser");
+            $location.url("/profile");
         }
 
 
@@ -308,8 +330,13 @@
         var model=this;
         model.userId = currentLoggedInUser._id;
         model.user = currentLoggedInUser;
+        model.updateUser=updateUser;
+        model.deleteUser=deleteUser;
+
+
 
         function init() {
+            model.userDetails=editUserDetails;
             ClientSideServices
                 .findAllUsers()
                 .then(function (response) {
@@ -327,10 +354,12 @@
         }
         init();
 
-        function updateUser(user) {
 
+        function updateUser(userDetails) {
+
+            console.log("userid is.........." +userDetails._id );
             ClientSideServices
-                .updateUser(model.userId, user)
+                .updateUser(userDetails._id, userDetails)
                 .then(function (response) {
                     $location.url("/user/viewUser");
                 }, function (error) {
@@ -339,30 +368,16 @@
         }
 
 
-        function deleteUser(userId) {
+        function deleteUser(userDetails) {
             ClientSideServices
-                .deleteUser(userId)
+                .deleteUser(userDetails._id)
                 .then(function () {
+                    var index=allUsers.indexOf(userDetails);
+                    allUsers.splice(index,1);
                     $location.url('/user/viewUser');
                 });
         }
 
-        model.profile = profile;
-        model.editUser = editUser;
-        model.back=back;
-
-        function profile() {
-            $location.url("/profile");
-        }
-
-
-        function editUser(user) {
-            $location.url("/user/editUser/"+user._id);
-        }
-
-        function back() {
-            $location.url("/user/viewUser/");
-        }
 
 
     }

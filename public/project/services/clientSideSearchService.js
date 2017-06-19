@@ -48,11 +48,9 @@
         }
 
         function searchThemes(budget,location,departureDate,returnDate,theme,userId) {
-            console.log(theme.name);
-
             var themeName=theme.name.toUpperCase();
             var url = "https://api.test.sabre.com/v2/shop/flights/fares?origin="+location+"&departuredate="+departureDate+"&returndate="+returnDate+"&theme="+themeName+"&maxfare="+budget+"&pointofsalecountry=US";
-            $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
+            $http.defaults.headers.common.Authorization = 'Bearer T1RLAQIyFpEYc4FRwZLnrXMf5NUEiKsschA9rUbysQjO2VZ0lcDYKtE+AADA+1QHpbnLEr2ctJVLqKsy02TnLgrLt24kYgzPgEw+EPW19MH8L500sm1NW5vU+IryH8aBEYlAgH7rZMdkVYo5lsN9G/WeRa+MUyVWzrxa1kL1I74lmJS9NvTJbE6BCZBraea61XZ/ohE0GAZjlhCRL/aPudYlG+VMCg+KuBNch6FFmOQqmER9Xz1rVRZlsUrMeHJMLL1zaxrJvq0VUUe83AEO9U1lA1HeVW4iGzZbwSPDpmFMA0RtHsIjTcs9/96U';
             return $http.get(url)
                 .then(function (response) {
                     var themeFlightData=[];
@@ -63,10 +61,10 @@
                         var destinationName='';
                         var desintation=fareInfo[i].DestinationLocation;
                         for(var u in citydata){
-                            if(citydata[u].cityCode==location){
+                            if(citydata[u].cityCode ===location){
                                 originName=citydata[u].city;
                             }
-                            if(citydata[u].cityCode==desintation){
+                            if(citydata[u].cityCode ===desintation){
                                 destinationName=citydata[u].city;
                             }
                         }
@@ -88,14 +86,14 @@
                         var lowestFares=[];
                         for(var j=0;j<fareInfo[i].LowestFare.AirlineCodes.length;j++){
                             var airLinecode=fareInfo[i].LowestFare.AirlineCodes[j];
-                            var airlineName='';
+                            airlineName='';
                             for(var u in airlineData){
-                                if(airLinecode == airlineData[u].iata){
+                                if(airLinecode === airlineData[u].iata){
                                     airlineName=airlineData[u].name;
                                     break;
                                 }
                             }
-                            var airCodes={
+                             airCodes={
                                 airLineCode:airlineName+'('+airLinecode+')'
                             };
                             lowestFares.push(airCodes);
@@ -107,7 +105,7 @@
                             airLinecode=fareInfo[i].LowestNonStopFare.AirlineCodes[m];
                             var airlineName='';
                             for(var u in airlineData){
-                                if(airLinecode == airlineData[u].iata){
+                                if(airLinecode === airlineData[u].iata){
                                     airlineName=airlineData[u].name;
                                     break;
                                 }
@@ -214,7 +212,7 @@
             /*var url='https://api.test.sabre.com/v1/shop/flights?origin=JFK&destination=LAX&departuredate=2017-07-07&returndate=2017-07-08&onlineitinerariesonly=N&limit=10&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
              */
             var url='https://api.test.sabre.com/v1/shop/flights?origin='+fromCity+'&destination='+toCity+'&departuredate='+departureDate+'&returndate='+arrivalDate+'&onlineitinerariesonly=N&limit=10&offset=1&eticketsonly=N&sortby=totalfare&order=asc&sortby2=departuretime&order2=asc&pointofsalecountry=US';
-            $http.defaults.headers.common.Authorization = 'Bearer T1RLAQKzRifh5FszlRIbwrnxI9iu4HspWxBncj6r66iSpWtT3Ah0M3luAADAW37+rXnNe74IE5q7ye+fq6G/qIQzka2yMHBq9IogrlsZ33tDyzcx7qc3rsTZKNUbzOgJXdnCIFOkzBSzcWwqwGYyY2xUDxPnenb3LPqoZKR0/4FqlFmKwZr/E2+PNy5Iwakijds8/KJYY+O8P6Q3VRqjE0RoZrfzu/Xyjmf95Ovvz0RnXCCNaSuVXo2EMmYRStPGUJgRDNgLBm+5yXMKhVm3Z6kVvlmOZUD5q+vh1JNRjBKbZH5uw/IB/lyE7SZC';
+            $http.defaults.headers.common.Authorization = 'Bearer T1RLAQIyFpEYc4FRwZLnrXMf5NUEiKsschA9rUbysQjO2VZ0lcDYKtE+AADA+1QHpbnLEr2ctJVLqKsy02TnLgrLt24kYgzPgEw+EPW19MH8L500sm1NW5vU+IryH8aBEYlAgH7rZMdkVYo5lsN9G/WeRa+MUyVWzrxa1kL1I74lmJS9NvTJbE6BCZBraea61XZ/ohE0GAZjlhCRL/aPudYlG+VMCg+KuBNch6FFmOQqmER9Xz1rVRZlsUrMeHJMLL1zaxrJvq0VUUe83AEO9U1lA1HeVW4iGzZbwSPDpmFMA0RtHsIjTcs9/96U';
             return $http.get(url)
                 .then(function (response){
                      console.log("flight data is...." + response);
@@ -252,10 +250,10 @@
                                 var depCityName='';
 
                                 for ( var u in citydata){
-                                    if(citydata[u].cityCode == arrAirport){
+                                    if(citydata[u].cityCode === arrAirport){
                                         arrCityName=citydata[u].city;
                                     }
-                                    if(citydata[u].cityCode == departureAirport){
+                                    if(citydata[u].cityCode === departureAirport){
                                         depCityName=citydata[u].city;
                                     }
                                 }
@@ -386,17 +384,17 @@
                    for(var u in offers){
                        var plan=offers[u];
                        for(var c in citydata){
-                           if(citydata[c].cityCode==plan.fromCity){
+                           if(citydata[c].cityCode===plan.fromCity){
                                plan.fromCity=citydata[c].city+'('+plan.fromCity+')';
 
                            }
-                           if(citydata[c].cityCode==plan.toCity){
+                           if(citydata[c].cityCode===plan.toCity){
                                plan.toCity=citydata[c].city+'('+plan.toCity+')';
 
                            }
                        }
                        for(var a in airlineData){
-                           if(plan.airLines==airlineData[a].iata){
+                           if(plan.airLines===airlineData[a].iata){
                                plan.airLines=airlineData[a].name + '('+plan.airLines+')';
                            }
                        }
@@ -407,7 +405,7 @@
                 });
         }
         function findAllData(userId,criteria){
-            var url='/api/project/user/'+userId+ '/' + criteria +"/getData";
+            var url='/api/project/user/'+userId+"/getData?criteria="+criteria;
             return $http.get(url)
                 .then(function(response){
 

@@ -111,7 +111,7 @@
         }
 
         function updateUser(userId, user) {
-            var url = "/api/project/user/" + userId;
+            var url = "/api/project/user?userId=" + userId;
             return $http.put(url, user)
                 .then(function (response) {
                     return response.data;

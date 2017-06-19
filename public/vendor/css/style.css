@@ -9,6 +9,22 @@ body {
     padding-bottom: 60px;
 }
 
+
+.travText
+{
+    color: #ccc;
+    width: 150px;
+    padding: 6px 15px 6px 35px;
+    border-radius: 20px;
+    box-shadow: 0 1px 0 #ccc inset;
+    transition:500ms all ease;
+}
+.travText:hover
+{
+    width:180px;
+}
+
+
 .btn-user-img-class {
     display:block;
     height: 150px;

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="navbar-header wd-margin-sx">
+                    <p class="navbar-text pull-left">
+                        <a href="#!/user/viewUser"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a>
+                            Edit User
+                        </a>
+                    </p>
+                    <p class="navbar-text pull-right">
+                        <a ng-click="model.updateUser(model.userDetails)"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </a>
+                        <a ng-click="model.deleteUser(model.userDetails)"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div ng-show="model.error" class="alert alert-danger">
+    {{model.error}}
+</div>
+<div class="container-fluid">
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}}
+    </div>
+</div>
+<div class="container-fluid">
+
+        <div class="container-fluid">
+
+                <div class="form">
+                    <div class="login-form">
+                        <input type="text" placeholder="username" ng-model="model.userDetails.username"/>
+                        <input type="text" placeholder="email" ng-model="model.userDetails.email"/>
+                        <input type="text" placeholder="First Name" ng-model="model.userDetails.firstName"/>
+                        <input type="text" placeholder="Last Name" ng-model="model.userDetails.lastName"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

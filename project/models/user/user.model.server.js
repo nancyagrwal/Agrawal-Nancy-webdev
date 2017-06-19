@@ -21,7 +21,7 @@ module.exports = function() {
 
     function findAllUsers(){
         return ProjectUserModel
-            .find();
+            .find({userType:{$ne:'Administrator'}});
     }
 
     function findUserByGoogleId(googleId) {

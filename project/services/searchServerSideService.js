@@ -4218,7 +4218,7 @@ module.exports = function(app, model) {
     app.get('/api/project/user/:userId/findPlan', findPlan);
     app.post('/api/project/user/:userId/makePlan', placePlan);
     app.get('/api/project/user/:userId/offers', findAllOffers);
-    app.get('/api/project/user/:userId/:criteria/getData', findAllData);
+    app.get('/api/project/user/:userId/getData', findAllData);
     app.post('/api/project/user/:userId/search/storeFlight', storeUserFlightData);
     app.post('/api/project/user/:userId/search/storeTheme', storeUserThemeData);
     app.get('/api/project/user/:userId/search/airlinecode',findAirlinename);
@@ -4303,8 +4303,7 @@ module.exports = function(app, model) {
     function findAllData(req, res) {
         var criteria = req.query.criteria;
         console.log(criteria);
-        var userId = req.query.userId;
-        if (criteria === "Theme" || "Budget") {
+        if (criteria === "Theme" || criteria === "Budget") {
             model.LogsModel
                 .findAllData("T")
                 .then(function(resp){
@@ -4314,18 +4313,20 @@ module.exports = function(app, model) {
                         var log = resp[u];
 
                         dataLogs.push(log);
-                        return dataLogs;
+
                     }
+                    res.json(dataLogs);
 
                 });
         }
 
-        if (criteria === "Destination City" || "Origin City") {
+        if (criteria === "Destination City" || criteria ===  "Origin City") {
+            console.log(criteria);
             model.LogsModel
                 .findAllData("F")
                 .then(function(resp){
 
-                     res.json(resp);
+                    res.json(resp);
                 });
         }
 

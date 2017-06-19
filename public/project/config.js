@@ -49,7 +49,7 @@
             })
 
             .when('/user/editUser',{
-                templateUrl: 'views/user/templates/edituser.html',
+                templateUrl: 'views/user/templates/updateUser.html',
                 controller: 'userEditController',
                 controllerAs: 'model',
                 resolve:{

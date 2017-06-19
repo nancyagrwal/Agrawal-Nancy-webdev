@@ -19,11 +19,11 @@ module.exports = function(app, model) {
         callbackURL: process.env.GOOGLE_PROJECT_CALLBACK_URL
     };
 
-    var facebookConfig = {
-        clientID     : process.env.FACEBOOK_CLIENT_ID,//"1910908232491447",
-        clientSecret : process.env.FACEBOOK_CLIENT_SECRET, //"f76f5e4ca579e271506e3554f1cc52ec",
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL //"http://localhost:3000/auth/facebook/callback"
-    };
+  /*  var facebookConfig = {
+        clientID     : process.env.FACEBOOK_PROJECT_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_PROJECT_SECRET_KEY,
+        callbackURL  : process.env.FACEBOOK_PROJECT_CALLBACK_URL
+    };*/
 
 
 
@@ -34,7 +34,7 @@ module.exports = function(app, model) {
     app.get('/api/project/userRegister', findUserByUsername);
     app.get('/api/project/checkLoggedIn',checkLoggedIn);
     app.post('/api/project/user', createUser);
-    app.put('/api/project/user/:userId', updateUser);
+    app.put('/api/project/user', updateUser);
     app.delete('/api/project/user/:userId', deleteUser);
     app.post ('/api/project/upload', upload.single('myFile'), uploadImage);
     app.get('/api/project/allUsers', findAllUsers);
@@ -45,18 +45,18 @@ module.exports = function(app, model) {
     app.post('/api/project/logout',logout);
     app.post('/api/project/login', passport.authenticate('local'), login);
     app.get('/project/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
+   // app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
 
     app.get('/google/auth/project/callback',
         passport.authenticate('google', {
             successRedirect: '/project/index.html#!/profile',
             failureRedirect: '/project/index.html#!/login'
         }));
-    app.get('/facebook/auth/project/callback',
+    /*app.get('/facebook/auth/project/callback',
         passport.authenticate('facebook', {
             successRedirect: '/project/index.html#!/profile',
             failureRedirect: '/project/index.html#!/login'
-        }));
+        }));*/
 
 
 
@@ -101,7 +101,7 @@ module.exports = function(app, model) {
             );
     }
 
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+   /* passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     function facebookStrategy(token, refreshToken, profile, done) {
         model.ProjectUserModel
             .findUserByFacebookId(profile.id)
@@ -139,7 +139,7 @@ module.exports = function(app, model) {
                 }
             );
     }
-
+*/
 
     function register(req,res) {
         var user = req.body;

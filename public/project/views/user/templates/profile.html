@@ -25,7 +25,7 @@
             <form action="/api/upload"   method="post" enctype="multipart/form-data">
                 <input  name="myFile"    type="file" class="form-control"/>
                 <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
-                <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+                <button type="submit"    class="btn  btn-primary">Upload Image</button>
             </form>
             <br/>
         </div>
@@ -46,21 +46,11 @@
 
             <div class="card col-md-3">
                 <div class="btn-user-img-class">
-                    <img src="../images/delete_user-512.png" class="btn-user-img-class userHover" title="Delete User" ng-click="model.updateUserPage()">
+                    <img src="../images/delete_user-512.png" class="btn-user-img-class userHover" title="Update User" ng-click="model.updateUserPage()">
                 </div>
             </div>
 
-            <div class="card col-md-3">
-                <div class="btn-user-img-class">
-                    <img src="../images/update_user-512.png" class="btn-user-img-class userHover" title="Update User" ng-click="model.updateUserPage()">
-                </div>
-            </div>
 
-            <div class="card col-md-3">
-                <div class="btn-user-img-class">
-                    <img src="../images/search_user-512.png" class="btn-user-img-class userHover" title="Search User" ng-click="model.updateUserPage()">
-                </div>
-            </div>
 
         </div>
     </div>
@@ -140,7 +130,7 @@
 </div>
 
 <br>
-<a class="btn btn-danger  btn-block"
+<a class="btn btn-danger btn-block"
    href="#!/login">
     Logout
 </a>
