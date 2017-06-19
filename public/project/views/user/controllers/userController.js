@@ -110,10 +110,11 @@
                     user = {
                         _id:model.userId,
                         password:getUser.password,
-                        username: model.username,
-                        firstName: model.firstName,
-                        lastName: model.lastName,
-                        email: model.email
+                        username: model.user.username,
+                        firstName: model.user.firstName,
+                        lastName: model.user.lastName,
+                        email: model.user.email,
+                        profilePicture: model.user.profilePicture
                     };
                     ClientSideServices
                        // .updateUser(model.userId,user)

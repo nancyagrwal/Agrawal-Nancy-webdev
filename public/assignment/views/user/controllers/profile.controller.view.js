@@ -51,7 +51,7 @@
         }
 
         function updateUser(user) {
-            model.error = "";
+           model.error = "";
             model.message = "";
             if(model.username === "") {
                 model.error = "You must have a username";
@@ -60,13 +60,13 @@
             userService
                 .findUserById(model.userId)
                 .then(function (getUser) {
-                    user = {
+                        user = {
                         _id:model.userId,
                         password:getUser.password,
-                        username: model.username,
-                        firstName: model.firstName,
-                        lastName: model.lastName,
-                        email: model.email
+                        username: model.user.username,
+                        firstName: model.user.firstName,
+                        lastName: model.user.lastName,
+                        email: model.user.email
                     };
                     userService
                         .updateUser(model.userId,user)
