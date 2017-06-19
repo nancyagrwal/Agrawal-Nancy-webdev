@@ -69,10 +69,10 @@
             .when('/search', {
             templateUrl: 'views/user/templates/search.html',
             controller: 'searchController',
-            controllerAs: 'model'
-                /*resolve:{
+            controllerAs: 'model',
+                resolve:{
                     currentLoggedInUser:checkLoggedIn
-                }*/
+                }
         })
 
             .when('/user/search', {
