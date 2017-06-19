@@ -75,10 +75,12 @@ module.exports = function(app, model) {
                     } else {
                         var email = profile.emails[0].value;
                         var emailParts = email.split("@");
+                        console.log("emailParts..." + emailParts);
                         var newGoogleUser = {
                             username:  emailParts[0],
                             firstName: profile.name.givenName,
                             lastName:  profile.name.familyName,
+                            userType: "Administrator",
                             email:     email,
                             google: {
                                 id:    profile.id,
