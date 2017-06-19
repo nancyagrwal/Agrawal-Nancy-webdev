@@ -13,7 +13,8 @@ module.exports = function() {
         updateUser: updateUser,
         deleteUser: deleteUser,
         setModel: setModel,
-        findAllUsers:findAllUsers
+        findAllUsers:findAllUsers,
+        findUserByGoogleId:findUserByGoogleId
     };
 
     return api;

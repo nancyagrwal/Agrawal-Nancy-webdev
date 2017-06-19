@@ -3,8 +3,8 @@ module.exports = function(app, model) {
     var ProjectUserModel = model.ProjectUserModel;
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
-    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
+    var ProjectGoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    //var FacebookStrategy = require('passport-facebook').Strategy;
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../public/project/uploads'});
 
@@ -13,10 +13,10 @@ module.exports = function(app, model) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    var googleConfig = {
-        clientID: process.env.GOOGLE_PROJECT_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_PROJECT_SECRET_KEY,
-        callbackURL: process.env.GOOGLE_PROJECT_CALLBACK_URL
+    var googleConfig2 = {
+        clientID: "50624278738-ok6cie6pfrg51b5u95ocn33d6r6ihq7e.apps.googleusercontent.com",
+        clientSecret: "d0LiDHoNh16ovUIPXr23Y3YT",
+        callbackURL: "http://localhost:3000/authGoogle/callback"
     };
 
   /*  var facebookConfig = {
@@ -45,10 +45,10 @@ module.exports = function(app, model) {
     app.post('/api/project/register' ,register);
     app.post('/api/project/logout',logout);
     app.post('/api/project/login', passport.authenticate('local'), login);
-    app.get('/project/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/authGoogle', passport.authenticate('google', { scope : ['profile', 'email'] }));
    // app.get('/project/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
 
-    app.get('/google/auth/project/callback',
+    app.get('/authGoogle/callback',
         passport.authenticate('google', {
             successRedirect: '/project/index.html#!/profile',
             failureRedirect: '/project/index.html#!/login'
@@ -61,25 +61,11 @@ module.exports = function(app, model) {
 
 
 
-    function updateProfileUser(req, res) {
-        var user = req.body;
-        var userId = req.params.userId;
-        model
-            .ProjectUserModel
-            .updateUser(userId, user)
-            .then(
-                function (resp) {
-                    res.sendStatus(200);
-                }, function (error) {
-                    res.sendStatus(400);
-                }
-            );
 
-    }
-    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    passport.use(new ProjectGoogleStrategy(googleConfig2, projectGoogleStrategy));
 
 
-    function googleStrategy(token, refreshToken, profile, done) {
+    function projectGoogleStrategy(token, refreshToken, profile, done) {
         model.ProjectUserModel
             .findUserByGoogleId(profile.id)
             .then(
@@ -115,6 +101,23 @@ module.exports = function(app, model) {
                     if (err) { return done(err); }
                 }
             );
+    }
+
+
+    function updateProfileUser(req, res) {
+        var user = req.body;
+        var userId = req.params.userId;
+        model
+            .ProjectUserModel
+            .updateUser(userId, user)
+            .then(
+                function (resp) {
+                    res.sendStatus(200);
+                }, function (error) {
+                    res.sendStatus(400);
+                }
+            );
+
     }
 
    /* passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
