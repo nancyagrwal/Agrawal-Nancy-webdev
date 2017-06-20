@@ -4253,7 +4253,7 @@ module.exports = function(app, model) {
                 .findPlan(plans)
                 .then(function(resp){
 
-                    if(resp==null){
+                    if(resp===null){
                         res.sendStatus(400);
                     }
                     else{
@@ -4279,14 +4279,12 @@ module.exports = function(app, model) {
 
 
     function findAllCities(req, res) {
-        var results = cities;
-        res.json(results);
+         res.json(cities);
 
     }
 
     function findAllCitiesUS(req, res) {
-        var results = citiesDataUS;
-        res.json(results);
+        res.json(citiesDataUS);
 
     }
 
@@ -4302,7 +4300,7 @@ module.exports = function(app, model) {
 
     function findAllData(req, res) {
         var criteria = req.query.criteria;
-        console.log(criteria);
+       // console.log(criteria);
         if (criteria === "Theme" || criteria === "Budget") {
             model.LogsModel
                 .findAllData("T")
@@ -4321,7 +4319,7 @@ module.exports = function(app, model) {
         }
 
         if (criteria === "Destination City" || criteria ===  "Origin City") {
-            console.log(criteria);
+         //   console.log(criteria);
             model.LogsModel
                 .findAllData("F")
                 .then(function(resp){

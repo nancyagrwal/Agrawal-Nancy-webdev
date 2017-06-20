@@ -42,7 +42,7 @@
             + '&airLines='+airLines;
             return $http.get(url)
                 .then(function (response) {
-                    console.log(response.data);
+                   // console.log(response.data);
                     return response.data;
                 });
         }
@@ -137,7 +137,7 @@
                         // console.log(themeFlightData);
                     }
                     //storing the flight search data:
-                    console.log(themeFlightData);
+                   // console.log(themeFlightData);
                     var url = "/api/project/user/"+ userId +"/search/storeTheme";
                     $http.defaults.headers.common.Authorization =undefined;
                     return $http.post(url, themeFlightData)
@@ -163,7 +163,7 @@
          }*/
 
         function getThemeFlightData(){
-            console.log(themeFlightData);
+
             return themeFlightData;
         }
 
@@ -215,7 +215,7 @@
             $http.defaults.headers.common.Authorization = 'Bearer T1RLAQIyFpEYc4FRwZLnrXMf5NUEiKsschA9rUbysQjO2VZ0lcDYKtE+AADA+1QHpbnLEr2ctJVLqKsy02TnLgrLt24kYgzPgEw+EPW19MH8L500sm1NW5vU+IryH8aBEYlAgH7rZMdkVYo5lsN9G/WeRa+MUyVWzrxa1kL1I74lmJS9NvTJbE6BCZBraea61XZ/ohE0GAZjlhCRL/aPudYlG+VMCg+KuBNch6FFmOQqmER9Xz1rVRZlsUrMeHJMLL1zaxrJvq0VUUe83AEO9U1lA1HeVW4iGzZbwSPDpmFMA0RtHsIjTcs9/96U';
             return $http.get(url)
                 .then(function (response){
-                     console.log("flight data is...." + response);
+
                     var flData=response.data;
                     //flData.push(response.data);
 

@@ -85,15 +85,7 @@
 
             })
 
-            .when('/user/:userId/search/results', {
-                templateUrl: 'views/user/templates/results.html',
-                controller: 'resultController',
-                controllerAs: 'model',
-                resolve:{
-                    currentLoggedInUser:checkLoggedIn
-                }
-            })
-            .when('/user/makePlan', {
+             .when('/user/makePlan', {
                 templateUrl: 'views/user/templates/plan.html',
                 controller: 'planController',
                 controllerAs: 'model',

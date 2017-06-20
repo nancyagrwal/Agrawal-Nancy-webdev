@@ -290,15 +290,22 @@
 
 
         function init(){
-            model.userData=allUsers;
+
 
              ClientSideServices
                 .findUserById(model.userId)
                 .then(function(response){
                     model.user=response;
                 });
-        }
 
+                ClientSideServices
+                    .findAllUsers()
+                    .then(function(response){
+                        model.userData=response;
+                    });
+                $location.url('/user/viewUser');
+
+            }
         init();
 
         function profile() {
@@ -307,7 +314,6 @@
 
 
         function editUser(user) {
-            console.log('*****');
             editUserDetails=user;
             $location.url("/user/editUser/");
         }
@@ -321,11 +327,6 @@
         {
             $location.url("/profile");
         }
-
-
-
-
-
     }
 
     function userEditController(currentLoggedInUser,$location,ClientSideServices,$routeParams){
@@ -359,7 +360,7 @@
 
         function updateUser(userDetails) {
 
-            console.log("userid is.........." +userDetails._id );
+
             ClientSideServices
                 .updateUser(userDetails._id, userDetails)
                 .then(function (response) {

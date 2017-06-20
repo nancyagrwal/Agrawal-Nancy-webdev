@@ -27,7 +27,7 @@
         </div>
         <div class="row" style="margin-top:20px">
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                <form role="form">
+
                     <fieldset>
 
     <h1>Search Trips</h1>
@@ -112,31 +112,35 @@
     </div>
 
     <div ng-show="model.showThemeSearchButton">
-    <a class="btn btn-primary "
+    <a class="btn btn-primary btn-block"
         ng-click="model.searchThemes(model.budget,model.location,model.departureDate,model.returnDate,model.theme,model.userId)">
          Search Places
     </a>
+        <a class="btn btn-danger btn-block"
+           href="#!/login">
+            Logout
+        </a>
     </div>
 
 
     <div ng-hide="model.showFlightSearchButton">
-    <a class="btn btn-primary "
+    <a class="btn btn-primary btn-block"
        ng-click="model.searchFlights(model.location,model.toCity,model.departureDate,model.returnDate,model.userId)">
         Search Flights
     </a>
+        <a class="btn btn-danger btn-block"
+           href="#!/login">
+            Logout
+        </a>
     </div>
 
     </br>
 
 
 </div>
-                    </fieldset>
-                </form>
+        </fieldset>
+
     </div>
-
-
-
-
 
 <div ng-show="model.showThemeDiv">
     <div class="container-fluid">
@@ -172,7 +176,7 @@
                     <div class="card col-md-6" style="text-align: start"><b>{{lowestFr.airLineCode}}</b></div>
                     <div class="card col-md-6" style="text-align: end"><b>{{result.lowestFareNS}}</b></div>
                 </div>
-            </div>
+                </div>
 
         </div>
     </div>
@@ -209,7 +213,7 @@
                     <div class="card col-md-4"  height="50%"><i><b>{{trip.departureDateTime}}(GMT{{trip.departureTimeZone}})</b></i></div>
                     <div class="card col-md-4"  height="50%"><img src="../images/Arrow-Right-128.png"/></div></div>
                 <div class="card col-md-4"  height="50%"><i><b>{{trip.arrDateTime}}(GMT{{trip.arrTimeZone}})</b></i></div>
-                </div>
+                 </div>
             <div class="card col-md-12"><h4><b> No of Stops:{{result.tripData.downStopCount}}</b></h4></div>
                 <br>
                 <br>
@@ -222,7 +226,7 @@
                     <div class="card col-md-6" style="text-align: start"><i><b>{{tax.type}} Tax</b></i></div>
                     <div class="card col-md-6" style="text-align: end"><i><b>{{tax.amount}}</b></i></div>
                 </div>
-            <div class="card col-md-6" style="text-align: start"><i><b>Total Taxes</b><</i></div>
+            <div class="card col-md-6" style="text-align: start"><i><b>Total Taxes</b></i></div>
             <div class="card col-md-6" style="text-align: end"><i><b>{{result.faresDetails.totalTax}}</b></i></div>
             <div class="card col-md-6" style="text-align: start"><i><b>Total Fare</b></i></div>
             <div class="card col-md-6" style="text-align: end"><i><b>{{result.faresDetails.totalFare}}</b></i></div>
@@ -236,14 +240,6 @@
 </div>
 
 
-<div class="container-fluid">
-
-<a class="btn btn-danger pull-right"
-   href="#!/login">
-    Logout
-</a>
-
-</div>
 <div ng-include="'views/common/footer.view.client.html'"></div>
         </div>
     </div>

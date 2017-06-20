@@ -5,39 +5,10 @@
 (function () {
         angular
             .module('Travelator')
-            .controller('dataController', dataController)
-            .controller('resultController', resultController);
+            .controller('dataController', dataController);
 
-        function resultController($location, searchServices,$routeParams) {
 
-            var model = this;
-            model.userId = $routeParams['userId'];
-            model.goBackToSearch = goBackToSearch;
-
-            function init() {
-               searchServices
-                            .searchFlights(model.userId)
-                            .then(function (found) {
-                                  if (found !== null) {
-
-                                    model.data = found;
-                                    $location.url('/user/:userId/search/results');
-                                } else {
-                                    model.message = "Please work on your options!";
-                                }
-                            });
-                   }
-
-            init();
-
-            function goBackToSearch()
-            {
-                $location.url("/user/"+ model.userId +"/search");
-            }
-
-        }
-
-        function dataController(currentLoggedInUser,$location,
+         function dataController(currentLoggedInUser,$location,
                                 $routeParams,
                                 searchServices) {
             var model = this;

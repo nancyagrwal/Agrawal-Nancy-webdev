@@ -23,14 +23,10 @@
         </div>
         <div class="row" style="margin-top:20px">
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-
                     <fieldset>
-
-
     <h1>Profile</h1>
     <hr class="colorgraph">
 
-    <div ng-show="model.nonAdmin">
         <div class="navbar-text wd-navbar-header pull-right ">
             <label> Upload Image</label>
 
@@ -45,31 +41,10 @@
         <div class="navbar-text wd-navbar-header pull-left">
             <img ng-src="{{model.user.profilePicture}}" height="130" width="130"/>
         </div>
-    </div>
+
     </br>
-    <div ng-show="model.admin">
-        <div class="card col-md-12">
-            <div class="card col-md-3">
-                <div class="btn-user-img-class">
-                    <img src="../images/add_user-512.png" class="btn-user-img-class userHover" title="Add User" ng-click="model.addUserRed()">
-                </div>
-            </div>
 
-
-            <div class="card col-md-3">
-                <div class="btn-user-img-class">
-                    <img src="../images/delete_user-512.png" class="btn-user-img-class userHover" title="Update User" ng-click="model.updateUserPage()">
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
-
-    <div ng-show="model.nonAdmin">
-
-        <input ng-model="model.user.username"
+          <input ng-model="model.user.username"
                readonly
                type="text"
                class="form-control"
@@ -105,8 +80,6 @@
                class="form-control"
                id="last-name"
                placeholder="Wonderland">
-    </div>
-
 
 </br>
 
@@ -141,11 +114,29 @@
 </div>
 
 <br>
+
+         <div ng-show="model.admin">
+           <div class="card col-md-12">
+              <div class="card col-md-3">
+                  <div class="btn-user-img-class pull-left">
+                     <img src="../images/add_user-512.png" class="btn-user-img-class userHover" title="Add User" ng-click="model.addUserRed()">
+                        </div>
+              </div>
+               <div class="card col-lg-15">
+                    <div class="btn-user-img-class pull-right">
+                        <img src="../images/delete_user-512.png" class="btn-user-img-class userHover" title="Update User" ng-click="model.updateUserPage()">
+                          </div>
+               </div>
+           </div>
+         </div>
+                    </fieldset>
+                    </br>
+                    </br>
 <a class="btn btn-danger btn-block"
    href="#!/login">
     Logout
 </a>
-                    </fieldset>
+
 </div>
         </div>
 

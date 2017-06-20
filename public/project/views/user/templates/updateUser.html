@@ -1,31 +1,29 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-blue navbar-fixed-top">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12">
-                <div class="navbar-header wd-margin-sx">
-                    <p class="navbar-text pull-left">
-                        <a href="#!/user/viewUser"
-                           class="navbar-link">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a>
-                            Edit User
-                        </a>
-                    </p>
-                    <p class="navbar-text pull-right">
-                        <a ng-click="model.updateUser(model.userDetails)"
-                           class="navbar-link">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </a>
-                        <a ng-click="model.deleteUser(model.userDetails)"
-                           class="navbar-link">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </p>
-
-                </div>
-            </div>
+        <div class="no-padding-left pull-left">
+            <a class="navbar-brand navbar-link navbar-blue" href="#!/user/viewUser">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
         </div>
+
+        <div class="nav-sidebar no-padding-left col-sm-4 col-md-3">
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand navbar-blue">
+                    Edit Users
+                </a>
+            </div>
+
+        </div>
+
+        <div class="navbar-text pull-right">
+            <a class="navbar-link navbar-blue" ng-click="model.updateUser(model.userDetails)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+            <a class="navbar-link navbar-blue" ng-click="model.deleteUser(model.userDetails)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
+
     </div>
 </nav>
 
@@ -33,37 +31,67 @@
     <div class="row" style="margin-top:20px">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 
-            <div ng-show="model.error" class="alert alert-danger">
-                {{model.error}}
-            </div>
-            <div class="container-fluid">
-                <div ng-show="model.message" class="alert alert-success">
-                    {{model.message}}
-                </div>
         </div>
         <div class="row" style="margin-top:20px">
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                <form role="form">
-                    <fieldset>
+                <fieldset>
 
-<h1>Update User</h1>
-<hr class="colorgraph">
-
-                <div class="form">
-                    <div class="login-form">
-                        <input type="text" placeholder="username" ng-model="model.userDetails.username"/>
-                        <input type="text" placeholder="email" ng-model="model.userDetails.email"/>
-                        <input type="text" placeholder="First Name" ng-model="model.userDetails.firstName"/>
-                        <input type="text" placeholder="Last Name" ng-model="model.userDetails.lastName"/>
+                    <h1>Edit User</h1>
+                    <hr class="colorgraph">
+                    <div class="col-sm-4 col-md-3 sidebar">
+                        <p ng-repeat="user in model.userData">
+                            <a ng-click="model.openUser(user)">
+                                {{user.username}}
+                                <a ng-click="model.editUser(user)">
+                                    <span class="pull-right glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                </a>
+                            </a>
+                        </p>
                     </div>
+                    <div class="inverse-sidebar col-sm-8 col-md-9">
+                        <label for="username">User Name</label>
+                        <input ng-model="model.userDetails.username"
+                               type="text"
+                               id="username"
+                               class="form-control"
+                               placeholder="username"
+                               value="{{model.userDetails.username}}"
+                        />
 
-                </div>
-                    </fieldset>
-                </form>
+                        <label for="firstName">First Name</label>
+                        <input ng-model="model.userDetails.firstName"
+                               type="text"
+                               id="firstName"
+                               class="form-control"
+                               placeholder="firstName"
+                               value="{{model.userDetails.firstName}}"
+                        />
+                        <label for="lastName">Last Name</label>
+                        <input ng-model="model.userDetails.lastName"
+                               type="text"
+                               id="lastName"
+                               class="form-control"
+                               placeholder="lastName"
+                               value="{{model.userDetails.lastName}}"
+                        />
+                        <label for="email">Email</label>
+                        <input ng-model="model.userDetails.email"
+                               type="text"
+                               id="email"
+                               class="form-control"
+                               placeholder="email"
+                               value="{{model.userDetails.email}}"
+                        />
+
+
+                    </div>
+                </fieldset>
+
             </div>
         </div>
-
-</div>
-<div ng-include="'views/common/footer.view.client.html'"></div>
     </div>
 </div>
+
+<nav class="navbar navbar-blue navbar-fixed-bottom">
+    <div ng-include="'views/common/footer.view.client.html'"></div>
+</nav>
